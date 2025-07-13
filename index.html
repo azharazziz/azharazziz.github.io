@@ -3,29 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Azhar Azziz Afifi - ASN & Laravel Developer</title>
+    <title>Azhar Azziz - Laravel Developer & Tech Enthusiast</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     
-    <!-- Fallback for Font Awesome if CDN fails -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const testIcon = document.createElement('i');
-            testIcon.className = 'fas fa-heart';
-            testIcon.style.display = 'none';
-            document.body.appendChild(testIcon);
-            
-            // Check if Font Awesome loaded
-            setTimeout(() => {
-                const computed = window.getComputedStyle(testIcon, ':before');
-                if (computed.content === 'none' || computed.content === '') {
-                    console.warn('Font Awesome may not have loaded properly');
-                }
-                document.body.removeChild(testIcon);
-            }, 100);
-        });
-    </script>
+    <!-- External CSS file -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Tailwind CSS Configuration -->
     <script>
         tailwind.config = {
             theme: {
@@ -55,19 +41,19 @@
                             '50%': { transform: 'rotate(3deg)' },
                         },
                         glow: {
-                            '0%': { boxShadow: '0 0 20px rgba(59, 130, 246, 0.5)' },
-                            '100%': { boxShadow: '0 0 30px rgba(59, 130, 246, 0.8)' },
+                            '0%': { boxShadow: '0 0 5px rgba(59, 130, 246, 0.5)' },
+                            '100%': { boxShadow: '0 0 20px rgba(59, 130, 246, 0.8)' },
                         },
                         fadeInUp: {
-                            '0%': { opacity: '0', transform: 'translateY(30px)' },
+                            '0%': { opacity: '0', transform: 'translateY(40px)' },
                             '100%': { opacity: '1', transform: 'translateY(0)' },
                         },
                         slideInLeft: {
-                            '0%': { opacity: '0', transform: 'translateX(-50px)' },
+                            '0%': { opacity: '0', transform: 'translateX(-100px)' },
                             '100%': { opacity: '1', transform: 'translateX(0)' },
                         },
                         slideInRight: {
-                            '0%': { opacity: '0', transform: 'translateX(50px)' },
+                            '0%': { opacity: '0', transform: 'translateX(100px)' },
                             '100%': { opacity: '1', transform: 'translateX(0)' },
                         },
                         scaleIn: {
@@ -75,9 +61,8 @@
                             '100%': { opacity: '1', transform: 'scale(1)' },
                         },
                         gradient: {
-                            '0%': { backgroundPosition: '0% 50%' },
+                            '0%, 100%': { backgroundPosition: '0% 50%' },
                             '50%': { backgroundPosition: '100% 50%' },
-                            '100%': { backgroundPosition: '0% 50%' },
                         },
                     },
                     backgroundSize: {
@@ -87,2160 +72,234 @@
             },
         }
     </script>
-    <style>
-        :root {
-            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --secondary-gradient: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
-            --text-primary: #1f2937;
-            --text-secondary: #6b7280;
-            --bg-primary: #ffffff;
-            --bg-secondary: #f9fafb;
-            --bg-tertiary: #f3f4f6;
-            --bg-card: #ffffff;
-            --border-color: #e5e7eb;
-            --border-light: #f3f4f6;
-            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-            --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-        }
+    
 
-        html {
-            scroll-behavior: smooth;
-        }
-        
-        .glass-effect {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        
-        .text-gradient {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .bg-gradient-animated {
-            background: linear-gradient(-45deg, #667eea, #764ba2, #f093fb, #f5576c);
-            background-size: 400% 400%;
-            animation: gradient 15s ease infinite;
-        }
-        
-        .hover-lift {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .hover-lift:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        }
-        
-        .particle {
-            position: absolute;
-            border-radius: 50%;
-            opacity: 0.6;
-            animation: float 6s ease-in-out infinite;
-        }
-        
-        .particle:nth-child(odd) {
-            animation-delay: -2s;
-        }
-        
-        .particle:nth-child(even) {
-            animation-delay: -4s;
-        }
-        
-        .typing-cursor::after {
-            content: '|';
-            opacity: 1;
-            animation: blink 1s infinite;
-        }
-        
-        @keyframes blink {
-            0%, 50% { opacity: 1; }
-            51%, 100% { opacity: 0; }
-        }
-        
-        .nav-link {
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .nav-link::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-            transition: left 0.5s;
-        }
-        
-        .nav-link:hover::before {
-            left: 100%;
-        }
-        
-        .skill-card-3d {
-            perspective: 1000px;
-        }
-        
-        .skill-card-inner {
-            transform-style: preserve-3d;
-            transition: transform 0.6s;
-        }
-        
-        .skill-card-3d:hover .skill-card-inner {
-            transform: rotateY(10deg) rotateX(10deg);
-        }
-        
-        .magnetic-btn {
-            transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
-        }
-        
-        .magnetic-btn:hover {
-            transform: scale(1.05);
-        }
-        
-
-        
-        .section-reveal {
-            opacity: 0;
-            transform: translateY(50px);
-            transition: all 0.8s ease;
-        }
-        
-        .section-reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .stagger-animation {
-            opacity: 0;
-            transform: translateY(30px);
-        }
-        
-        .stagger-animation.visible {
-            animation: fadeInUp 0.8s ease forwards;
-        }
-        
-        .parallax-bg {
-            background-attachment: fixed;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
-        
-        .morphing-blob {
-            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-            animation: morph 8s ease-in-out infinite;
-        }
-        
-        @keyframes morph {
-            0% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
-            50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
-            100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
-        }
-
-        /* Header */
-        header {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border-light);
-            padding: 1.25rem 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            transition: all 0.3s ease;
-        }
-
-        header.scrolled {
-            background: rgba(255, 255, 255, 0.98);
-            box-shadow: var(--shadow-lg);
-            padding: 1rem 0;
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .logo {
-            font-size: 1.75rem;
-            font-weight: 800;
-            background: var(--primary-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            letter-spacing: -0.02em;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2.5rem;
-        }
-
-        .nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.95rem;
-            position: relative;
-            transition: all 0.3s ease;
-            letter-spacing: -0.01em;
-        }
-
-        .nav-links a:hover {
-            color: var(--text-primary);
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 3px;
-            bottom: -8px;
-            left: 0;
-            background: var(--primary-gradient);
-            border-radius: 2px;
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            padding: 8px;
-            border-radius: 8px;
-            transition: background 0.3s ease;
-        }
-
-        .hamburger:hover {
-            background: var(--bg-tertiary);
-        }
-
-        .hamburger span {
-            width: 28px;
-            height: 3px;
-            background: var(--text-primary);
-            margin: 3px 0;
-            border-radius: 2px;
-            transition: 0.3s;
-        }
-
-        /* Hero Section */
-        .hero {
-            background: var(--primary-gradient);
-            color: white;
-            padding: 160px 0 120px;
-            text-align: center;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
-        }
-
-        .hero-content {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero .badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 50px;
-            font-size: 0.95rem;
-            font-weight: 600;
-            margin-bottom: 2rem;
-            animation: fadeInUp 1s ease;
-        }
-
-        .hero h1 {
-            font-size: clamp(3rem, 6vw, 5rem);
-            font-weight: 800;
-            margin-bottom: 1.5rem;
-            line-height: 1.1;
-            letter-spacing: -0.02em;
-            animation: fadeInUp 1s ease 0.2s both;
-        }
-
-        .hero .tagline {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-            opacity: 0.95;
-            letter-spacing: -0.01em;
-            animation: fadeInUp 1s ease 0.4s both;
-        }
-
-        .hero .description {
-            font-size: 1.25rem;
-            opacity: 0.9;
-            margin-bottom: 3rem;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1.7;
-            font-weight: 400;
-            animation: fadeInUp 1s ease 0.6s both;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            animation: fadeInUp 1s ease 0.8s both;
-        }
-
-        .cta-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.75rem;
-            padding: 18px 36px;
-            text-decoration: none;
-            border-radius: 16px;
-            font-weight: 700;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            letter-spacing: -0.01em;
-        }
-
-        .cta-button.primary {
-            background: white;
-            color: #1e40af;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-        }
-
-        .cta-button.secondary {
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            backdrop-filter: blur(10px);
-        }
-
-        .cta-button:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-        }
-
-        .cta-button.primary:hover {
-            background: #f8fafc;
-            transform: translateY(-4px) scale(1.02);
-        }
-
-        .cta-button.secondary:hover {
-            background: rgba(255, 255, 255, 0.2);
-            border-color: rgba(255, 255, 255, 0.5);
-        }
-
-        /* Sections */
-        section {
-            padding: 120px 0;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding-left: 2rem;
-            padding-right: 2rem;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 5rem;
-        }
-
-        .section-badge {
-            display: inline-block;
-            background: var(--bg-tertiary);
-            color: var(--text-secondary);
-            padding: 0.5rem 1.25rem;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-            letter-spacing: 0.02em;
-            text-transform: uppercase;
-        }
-
-        .section-title {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 800;
-            margin-bottom: 1.5rem;
-            color: var(--text-primary);
-            line-height: 1.2;
-            letter-spacing: -0.02em;
-        }
-
-        .section-subtitle {
-            font-size: 1.3rem;
-            color: var(--text-secondary);
-            max-width: 700px;
-            margin: 0 auto;
-            line-height: 1.6;
-            font-weight: 400;
-        }
-
-        /* About Section */
-        .about {
-            background: var(--bg-secondary);
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1.5fr;
-            gap: 6rem;
-            align-items: center;
-        }
-
-        .profile-container {
-            position: relative;
-            text-align: center;
-        }
-
-        .profile-img {
-            width: 400px;
-            height: 400px;
-            border-radius: 2rem;
-            object-fit: cover;
-            box-shadow: var(--shadow-2xl);
-            margin: 0 auto;
-            display: block;
-            transition: transform 0.4s ease;
-            border: 8px solid white;
-        }
-
-        .profile-img:hover {
-            transform: scale(1.05) rotate(2deg);
-        }
-
-        .profile-badges {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            margin-top: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .profile-badge {
-            background: var(--primary-gradient);
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            box-shadow: var(--shadow-md);
-        }
-
-        .about-text {
-            font-size: 1.2rem;
-            line-height: 1.8;
-            color: var(--text-secondary);
-        }
-
-        .about-text h3 {
-            color: var(--text-primary);
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 2rem;
-            line-height: 1.3;
-        }
-
-        .about-text p {
-            margin-bottom: 1.5rem;
-        }
-
-        .about-stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin-top: 4rem;
-        }
-
-        .stat-item {
-            text-align: center;
-            padding: 2.5rem;
-            background: var(--bg-card);
-            border-radius: 1.5rem;
-            box-shadow: var(--shadow-lg);
-            border: 1px solid var(--border-color);
-            transition: all 0.3s ease;
-        }
-
-        .stat-item:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-xl);
-        }
-
-        .stat-number {
-            font-size: 3rem;
-            font-weight: 800;
-            background: var(--primary-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            display: block;
-            line-height: 1.2;
-        }
-
-        .stat-label {
-            color: var(--text-secondary);
-            font-weight: 600;
-            margin-top: 0.75rem;
-            font-size: 1.1rem;
-        }
-
-        /* PHP Laravel Focus Section */
-        .php-focus {
-            background: var(--bg-primary);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .php-focus::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(circle at 10% 20%, rgba(30, 64, 175, 0.05) 0%, transparent 50%),
-                radial-gradient(circle at 90% 80%, rgba(59, 130, 246, 0.05) 0%, transparent 50%);
-        }
-
-        .php-ecosystem {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2.5rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .ecosystem-card {
-            background: var(--bg-card);
-            padding: 3rem;
-            border-radius: 2rem;
-            text-align: center;
-            box-shadow: var(--shadow-xl);
-            border: 1px solid var(--border-color);
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .ecosystem-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: var(--primary-gradient);
-        }
-
-        .ecosystem-card:hover {
-            transform: translateY(-12px);
-            box-shadow: var(--shadow-2xl);
-        }
-
-        .ecosystem-icon {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            background: var(--primary-gradient);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 2rem;
-            font-size: 2.5rem;
-            color: white;
-            box-shadow: var(--shadow-lg);
-        }
-
-        .ecosystem-card h4 {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: var(--text-primary);
-        }
-
-        .ecosystem-card p {
-            color: var(--text-secondary);
-            line-height: 1.7;
-            margin-bottom: 2rem;
-            font-size: 1.1rem;
-        }
-
-        .tech-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.75rem;
-            justify-content: center;
-        }
-
-        .tech-item {
-            background: var(--bg-tertiary);
-            color: var(--text-primary);
-            padding: 0.5rem 1rem;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            border: 1px solid var(--border-color);
-        }
-
-        /* ASN Identity Section */
-        .asn-identity {
-            background: var(--bg-secondary);
-        }
-
-        .asn-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .asn-card {
-            background: var(--bg-card);
-            padding: 2.5rem;
-            border-radius: 1.5rem;
-            box-shadow: var(--shadow-lg);
-            border: 1px solid var(--border-color);
-            transition: all 0.3s ease;
-        }
-
-        .asn-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-xl);
-        }
-
-        .asn-card .icon {
-            width: 70px;
-            height: 70px;
-            border-radius: 1rem;
-            background: var(--primary-gradient);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.5rem;
-            font-size: 1.75rem;
-            color: white;
-        }
-
-        .asn-card h4 {
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: var(--text-primary);
-        }
-
-        .asn-card p {
-            color: var(--text-secondary);
-            line-height: 1.6;
-        }
-
-        /* Projects Section */
-        .projects {
-            background: var(--bg-primary);
-        }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 3rem;
-        }
-
-        .project-card {
-            background: var(--bg-card);
-            border-radius: 2rem;
-            overflow: hidden;
-            box-shadow: var(--shadow-xl);
-            transition: all 0.4s ease;
-            border: 1px solid var(--border-color);
-        }
-
-        .project-card:hover {
-            transform: translateY(-12px);
-            box-shadow: var(--shadow-2xl);
-        }
-
-        .project-header {
-            background: var(--primary-gradient);
-            padding: 3rem 2rem 2rem;
-            color: white;
-            text-align: center;
-            position: relative;
-        }
-
-        .project-header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 70% 70%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
-        }
-
-        .project-icon {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .project-content {
-            padding: 2.5rem;
-        }
-
-        .project-content h3 {
-            font-size: 1.6rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            color: var(--text-primary);
-            line-height: 1.3;
-        }
-
-        .project-content p {
-            color: var(--text-secondary);
-            line-height: 1.7;
-            margin-bottom: 2rem;
-            font-size: 1.1rem;
-        }
-
-        .project-tech {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.75rem;
-            margin-bottom: 2rem;
-        }
-
-        .tech-tag {
-            background: var(--bg-tertiary);
-            color: var(--text-primary);
-            padding: 0.5rem 1rem;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            border: 1px solid var(--border-color);
-        }
-
-        .project-links {
-            display: flex;
-            gap: 1.5rem;
-        }
-
-        .project-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: #1e40af;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .project-link:hover {
-            color: #3b82f6;
-            transform: translateX(3px);
-        }
-
-        /* Contact Section */
-        .contact {
-            background: var(--bg-secondary);
-        }
-
-        .contact-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 6rem;
-        }
-
-        .contact-info h3 {
-            font-size: 2.25rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: 2rem;
-            line-height: 1.3;
-        }
-
-        .contact-info p {
-            color: var(--text-secondary);
-            font-size: 1.2rem;
-            line-height: 1.7;
-            margin-bottom: 3rem;
-        }
-
-        .contact-items {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-            padding: 2rem;
-            background: var(--bg-card);
-            border-radius: 1.5rem;
-            box-shadow: var(--shadow-lg);
-            border: 1px solid var(--border-color);
-            transition: all 0.3s ease;
-        }
-
-        .contact-item:hover {
-            transform: translateX(8px);
-            box-shadow: var(--shadow-xl);
-        }
-
-        .contact-item .icon {
-            width: 70px;
-            height: 70px;
-            border-radius: 1rem;
-            background: var(--primary-gradient);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            font-size: 1.75rem;
-            color: white;
-        }
-
-        .contact-item-content strong {
-            display: block;
-            color: var(--text-primary);
-            font-weight: 700;
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .contact-item-content span {
-            color: var(--text-secondary);
-            font-size: 1rem;
-        }
-
-        .contact-form {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-            background: var(--bg-card);
-            padding: 3rem;
-            border-radius: 2rem;
-            box-shadow: var(--shadow-xl);
-            border: 1px solid var(--border-color);
-        }
-
-        .contact-form h4 {
-            color: var(--text-primary);
-            font-weight: 700;
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .contact-form input,
-        .contact-form textarea {
-            padding: 1.25rem 1.5rem;
-            border: 2px solid var(--border-color);
-            border-radius: 1rem;
-            font-size: 1.1rem;
-            font-family: inherit;
-            transition: all 0.3s ease;
-            background: var(--bg-primary);
-            font-weight: 500;
-        }
-
-        .contact-form input:focus,
-        .contact-form textarea:focus {
-            outline: none;
-            border-color: #3b82f6;
-            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
-        }
-
-        .submit-btn {
-            background: var(--primary-gradient);
-            color: white;
-            padding: 1.25rem 2rem;
-            border: none;
-            border-radius: 1rem;
-            font-size: 1.1rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: var(--shadow-lg);
-        }
-
-        .submit-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-xl);
-        }
-
-        /* Footer */
-        footer {
-            background: var(--secondary-gradient);
-            color: white;
-            text-align: center;
-            padding: 4rem 0;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-
-        .social-links a {
-            width: 60px;
-            height: 60px;
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 1rem;
-            font-size: 1.5rem;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .social-links a:hover {
-            background: var(--primary-gradient);
-            transform: translateY(-5px);
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(40px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .fade-in-up {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: all 0.8s ease;
-        }
-
-        .fade-in-up.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: rgba(255, 255, 255, 0.98);
-                backdrop-filter: blur(20px);
-                flex-direction: column;
-                padding: 2rem;
-                box-shadow: var(--shadow-xl);
-                border-top: 1px solid var(--border-light);
-            }
-
-            .nav-links.active {
-                display: flex;
-            }
-
-            .hamburger {
-                display: flex;
-            }
-
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .about-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-                gap: 4rem;
-            }
-
-            .contact-content {
-                grid-template-columns: 1fr;
-                gap: 4rem;
-            }
-
-            .php-ecosystem {
-                grid-template-columns: 1fr;
-            }
-
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .about-stats {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            section {
-                padding: 80px 0;
-            }
-        }
-
-        @media (max-width: 480px) {
-            section {
-                padding: 60px 0;
-                padding-left: 1rem;
-                padding-right: 1rem;
-            }
-
-            nav {
-                padding: 0 1rem;
-            }
-
-            .hero-content {
-                padding: 0 1rem;
-            }
-
-            .about-stats {
-                grid-template-columns: 1fr;
-            }
-
-            .asn-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
 </head>
-        header {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border-light);
-            padding: 1.25rem 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            transition: all 0.3s ease;
-        }
-
-        header.scrolled {
-            background: rgba(255, 255, 255, 0.98);
-            box-shadow: var(--shadow-lg);
-            padding: 1rem 0;
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .logo {
-            font-size: 1.75rem;
-            font-weight: 800;
-            background: var(--primary-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            letter-spacing: -0.02em;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2.5rem;
-        }
-
-        .nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.95rem;
-            position: relative;
-            transition: all 0.3s ease;
-            letter-spacing: -0.01em;
-        }
-
-        .nav-links a:hover {
-            color: var(--text-primary);
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 3px;
-            bottom: -8px;
-            left: 0;
-            background: var(--primary-gradient);
-            border-radius: 2px;
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            padding: 8px;
-            border-radius: 8px;
-            transition: background 0.3s ease;
-        }
-
-        .hamburger:hover {
-            background: var(--bg-tertiary);
-        }
-
-        .hamburger span {
-            width: 28px;
-            height: 3px;
-            background: var(--text-primary);
-            margin: 3px 0;
-            border-radius: 2px;
-            transition: 0.3s;
-        }
-
-        /* Hero Section */
-        .hero {
-            background: var(--primary-gradient);
-            color: white;
-            padding: 160px 0 120px;
-            text-align: center;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
-        }
-
-        .hero-content {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero .badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 50px;
-            font-size: 0.95rem;
-            font-weight: 600;
-            margin-bottom: 2rem;
-            animation: fadeInUp 1s ease;
-        }
-
-        .hero h1 {
-            font-size: clamp(3rem, 6vw, 5rem);
-            font-weight: 800;
-            margin-bottom: 1.5rem;
-            line-height: 1.1;
-            letter-spacing: -0.02em;
-            animation: fadeInUp 1s ease 0.2s both;
-        }
-
-        .hero .tagline {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-            opacity: 0.95;
-            letter-spacing: -0.01em;
-            animation: fadeInUp 1s ease 0.4s both;
-        }
-
-        .hero .description {
-            font-size: 1.25rem;
-            opacity: 0.9;
-            margin-bottom: 3rem;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1.7;
-            font-weight: 400;
-            animation: fadeInUp 1s ease 0.6s both;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            animation: fadeInUp 1s ease 0.8s both;
-        }
-
-        .cta-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.75rem;
-            padding: 18px 36px;
-            text-decoration: none;
-            border-radius: 16px;
-            font-weight: 700;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            letter-spacing: -0.01em;
-        }
-
-        .cta-button.primary {
-            background: white;
-            color: #1e40af;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-        }
-
-        .cta-button.secondary {
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            backdrop-filter: blur(10px);
-        }
-
-        .cta-button:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-        }
-
-        .cta-button.primary:hover {
-            background: #f8fafc;
-            transform: translateY(-4px) scale(1.02);
-        }
-
-        .cta-button.secondary:hover {
-            background: rgba(255, 255, 255, 0.2);
-            border-color: rgba(255, 255, 255, 0.5);
-        }
-
-        /* Sections */
-        section {
-            padding: 120px 0;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding-left: 2rem;
-            padding-right: 2rem;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 5rem;
-        }
-
-        .section-badge {
-            display: inline-block;
-            background: var(--bg-tertiary);
-            color: var(--text-secondary);
-            padding: 0.5rem 1.25rem;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-            letter-spacing: 0.02em;
-            text-transform: uppercase;
-        }
-
-        .section-title {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 800;
-            margin-bottom: 1.5rem;
-            color: var(--text-primary);
-            line-height: 1.2;
-            letter-spacing: -0.02em;
-        }
-
-        .section-subtitle {
-            font-size: 1.3rem;
-            color: var(--text-secondary);
-            max-width: 700px;
-            margin: 0 auto;
-            line-height: 1.6;
-            font-weight: 400;
-        }
-
-        /* About Section */
-        .about {
-            background: var(--bg-secondary);
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1.5fr;
-            gap: 6rem;
-            align-items: center;
-        }
-
-        .profile-container {
-            position: relative;
-            text-align: center;
-        }
-
-        .profile-img {
-            width: 400px;
-            height: 400px;
-            border-radius: 2rem;
-            object-fit: cover;
-            box-shadow: var(--shadow-2xl);
-            margin: 0 auto;
-            display: block;
-            transition: transform 0.4s ease;
-            border: 8px solid white;
-        }
-
-        .profile-img:hover {
-            transform: scale(1.05) rotate(2deg);
-        }
-
-        .profile-badges {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            margin-top: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .profile-badge {
-            background: var(--primary-gradient);
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            box-shadow: var(--shadow-md);
-        }
-
-        .about-text {
-            font-size: 1.2rem;
-            line-height: 1.8;
-            color: var(--text-secondary);
-        }
-
-        .about-text h3 {
-            color: var(--text-primary);
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 2rem;
-            line-height: 1.3;
-        }
-
-        .about-text p {
-            margin-bottom: 1.5rem;
-        }
-
-        .about-stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin-top: 4rem;
-        }
-
-        .stat-item {
-            text-align: center;
-            padding: 2.5rem;
-            background: var(--bg-card);
-            border-radius: 1.5rem;
-            box-shadow: var(--shadow-lg);
-            border: 1px solid var(--border-color);
-            transition: all 0.3s ease;
-        }
-
-        .stat-item:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-xl);
-        }
-
-        .stat-number {
-            font-size: 3rem;
-            font-weight: 800;
-            background: var(--primary-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            display: block;
-            line-height: 1.2;
-        }
-
-        .stat-label {
-            color: var(--text-secondary);
-            font-weight: 600;
-            margin-top: 0.75rem;
-            font-size: 1.1rem;
-        }
-
-        /* PHP Laravel Focus Section */
-        .php-focus {
-            background: var(--bg-primary);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .php-focus::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(circle at 10% 20%, rgba(30, 64, 175, 0.05) 0%, transparent 50%),
-                radial-gradient(circle at 90% 80%, rgba(59, 130, 246, 0.05) 0%, transparent 50%);
-        }
-
-        .php-ecosystem {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2.5rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .ecosystem-card {
-            background: var(--bg-card);
-            padding: 3rem;
-            border-radius: 2rem;
-            text-align: center;
-            box-shadow: var(--shadow-xl);
-            border: 1px solid var(--border-color);
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .ecosystem-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: var(--primary-gradient);
-        }
-
-        .ecosystem-card:hover {
-            transform: translateY(-12px);
-            box-shadow: var(--shadow-2xl);
-        }
-
-        .ecosystem-icon {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            background: var(--primary-gradient);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 2rem;
-            font-size: 2.5rem;
-            color: white;
-            box-shadow: var(--shadow-lg);
-        }
-
-        .ecosystem-card h4 {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: var(--text-primary);
-        }
-
-        .ecosystem-card p {
-            color: var(--text-secondary);
-            line-height: 1.7;
-            margin-bottom: 2rem;
-            font-size: 1.1rem;
-        }
-
-        .tech-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.75rem;
-            justify-content: center;
-        }
-
-        .tech-item {
-            background: var(--bg-tertiary);
-            color: var(--text-primary);
-            padding: 0.5rem 1rem;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            border: 1px solid var(--border-color);
-        }
-
-        /* ASN Identity Section */
-        .asn-identity {
-            background: var(--bg-secondary);
-        }
-
-        .asn-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .asn-card {
-            background: var(--bg-card);
-            padding: 2.5rem;
-            border-radius: 1.5rem;
-            box-shadow: var(--shadow-lg);
-            border: 1px solid var(--border-color);
-            transition: all 0.3s ease;
-        }
-
-        .asn-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-xl);
-        }
-
-        .asn-card .icon {
-            width: 70px;
-            height: 70px;
-            border-radius: 1rem;
-            background: var(--primary-gradient);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.5rem;
-            font-size: 1.75rem;
-            color: white;
-        }
-
-        .asn-card h4 {
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: var(--text-primary);
-        }
-
-        .asn-card p {
-            color: var(--text-secondary);
-            line-height: 1.6;
-        }
-
-        /* Projects Section */
-        .projects {
-            background: var(--bg-primary);
-        }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 3rem;
-        }
-
-        .project-card {
-            background: var(--bg-card);
-            border-radius: 2rem;
-            overflow: hidden;
-            box-shadow: var(--shadow-xl);
-            transition: all 0.4s ease;
-            border: 1px solid var(--border-color);
-        }
-
-        .project-card:hover {
-            transform: translateY(-12px);
-            box-shadow: var(--shadow-2xl);
-        }
-
-        .project-header {
-            background: var(--primary-gradient);
-            padding: 3rem 2rem 2rem;
-            color: white;
-            text-align: center;
-            position: relative;
-        }
-
-        .project-header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 70% 70%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
-        }
-
-        .project-icon {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .project-content {
-            padding: 2.5rem;
-        }
-
-        .project-content h3 {
-            font-size: 1.6rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            color: var(--text-primary);
-            line-height: 1.3;
-        }
-
-        .project-content p {
-            color: var(--text-secondary);
-            line-height: 1.7;
-            margin-bottom: 2rem;
-            font-size: 1.1rem;
-        }
-
-        .project-tech {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.75rem;
-            margin-bottom: 2rem;
-        }
-
-        .tech-tag {
-            background: var(--bg-tertiary);
-            color: var(--text-primary);
-            padding: 0.5rem 1rem;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            border: 1px solid var(--border-color);
-        }
-
-        .project-links {
-            display: flex;
-            gap: 1.5rem;
-        }
-
-        .project-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: #1e40af;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .project-link:hover {
-            color: #3b82f6;
-            transform: translateX(3px);
-        }
-
-        /* Contact Section */
-        .contact {
-            background: var(--bg-secondary);
-        }
-
-        .contact-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 6rem;
-        }
-
-        .contact-info h3 {
-            font-size: 2.25rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: 2rem;
-            line-height: 1.3;
-        }
-
-        .contact-info p {
-            color: var(--text-secondary);
-            font-size: 1.2rem;
-            line-height: 1.7;
-            margin-bottom: 3rem;
-        }
-
-        .contact-items {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-            padding: 2rem;
-            background: var(--bg-card);
-            border-radius: 1.5rem;
-            box-shadow: var(--shadow-lg);
-            border: 1px solid var(--border-color);
-            transition: all 0.3s ease;
-        }
-
-        .contact-item:hover {
-            transform: translateX(8px);
-            box-shadow: var(--shadow-xl);
-        }
-
-        .contact-item .icon {
-            width: 70px;
-            height: 70px;
-            border-radius: 1rem;
-            background: var(--primary-gradient);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            font-size: 1.75rem;
-            color: white;
-        }
-
-        .contact-item-content strong {
-            display: block;
-            color: var(--text-primary);
-            font-weight: 700;
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .contact-item-content span {
-            color: var(--text-secondary);
-            font-size: 1rem;
-        }
-
-        .contact-form {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-            background: var(--bg-card);
-            padding: 3rem;
-            border-radius: 2rem;
-            box-shadow: var(--shadow-xl);
-            border: 1px solid var(--border-color);
-        }
-
-        .contact-form h4 {
-            color: var(--text-primary);
-            font-weight: 700;
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .contact-form input,
-        .contact-form textarea {
-            padding: 1.25rem 1.5rem;
-            border: 2px solid var(--border-color);
-            border-radius: 1rem;
-            font-size: 1.1rem;
-            font-family: inherit;
-            transition: all 0.3s ease;
-            background: var(--bg-primary);
-            font-weight: 500;
-        }
-
-        .contact-form input:focus,
-        .contact-form textarea:focus {
-            outline: none;
-            border-color: #3b82f6;
-            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
-        }
-
-        .submit-btn {
-            background: var(--primary-gradient);
-            color: white;
-            padding: 1.25rem 2rem;
-            border: none;
-            border-radius: 1rem;
-            font-size: 1.1rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: var(--shadow-lg);
-        }
-
-        .submit-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-xl);
-        }
-
-        /* Footer */
-        footer {
-            background: var(--secondary-gradient);
-            color: white;
-            text-align: center;
-            padding: 4rem 0;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-
-        .social-links a {
-            width: 60px;
-            height: 60px;
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 1rem;
-            font-size: 1.5rem;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .social-links a:hover {
-            background: var(--primary-gradient);
-            transform: translateY(-5px);
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(40px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .fade-in-up {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: all 0.8s ease;
-        }
-
-        .fade-in-up.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: rgba(255, 255, 255, 0.98);
-                backdrop-filter: blur(20px);
-                flex-direction: column;
-                padding: 2rem;
-                box-shadow: var(--shadow-xl);
-                border-top: 1px solid var(--border-light);
-            }
-
-            .nav-links.active {
-                display: flex;
-            }
-
-            .hamburger {
-                display: flex;
-            }
-
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .about-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-                gap: 4rem;
-            }
-
-            .contact-content {
-                grid-template-columns: 1fr;
-                gap: 4rem;
-            }
-
-            .php-ecosystem {
-                grid-template-columns: 1fr;
-            }
-
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .about-stats {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            section {
-                padding: 80px 0;
-            }
-        }
-
-        @media (max-width: 480px) {
-            section {
-                padding: 60px 0;
-                padding-left: 1rem;
-                padding-right: 1rem;
-            }
-
-            nav {
-                padding: 0 1rem;
-            }
-
-            .hero-content {
-                padding: 0 1rem;
-            }
-
-            .about-stats {
-                grid-template-columns: 1fr;
-            }
-
-            .asn-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-</head>
-<body class="font-inter bg-gray-50 overflow-x-hidden">
+<body class="font-inter overflow-x-hidden">
     <header class="fixed w-full top-0 z-50 transition-all duration-300" id="header">
-        <div class="glass-effect">
-            <nav class="container mx-auto px-6 py-4">
-                <div class="flex items-center justify-between">
-                    <!-- Logo with animation -->
-                    <div class="text-2xl font-black text-gradient hover:scale-105 transition-transform duration-300">
-                        <span class="animate-pulse">A</span>zhar
-                        <span class="text-blue-600">.</span>
+        <div class="header-content">
+            <nav class="flex items-center justify-between">
+            <!-- Modern Minimalist Logo -->
+            <div class="flex items-center">
+                <a href="#home" class="flex items-center gap-3 group">
+                    <div class="w-10 h-10 bg-gradient-to-br from-teal-500 to-teal-600 rounded-full flex items-center justify-center group-hover:scale-105 transition-all duration-300">
+                        <span class="text-white font-bold text-lg">A</span>
                     </div>
-
-                    <!-- Desktop Navigation -->
-                    <ul class="hidden md:flex space-x-8">
-                        <li><a href="#home" class="nav-link px-4 py-2 text-gray-700 hover:text-blue-600 font-medium transition-all duration-300 rounded-lg hover:bg-white/50">Beranda</a></li>
-                        <li><a href="#about" class="nav-link px-4 py-2 text-gray-700 hover:text-blue-600 font-medium transition-all duration-300 rounded-lg hover:bg-white/50">Tentang</a></li>
-                        <li><a href="#skills" class="nav-link px-4 py-2 text-gray-700 hover:text-blue-600 font-medium transition-all duration-300 rounded-lg hover:bg-white/50">Keahlian</a></li>
-                        <li><a href="#projects" class="nav-link px-4 py-2 text-gray-700 hover:text-blue-600 font-medium transition-all duration-300 rounded-lg hover:bg-white/50">Proyek</a></li>
-                        <li><a href="#contact" class="nav-link px-4 py-2 text-gray-700 hover:text-blue-600 font-medium transition-all duration-300 rounded-lg hover:bg-white/50">Kontak</a></li>
-                    </ul>
-
-                    <!-- CTA Button -->
-                    <div class="hidden md:block">
-                        <a href="#contact" class="magnetic-btn bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300">
-                            <i class="fas fa-rocket mr-2"></i>Mulai Proyek
-                        </a>
+                    <div class="flex flex-col">
+                        <span class="text-xl font-bold text-gray-900 leading-tight">
+                            Azhar Azziz
+                        </span>
+                        <span class="text-xs font-medium text-teal-600 leading-tight">Web Developer</span>
                     </div>
+                </a>
+            </div>
 
-                    <!-- Mobile menu button -->
-                    <button class="md:hidden p-2 rounded-lg hover:bg-white/50 transition-colors" id="mobileMenuBtn">
-                        <div class="w-6 h-6 flex flex-col justify-center items-center">
-                            <span class="bg-gray-700 block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm" id="line1"></span>
-                            <span class="bg-gray-700 block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm my-1" id="line2"></span>
-                            <span class="bg-gray-700 block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm" id="line3"></span>
+            <!-- Clean Desktop Navigation -->
+            <div class="hidden lg:flex items-center">
+                <nav class="flex items-center gap-8">
+                    <a href="#home" class="nav-link text-gray-700 hover:text-teal-600 font-medium text-sm transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-teal-600 after:transition-all after:duration-300 hover:after:w-full">Beranda</a>
+                    <a href="#about" class="nav-link text-gray-700 hover:text-teal-600 font-medium text-sm transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-teal-600 after:transition-all after:duration-300 hover:after:w-full">Tentang</a>
+                    <a href="#skills" class="nav-link text-gray-700 hover:text-teal-600 font-medium text-sm transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-teal-600 after:transition-all after:duration-300 hover:after:w-full">Keahlian</a>
+                    <a href="#projects" class="nav-link text-gray-700 hover:text-teal-600 font-medium text-sm transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-teal-600 after:transition-all after:duration-300 hover:after:w-full">Proyek</a>
+                    <a href="#contact" class="nav-link text-gray-700 hover:text-teal-600 font-medium text-sm transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-teal-600 after:transition-all after:duration-300 hover:after:w-full">Kontak</a>
+                </nav>
+            </div>
+
+            <!-- Minimalist Mobile Menu Button -->
+            <button class="lg:hidden flex flex-col justify-center items-center w-10 h-10 rounded-lg hover:bg-teal-50 transition-all duration-300 group" id="mobileMenuBtn" aria-label="Menu">
+                <span class="bg-gray-700 h-0.5 w-5 rounded mb-1 transition-all duration-300 group-hover:bg-teal-600" id="line1"></span>
+                <span class="bg-gray-700 h-0.5 w-5 rounded mb-1 transition-all duration-300 group-hover:bg-teal-600" id="line2"></span>
+                <span class="bg-gray-700 h-0.5 w-5 rounded transition-all duration-300 group-hover:bg-teal-600" id="line3"></span>
+            </button>
+        </nav>
+        </div>
+        <!-- Modern Mobile Navigation -->
+        <div class="lg:hidden fixed top-0 left-0 w-full h-screen bg-white/95 backdrop-blur-md z-40 transition-all duration-500 max-h-0 overflow-hidden" id="mobileMenu">
+            <div class="flex flex-col h-full">
+                <!-- Mobile Header -->
+                <div class="flex items-center justify-between p-6 border-b border-teal-100/50">
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 bg-gradient-to-br from-teal-500 to-teal-600 rounded-full flex items-center justify-center">
+                            <span class="text-white font-bold text-sm">A</span>
                         </div>
+                        <div>
+                            <div class="text-lg font-bold text-gray-900">Azhar Azziz</div>
+                            <div class="text-xs font-medium text-teal-600">Web Developer</div>
+                        </div>
+                    </div>
+                    <button class="w-8 h-8 rounded-lg bg-teal-50 flex items-center justify-center hover:bg-teal-100 transition" onclick="toggleMobileMenu()">
+                        <i class="fas fa-times text-teal-600 text-sm"></i>
                     </button>
                 </div>
-
-                <!-- Mobile Navigation -->
-                <div class="md:hidden overflow-hidden transition-all duration-300 max-h-0" id="mobileMenu">
-                    <div class="py-4 space-y-2">
-                        <a href="#home" class="block px-4 py-3 text-gray-700 hover:bg-white/50 rounded-lg transition-colors">Beranda</a>
-                        <a href="#about" class="block px-4 py-3 text-gray-700 hover:bg-white/50 rounded-lg transition-colors">Tentang</a>
-                        <a href="#skills" class="block px-4 py-3 text-gray-700 hover:bg-white/50 rounded-lg transition-colors">Keahlian</a>
-                        <a href="#projects" class="block px-4 py-3 text-gray-700 hover:bg-white/50 rounded-lg transition-colors">Proyek</a>
-                        <a href="#contact" class="block px-4 py-3 text-gray-700 hover:bg-white/50 rounded-lg transition-colors">Kontak</a>
-                        <a href="#contact" class="block mt-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-full font-semibold text-center">
-                            <i class="fas fa-rocket mr-2"></i>Mulai Proyek
-                        </a>
-                    </div>
+                
+                <!-- Clean Mobile Navigation Links -->
+                <nav class="flex flex-col justify-center flex-1 px-6 gap-2">
+                    <a href="#home" class="nav-link flex items-center gap-3 text-lg px-4 py-3 text-gray-700 hover:text-teal-600 hover:bg-teal-50 font-medium rounded-lg transition-all duration-300">
+                        <i class="fas fa-home w-4 text-teal-500"></i>
+                        <span>Beranda</span>
+                    </a>
+                    <a href="#about" class="nav-link flex items-center gap-3 text-lg px-4 py-3 text-gray-700 hover:text-teal-600 hover:bg-teal-50 font-medium rounded-lg transition-all duration-300">
+                        <i class="fas fa-user w-4 text-teal-500"></i>
+                        <span>Tentang</span>
+                    </a>
+                    <a href="#skills" class="nav-link flex items-center gap-3 text-lg px-4 py-3 text-gray-700 hover:text-teal-600 hover:bg-teal-50 font-medium rounded-lg transition-all duration-300">
+                        <i class="fas fa-code w-4 text-teal-500"></i>
+                        <span>Keahlian</span>
+                    </a>
+                    <a href="#projects" class="nav-link flex items-center gap-3 text-lg px-4 py-3 text-gray-700 hover:text-teal-600 hover:bg-teal-50 font-medium rounded-lg transition-all duration-300">
+                        <i class="fas fa-folder w-4 text-teal-500"></i>
+                        <span>Proyek</span>
+                    </a>
+                    <a href="#contact" class="nav-link flex items-center gap-3 text-lg px-4 py-3 text-gray-700 hover:text-teal-600 hover:bg-teal-50 font-medium rounded-lg transition-all duration-300">
+                        <i class="fas fa-envelope w-4 text-teal-500"></i>
+                        <span>Kontak</span>
+                    </a>
+                </nav>
+                
+                <!-- Mobile CTA -->
+                <div class="p-6 border-t border-teal-100/50">
+                    <a href="#contact" class="block w-full bg-teal-600 hover:bg-teal-700 text-white px-6 py-3 rounded-lg font-medium text-center transition-all duration-300">
+                        Mulai Proyek
+                    </a>
                 </div>
-            </nav>
+            </div>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section id="home" class="relative min-h-screen flex items-center justify-center bg-gradient-animated overflow-hidden">
-        <!-- Animated particles -->
+    <section id="home" class="hero-section relative overflow-hidden">
+        <!-- Clean Background with teal accent -->
+        <div class="absolute inset-0 bg-gradient-to-br from-teal-600/10 via-teal-500/10 to-teal-600/10"></div>
+        
+        <!-- Simplified animated elements with teal theme -->
         <div class="absolute inset-0">
-            <div class="particle w-4 h-4 bg-white/20 top-1/4 left-1/4"></div>
-            <div class="particle w-6 h-6 bg-white/10 top-1/3 right-1/4"></div>
-            <div class="particle w-3 h-3 bg-white/30 bottom-1/4 left-1/3"></div>
-            <div class="particle w-5 h-5 bg-white/15 bottom-1/3 right-1/3"></div>
-            <div class="particle w-2 h-2 bg-white/25 top-1/2 left-1/2"></div>
+            <!-- Floating tech icons with teal coordination -->
+            <div class="absolute top-20 left-20 w-16 h-16 bg-teal-500/20 rounded-full flex items-center justify-center animate-float">
+                <i class="fab fa-laravel text-orange-400 text-2xl"></i>
+            </div>
+            <div class="absolute top-32 right-32 w-12 h-12 bg-teal-400/20 rounded-full flex items-center justify-center animate-float" style="animation-delay: 1s;">
+                <i class="fab fa-php text-blue-400 text-xl"></i>
+            </div>
+            <div class="absolute bottom-40 left-32 w-20 h-20 bg-teal-600/20 rounded-full flex items-center justify-center animate-float" style="animation-delay: 2s;">
+                <i class="fas fa-database text-teal-300 text-2xl"></i>
+            </div>
+            <div class="absolute top-1/2 right-20 w-10 h-10 bg-teal-300/20 rounded-full flex items-center justify-center animate-float" style="animation-delay: 3s;">
+                <i class="fas fa-tools text-teal-400 text-lg"></i>
+            </div>
         </div>
 
-        <!-- Morphing background shapes -->
-        <div class="absolute top-20 left-10 w-64 h-64 bg-white/5 morphing-blob"></div>
-        <div class="absolute bottom-20 right-10 w-48 h-48 bg-white/10 morphing-blob animation-delay-2000"></div>
-
-        <div class="container mx-auto px-6 text-center relative z-10">
-            <!-- ASN Badge -->
-            <div class="inline-flex items-center gap-3 bg-white/20 backdrop-blur-md border border-white/30 text-white px-6 py-3 rounded-full mb-8 animate-fadeInUp">
-                <div class="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
-                <span class="font-semibold text-sm tracking-wider">APARATUR SIPIL NEGARA</span>
-                <i class="fab fa-laravel text-lg animate-bounce-slow"></i>
-            </div>
-
-            <!-- Main Content -->
-            <div class="max-w-4xl mx-auto">
-                <h1 class="text-6xl md:text-8xl font-black text-white mb-6 leading-none">
-                    <span class="block animate-slideInLeft">Azhar</span>
-                    <span class="block text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500 animate-slideInRight">Azziz Afifi</span>
-                </h1>
-
-                <div class="text-2xl md:text-3xl font-bold text-white/90 mb-4 typing-cursor animate-fadeInUp" id="typingText" style="animation-delay: 0.8s;">
-                    <!-- Text will be typed here -->
-                </div>
-
-                <p class="text-xl text-white/80 mb-12 max-w-3xl mx-auto leading-relaxed animate-fadeInUp" style="animation-delay: 1.2s;">
-                    Membangun solusi digital inovatif dengan 
-                    <span class="text-yellow-300 font-semibold">Laravel</span> & 
-                    <span class="text-purple-300 font-semibold">Livewire</span>. 
-                    Sebagai ASN yang berkomitmen pada transformasi digital untuk kemajuan bangsa.
-                </p>
-
-                <!-- CTA Buttons with enhanced animations -->
-                <div class="flex flex-col sm:flex-row gap-6 justify-center items-center animate-fadeInUp" style="animation-delay: 1.6s;">
-                    <a href="#about" class="group relative bg-white text-gray-900 px-8 py-4 rounded-2xl font-bold text-lg shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105 hover:-rotate-1">
-                        <span class="relative z-10 flex items-center">
-                            <i class="fas fa-user-tie mr-3 text-blue-600"></i>
-                            Profil ASN
-                        </span>
-                        <div class="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-500 rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
-                    </a>
-                    
-                    <a href="#skills" class="group relative glass-effect text-white px-8 py-4 rounded-2xl font-bold text-lg border-2 border-white/30 hover:border-white/60 transition-all duration-300 hover:scale-105 hover:rotate-1">
-                        <span class="flex items-center">
-                            <i class="fab fa-laravel mr-3 text-red-400 animate-wiggle"></i>
-                            Expertise Laravel
-                        </span>
-                    </a>
-                </div>
-
-                <!-- Tech Stack Showcase -->
-                <div class="mt-16 animate-fadeInUp" style="animation-delay: 2s;">
-                    <p class="text-white/60 text-sm font-medium mb-6 tracking-wider uppercase">Tech Stack Utama</p>
-                    <div class="flex flex-wrap justify-center gap-6">
-                        <div class="group flex items-center gap-3 glass-effect px-4 py-2 rounded-full hover:bg-white/20 transition-all duration-300">
-                            <i class="fab fa-laravel text-2xl text-red-400 group-hover:animate-bounce"></i>
-                            <span class="text-white font-medium">Laravel</span>
-                        </div>
-                        <div class="group flex items-center gap-3 glass-effect px-4 py-2 rounded-full hover:bg-white/20 transition-all duration-300">
-                            <i class="fas fa-bolt text-2xl text-yellow-400 group-hover:animate-pulse"></i>
-                            <span class="text-white font-medium">Livewire</span>
-                        </div>
-                        <div class="group flex items-center gap-3 glass-effect px-4 py-2 rounded-full hover:bg-white/20 transition-all duration-300">
-                            <i class="fab fa-js text-2xl text-green-400 group-hover:animate-wiggle"></i>
-                            <span class="text-white font-medium">Alpine.js</span>
-                        </div>
-                        <div class="group flex items-center gap-3 glass-effect px-4 py-2 rounded-full hover:bg-white/20 transition-all duration-300">
-                            <i class="fas fa-wind text-2xl text-blue-400 group-hover:animate-bounce"></i>
-                            <span class="text-white font-medium">Tailwind</span>
+        <!-- Hero Content - No container wrapper needed, CSS handles the layout -->
+        <div class="relative z-10 w-full">
+            <!-- Hero Content Grid -->
+            <div class="max-w-5xl mx-auto">
+                <!-- Main Content - Centered -->
+                <div class="text-center animate-slideInLeft">
+                    <!-- Main Headline -->
+                    <div class="mb-8">
+                        <h1 class="text-6xl sm:text-7xl md:text-8xl font-black leading-none mb-4">
+                            <span class="block text-white/90 mb-2">
+                                Azhar Azziz
+                            </span>
+                        </h1>
+                        <div class="flex items-center justify-center gap-4 mb-6">
+                            <div class="h-1 w-20 bg-gradient-to-r from-teal-400 to-cyan-400 rounded-full"></div>
+                            <h2 class="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-teal-300 to-cyan-300 bg-clip-text text-transparent">
+                                Web Developer
+                            </h2>
+                            <div class="h-1 w-20 bg-gradient-to-r from-cyan-400 to-teal-400 rounded-full"></div>
                         </div>
                     </div>
-                </div>
-            </div>
 
-            <!-- Scroll indicator -->
-            <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-                <div class="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center">
-                    <div class="w-1 h-3 bg-white/70 rounded-full mt-2 animate-pulse"></div>
+                    <!-- Professional Tags -->
+                    <div class="flex flex-wrap justify-center gap-3 mb-8">
+                        <span class="bg-teal-500/20 text-teal-100 px-4 py-2 rounded-full text-sm font-medium backdrop-blur-sm border border-teal-400/30">
+                            Professional Developer
+                        </span>
+                        <span class="bg-cyan-500/20 text-cyan-100 px-4 py-2 rounded-full text-sm font-medium backdrop-blur-sm border border-cyan-400/30">
+                            Civil Servant
+                        </span>
+                        <span class="bg-teal-600/20 text-teal-100 px-4 py-2 rounded-full text-sm font-medium backdrop-blur-sm border border-teal-500/30">
+                            Laravel Expert
+                        </span>
+                    </div>
+
+                    <!-- Description -->
+                    <p class="text-xl text-slate-300 leading-relaxed mb-10 max-w-2xl mx-auto">
+                        Membangun aplikasi web modern dengan <span class="text-teal-300 font-semibold">Laravel</span> untuk solusi digital yang efektif dan inovatif. Passionate about technology and continuous learning.
+                    </p>
+
+                    <!-- CTA Buttons -->
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <a href="#projects" class="bg-gradient-to-r from-teal-500 to-cyan-500 hover:from-teal-600 hover:to-cyan-600 text-white px-8 py-4 rounded-xl font-semibold text-lg shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 text-center">
+                            <i class="fas fa-code mr-2"></i>
+                            Lihat Portfolio
+                        </a>
+                        <a href="#contact" class="bg-white/10 hover:bg-white/20 text-white px-8 py-4 rounded-xl font-semibold text-lg backdrop-blur-sm border border-white/20 hover:border-white/30 transition-all duration-300 text-center">
+                            <i class="fas fa-handshake mr-2"></i>
+                            Hubungi Saya
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-20 bg-white relative overflow-hidden">
+    <section id="about" class="about-section py-20 relative overflow-hidden">
         <!-- Background decorations -->
-        <div class="absolute top-0 left-0 w-72 h-72 bg-blue-100 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float"></div>
-        <div class="absolute top-0 right-0 w-72 h-72 bg-purple-100 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float" style="animation-delay: 2s;"></div>
-        <div class="absolute bottom-0 left-1/3 w-72 h-72 bg-pink-100 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float" style="animation-delay: 4s;"></div>
+        <div class="absolute top-0 left-0 w-72 h-72 bg-teal-50 rounded-full mix-blend-multiply filter blur-xl opacity-60 animate-float"></div>
+        <div class="absolute top-0 right-0 w-72 h-72 bg-cyan-50 rounded-full mix-blend-multiply filter blur-xl opacity-60 animate-float" style="animation-delay: 2s;"></div>
+        <div class="absolute bottom-0 left-1/3 w-72 h-72 bg-teal-100 rounded-full mix-blend-multiply filter blur-xl opacity-60 animate-float" style="animation-delay: 4s;"></div>
 
         <div class="container mx-auto px-6 relative z-10">
             <!-- Section Header -->
             <div class="text-center mb-16 section-reveal">
-                <div class="inline-block bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-2 rounded-full text-sm font-semibold tracking-wider uppercase mb-4">
+                <div class="section-badge">
                     Tentang Saya
                 </div>
                 <h2 class="text-5xl md:text-6xl font-black text-gray-900 mb-6">
-                    ASN yang 
-                    <span class="text-gradient">Berdedikasi</span>
-                    <br>pada Teknologi
+                    Developer yang 
+                    <span class="text-gradient">Passionate</span>
+                    <br>tentang Teknologi
                 </h2>
                 <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                    Memadukan dedikasi sebagai Aparatur Sipil Negara dengan keahlian dalam pengembangan aplikasi web modern menggunakan ekosistem Laravel
+                    Menggabungkan pengalaman profesional dengan passion mendalam dalam pengembangan aplikasi web modern menggunakan ekosistem Laravel yang powerful
                 </p>
             </div>
 
             <!-- Main Content -->
             <div class="grid lg:grid-cols-2 gap-16 items-center mb-20">
-                <!-- Profile Image -->
-                <div class="order-2 lg:order-1 text-center section-reveal">
-                    <div class="relative inline-block">
-                        <div class="w-80 h-80 bg-gradient-to-br from-blue-500 to-purple-600 rounded-3xl transform rotate-6 absolute inset-0"></div>
-                        <img src="https://via.placeholder.com/400x400/1e40af/ffffff?text=Azhar+A" alt="Azhar Azziz Afifi" class="w-80 h-80 rounded-3xl object-cover relative z-10 border-8 border-white shadow-2xl hover:scale-105 transition-transform duration-300">
-                        
-                        <!-- Floating badges -->
-                        <div class="absolute -top-4 -right-4 bg-green-500 text-white px-4 py-2 rounded-full text-sm font-bold animate-bounce">
-                            ASN 🇮🇩
+                <!-- Profile Image - Techy Redesign (Re-layout) -->
+                <div class="order-2 lg:order-1 flex flex-col items-center justify-center gap-6 section-reveal">
+                    <div class="relative">
+                        <!-- Decorative Tech Icon Overlays (moved to bottom for layering) -->
+                        <div class="absolute -top-7 right-10 w-12 h-12 bg-gradient-to-br from-teal-400/40 to-white/30 rounded-full flex items-center justify-center shadow-lg animate-float border border-teal-300/30" style="z-index: 10;">
+                            <i class="fas fa-terminal text-teal-600 text-2xl"></i>
                         </div>
-                        <div class="absolute -bottom-4 -left-4 bg-red-500 text-white px-4 py-2 rounded-full text-sm font-bold animate-pulse">
+                        <div class="absolute -bottom-7 left-10 w-10 h-10 bg-gradient-to-br from-cyan-400/40 to-white/30 rounded-full flex items-center justify-center shadow-lg animate-float border border-cyan-300/30" style="animation-delay: 1.5s; z-index: 10;">
+                            <i class="fas fa-code text-cyan-600 text-xl"></i>
+                        </div>
+                        <div class="absolute top-1/2 left-0 -translate-y-1/2 -translate-x-1/2 w-8 h-8 bg-gradient-to-br from-orange-400/40 to-pink-400/30 rounded-full flex items-center justify-center shadow-lg animate-float border border-orange-300/30" style="animation-delay: 2s; z-index: 10;">
+                            <i class="fab fa-php text-purple-500 text-lg"></i>
+                        </div>
+                        <div class="absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/2 w-8 h-8 bg-gradient-to-br from-teal-400/40 to-cyan-400/30 rounded-full flex items-center justify-center shadow-lg animate-float border border-teal-300/30" style="animation-delay: 2.5s; z-index: 10;">
+                            <i class="fas fa-database text-teal-500 text-lg"></i>
+                        </div>
+                        <!-- Neon Gradient Border -->
+                        <div class="absolute inset-0 w-72 h-72 rounded-full bg-gradient-to-br from-teal-400 via-cyan-400 to-teal-600 blur-2xl opacity-60 border-4 border-dashed border-teal-400 animate-glow" style="z-index: 0;"></div>
+                        <!-- Profile Image -->
+                        <div class="relative w-72 h-72 rounded-full overflow-hidden border-4 border-white shadow-2xl flex items-center justify-center" style="z-index: 20;">
+                            <img src="placeholder-profile.svg" alt="Azhar Azziz"
+                                 class="w-full h-full object-cover rounded-full z-10 transition-transform duration-300 hover:scale-105">
+                            <div class="absolute inset-0 pointer-events-none bg-[url('data:image/svg+xml;utf8,<svg width=\'100%25\' height=\'100%25\' xmlns=\'http://www.w3.org/2000/svg\'><rect width=\'100%25\' height=\'100%25\' fill=\'none\' stroke=\'%23ffffff33\' stroke-width=\'1\' stroke-dasharray=\'2,6\'/></svg>')] opacity-20"></div>
+                        </div>
+                        <!-- Floating Tech Badges -->
+                        <div class="absolute top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-emerald-500 to-teal-500 text-white px-5 py-2 rounded-full text-sm font-bold shadow-lg animate-bounce flex items-center gap-2 border border-teal-300/40" style="z-index: 30;">
+                            <i class="fas fa-microchip text-white"></i>
+                            Tech Enthusiast
+                        </div>
+                        <div class="absolute bottom-4 left-1/3 -translate-x-1/2 bg-gradient-to-r from-orange-500 to-pink-500 text-white px-5 py-2 rounded-full text-sm font-bold shadow-lg animate-pulse flex items-center gap-2 border border-pink-300/40" style="z-index: 30;">
+                            <i class="fab fa-laravel text-white"></i>
                             Laravel Expert
                         </div>
                     </div>
@@ -2249,27 +308,24 @@
                 <!-- About Text -->
                 <div class="order-1 lg:order-2 section-reveal">
                     <h3 class="text-3xl font-bold text-gray-900 mb-6 flex items-center">
-                        <span class="text-4xl mr-3">🇮🇩</span>
-                        Mengabdi Negeri melalui Teknologi
+                        Inovasi melalui Teknologi Modern
                     </h3>
                     
                     <div class="space-y-6 text-lg text-gray-700 leading-relaxed">
                         <p>
-                            Sebagai <span class="font-bold text-blue-600">Aparatur Sipil Negara (ASN)</span>, saya memiliki komitmen tinggi untuk mengabdi kepada negara dan masyarakat. Dengan latar belakang sebagai <span class="font-bold text-purple-600">PHP Laravel Specialist</span>, saya berfokus pada pengembangan aplikasi web yang mendukung transformasi digital di sektor publik.
+                            Developer <span class="font-bold text-teal-700">ASN</span> spesialis <span class="font-bold text-teal-600">PHP Laravel</span>, berpengalaman membangun aplikasi web modern yang efisien dan berdampak untuk sektor publik dan organisasi.
                         </p>
-                        
                         <p>
-                            Keahlian utama saya terpusat pada <span class="font-bold text-red-500">ekosistem Laravel dan Livewire</span>, yang memungkinkan saya menciptakan aplikasi web yang robust, scalable, dan user-friendly. Setiap proyek yang saya kerjakan selalu mengutamakan efisiensi, keamanan, dan kemudahan penggunaan.
+                            Mengutamakan <span class="font-bold text-teal-600">Laravel & Livewire</span> untuk solusi web yang scalable, aman, dan user-friendly. Selalu menerapkan clean code dan performa optimal.
                         </p>
-                        
                         <p>
-                            Saya percaya bahwa teknologi adalah alat yang powerful untuk meningkatkan kualitas pelayanan publik dan transparansi pemerintahan. Dengan semangat inovasi dan dedikasi sebagai ASN, saya terus mengembangkan solusi digital yang berdampak positif bagi masyarakat Indonesia.
+                            Teknologi adalah passion dan kunci inovasi. Saya aktif belajar dan beradaptasi untuk menghadirkan solusi digital yang relevan dan berkualitas.
                         </p>
                     </div>
 
                     <!-- CTA Button -->
                     <div class="mt-8">
-                        <a href="#contact" class="inline-flex items-center bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-2xl font-bold hover:scale-105 transition-transform duration-300 shadow-lg hover:shadow-xl">
+                        <a href="#contact" class="inline-flex items-center bg-gradient-to-r from-teal-600 to-teal-500 text-white px-8 py-4 rounded-2xl font-bold hover:scale-105 transition-transform duration-300 shadow-lg hover:shadow-xl">
                             <i class="fas fa-handshake mr-3"></i>
                             Mari Berkolaborasi
                         </a>
@@ -2280,19 +336,19 @@
             <!-- Stats Section -->
             <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
                 <div class="text-center stagger-animation bg-white p-8 rounded-2xl shadow-lg hover-lift border border-gray-100">
-                    <div class="text-4xl font-black text-blue-600 mb-2">5+</div>
-                    <div class="text-gray-600 font-semibold">Tahun Mengabdi sebagai ASN</div>
+                    <div class="text-4xl font-black text-teal-600 mb-2">5+</div>
+                    <div class="text-gray-600 font-semibold">Tahun Pengalaman Profesional</div>
                 </div>
                 <div class="text-center stagger-animation bg-white p-8 rounded-2xl shadow-lg hover-lift border border-gray-100" style="animation-delay: 0.1s;">
-                    <div class="text-4xl font-black text-purple-600 mb-2">3+</div>
-                    <div class="text-gray-600 font-semibold">Tahun Laravel Development</div>
+                    <div class="text-4xl font-black text-teal-500 mb-2">3+</div>
+                    <div class="text-gray-600 font-semibold">Tahun Fokus Laravel Development</div>
                 </div>
                 <div class="text-center stagger-animation bg-white p-8 rounded-2xl shadow-lg hover-lift border border-gray-100" style="animation-delay: 0.2s;">
-                    <div class="text-4xl font-black text-green-600 mb-2">20+</div>
+                    <div class="text-4xl font-black text-emerald-600 mb-2">20+</div>
                     <div class="text-gray-600 font-semibold">Aplikasi Web Dikembangkan</div>
                 </div>
                 <div class="text-center stagger-animation bg-white p-8 rounded-2xl shadow-lg hover-lift border border-gray-100" style="animation-delay: 0.3s;">
-                    <div class="text-4xl font-black text-red-600 mb-2">100%</div>
+                    <div class="text-4xl font-black text-teal-700 mb-2">100%</div>
                     <div class="text-gray-600 font-semibold">Fokus Ekosistem Laravel</div>
                 </div>
             </div>
@@ -2300,22 +356,22 @@
     </section>
 
     <!-- Skills Section -->
-    <section id="skills" class="py-20 bg-gradient-to-br from-gray-50 to-blue-50 relative overflow-hidden">
+    <section id="skills" class="skills-section py-20 relative overflow-hidden">
         <!-- Background decoration -->
-        <div class="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full opacity-10 transform translate-x-48 -translate-y-48"></div>
-        <div class="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-tr from-purple-400 to-pink-500 rounded-full opacity-10 transform -translate-x-48 translate-y-48"></div>
+        <div class="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-white/5 to-teal-400/10 rounded-full opacity-30 transform translate-x-48 -translate-y-48"></div>
+        <div class="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-tr from-cyan-400/10 to-white/5 rounded-full opacity-30 transform -translate-x-48 translate-y-48"></div>
 
         <div class="container mx-auto px-6 relative z-10">
             <!-- Section Header -->
             <div class="text-center mb-20 section-reveal">
-                <div class="inline-block bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-2 rounded-full text-sm font-semibold tracking-wider uppercase mb-4">
+                <div class="section-badge">
                     Core Expertise
                 </div>
-                <h2 class="text-5xl md:text-6xl font-black text-gray-900 mb-6">
+                <h2 class="text-5xl md:text-6xl font-black text-white mb-6">
                     PHP Laravel 
-                    <span class="text-gradient">Ecosystem</span>
+                    <span class="bg-gradient-to-r from-teal-300 to-cyan-300 bg-clip-text text-transparent">Ecosystem</span>
                 </h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                <p class="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
                     Menguasai secara mendalam ekosistem Laravel untuk membangun aplikasi web modern yang powerful dan scalable
                 </p>
             </div>
@@ -2324,138 +380,138 @@
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
                 <!-- Laravel Framework -->
                 <div class="skill-card-3d group">
-                    <div class="skill-card-inner bg-white p-8 rounded-3xl shadow-xl border border-gray-100 hover:shadow-2xl transition-all duration-500">
-                        <div class="w-20 h-20 bg-gradient-to-br from-red-500 to-red-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <div class="skill-card-inner p-8 rounded-3xl shadow-xl transition-all duration-500">
+                        <div class="w-20 h-20 bg-gradient-to-br from-orange-400 to-red-500 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                             <i class="fab fa-laravel text-3xl text-white"></i>
                         </div>
-                        <h4 class="text-2xl font-bold text-gray-900 mb-4">Laravel Framework</h4>
-                        <p class="text-gray-600 mb-6 leading-relaxed">Framework PHP yang elegant dan powerful untuk membangun aplikasi web modern dengan architecture pattern MVC yang clean dan maintainable.</p>
+                        <h4 class="text-2xl font-bold mb-4">Laravel Framework</h4>
+                        <p class="mb-6 leading-relaxed">Framework PHP yang elegant dan powerful untuk membangun aplikasi web modern dengan architecture pattern MVC yang clean dan maintainable.</p>
                         <div class="flex flex-wrap gap-2">
-                            <span class="bg-red-100 text-red-700 px-3 py-1 rounded-full text-sm font-medium">Eloquent ORM</span>
-                            <span class="bg-red-100 text-red-700 px-3 py-1 rounded-full text-sm font-medium">Blade Templates</span>
-                            <span class="bg-red-100 text-red-700 px-3 py-1 rounded-full text-sm font-medium">Artisan CLI</span>
-                            <span class="bg-red-100 text-red-700 px-3 py-1 rounded-full text-sm font-medium">Migrations</span>
-                            <span class="bg-red-100 text-red-700 px-3 py-1 rounded-full text-sm font-medium">Middleware</span>
+                            <span class="bg-orange-500/20 text-orange-200 px-3 py-1 rounded-full text-sm font-medium border border-orange-400/30">Eloquent ORM</span>
+                            <span class="bg-orange-500/20 text-orange-200 px-3 py-1 rounded-full text-sm font-medium border border-orange-400/30">Blade Templates</span>
+                            <span class="bg-orange-500/20 text-orange-200 px-3 py-1 rounded-full text-sm font-medium border border-orange-400/30">Artisan CLI</span>
+                            <span class="bg-orange-500/20 text-orange-200 px-3 py-1 rounded-full text-sm font-medium border border-orange-400/30">Migrations</span>
+                            <span class="bg-orange-500/20 text-orange-200 px-3 py-1 rounded-full text-sm font-medium border border-orange-400/30">Middleware</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Livewire -->
                 <div class="skill-card-3d group">
-                    <div class="skill-card-inner bg-white p-8 rounded-3xl shadow-xl border border-gray-100 hover:shadow-2xl transition-all duration-500">
+                    <div class="skill-card-inner p-8 rounded-3xl shadow-xl transition-all duration-500">
                         <div class="w-20 h-20 bg-gradient-to-br from-yellow-500 to-orange-500 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                             <i class="fas fa-bolt text-3xl text-white animate-pulse"></i>
                         </div>
-                        <h4 class="text-2xl font-bold text-gray-900 mb-4">Laravel Livewire</h4>
-                        <p class="text-gray-600 mb-6 leading-relaxed">Membangun komponen frontend yang interaktif dengan PHP tanpa kompleksitas JavaScript framework, perfect untuk rapid development.</p>
+                        <h4 class="text-2xl font-bold mb-4">Laravel Livewire</h4>
+                        <p class="mb-6 leading-relaxed">Membangun komponen frontend yang interaktif dengan PHP tanpa kompleksitas JavaScript framework, perfect untuk rapid development.</p>
                         <div class="flex flex-wrap gap-2">
-                            <span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-sm font-medium">Real-time Components</span>
-                            <span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-sm font-medium">Form Handling</span>
-                            <span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-sm font-medium">File Uploads</span>
-                            <span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-sm font-medium">Validation</span>
+                            <span class="bg-yellow-500/20 text-yellow-200 px-3 py-1 rounded-full text-sm font-medium border border-yellow-400/30">Real-time Components</span>
+                            <span class="bg-yellow-500/20 text-yellow-200 px-3 py-1 rounded-full text-sm font-medium border border-yellow-400/30">Form Handling</span>
+                            <span class="bg-yellow-500/20 text-yellow-200 px-3 py-1 rounded-full text-sm font-medium border border-yellow-400/30">File Uploads</span>
+                            <span class="bg-yellow-500/20 text-yellow-200 px-3 py-1 rounded-full text-sm font-medium border border-yellow-400/30">Validation</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- PHP Ecosystem -->
                 <div class="skill-card-3d group">
-                    <div class="skill-card-inner bg-white p-8 rounded-3xl shadow-xl border border-gray-100 hover:shadow-2xl transition-all duration-500">
-                        <div class="w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <div class="skill-card-inner p-8 rounded-3xl shadow-xl transition-all duration-500">
+                        <div class="w-20 h-20 bg-gradient-to-br from-teal-500 to-cyan-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                             <i class="fab fa-php text-3xl text-white"></i>
                         </div>
-                        <h4 class="text-2xl font-bold text-gray-900 mb-4">PHP Ecosystem</h4>
-                        <p class="text-gray-600 mb-6 leading-relaxed">Menguasai PHP modern dengan best practices, design patterns, dan tools yang mendukung development workflow yang efisien.</p>
+                        <h4 class="text-2xl font-bold mb-4">PHP Ecosystem</h4>
+                        <p class="mb-6 leading-relaxed">Menguasai PHP modern dengan best practices, design patterns, dan tools yang mendukung development workflow yang efisien.</p>
                         <div class="flex flex-wrap gap-2">
-                            <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-medium">PHP 8+</span>
-                            <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-medium">Composer</span>
-                            <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-medium">PSR Standards</span>
-                            <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-medium">Unit Testing</span>
+                            <span class="bg-teal-500/20 text-teal-200 px-3 py-1 rounded-full text-sm font-medium border border-teal-400/30">PHP 8+</span>
+                            <span class="bg-teal-500/20 text-teal-200 px-3 py-1 rounded-full text-sm font-medium border border-teal-400/30">Composer</span>
+                            <span class="bg-teal-500/20 text-teal-200 px-3 py-1 rounded-full text-sm font-medium border border-teal-400/30">PSR Standards</span>
+                            <span class="bg-teal-500/20 text-teal-200 px-3 py-1 rounded-full text-sm font-medium border border-teal-400/30">Unit Testing</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Database & Backend -->
                 <div class="skill-card-3d group">
-                    <div class="skill-card-inner bg-white p-8 rounded-3xl shadow-xl border border-gray-100 hover:shadow-2xl transition-all duration-500">
+                    <div class="skill-card-inner p-8 rounded-3xl shadow-xl transition-all duration-500">
                         <div class="w-20 h-20 bg-gradient-to-br from-green-500 to-teal-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                             <i class="fas fa-database text-3xl text-white"></i>
                         </div>
-                        <h4 class="text-2xl font-bold text-gray-900 mb-4">Database & Backend</h4>
-                        <p class="text-gray-600 mb-6 leading-relaxed">Expertise dalam database design, optimization, dan integration dengan berbagai services untuk aplikasi enterprise-grade.</p>
+                        <h4 class="text-2xl font-bold mb-4">Database & Backend</h4>
+                        <p class="mb-6 leading-relaxed">Expertise dalam database design, optimization, dan integration dengan berbagai services untuk aplikasi enterprise-grade.</p>
                         <div class="flex flex-wrap gap-2">
-                            <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-medium">MySQL</span>
-                            <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-medium">PostgreSQL</span>
-                            <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-medium">Redis</span>
-                            <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-medium">Queue Jobs</span>
+                            <span class="bg-emerald-500/20 text-emerald-200 px-3 py-1 rounded-full text-sm font-medium border border-emerald-400/30">MySQL</span>
+                            <span class="bg-emerald-500/20 text-emerald-200 px-3 py-1 rounded-full text-sm font-medium border border-emerald-400/30">PostgreSQL</span>
+                            <span class="bg-emerald-500/20 text-emerald-200 px-3 py-1 rounded-full text-sm font-medium border border-emerald-400/30">Redis</span>
+                            <span class="bg-emerald-500/20 text-emerald-200 px-3 py-1 rounded-full text-sm font-medium border border-emerald-400/30">Queue Jobs</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Frontend Tools -->
                 <div class="skill-card-3d group">
-                    <div class="skill-card-inner bg-white p-8 rounded-3xl shadow-xl border border-gray-100 hover:shadow-2xl transition-all duration-500">
-                        <div class="w-20 h-20 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <div class="skill-card-inner p-8 rounded-3xl shadow-xl transition-all duration-500">
+                        <div class="w-20 h-20 bg-gradient-to-br from-teal-500 to-emerald-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                             <i class="fas fa-palette text-3xl text-white"></i>
                         </div>
-                        <h4 class="text-2xl font-bold text-gray-900 mb-4">Frontend & Styling</h4>
-                        <p class="text-gray-600 mb-6 leading-relaxed">Modern frontend tools untuk menciptakan user interface yang menarik dan responsive dengan workflow development yang efisien.</p>
+                        <h4 class="text-2xl font-bold mb-4">Frontend & Styling</h4>
+                        <p class="mb-6 leading-relaxed">Modern frontend tools untuk menciptakan user interface yang menarik dan responsive dengan workflow development yang efisien.</p>
                         <div class="flex flex-wrap gap-2">
-                            <span class="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full text-sm font-medium">Tailwind CSS</span>
-                            <span class="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full text-sm font-medium">Alpine.js</span>
-                            <span class="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full text-sm font-medium">Vite</span>
-                            <span class="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full text-sm font-medium">SASS</span>
+                            <span class="bg-teal-500/20 text-teal-200 px-3 py-1 rounded-full text-sm font-medium border border-teal-400/30">Tailwind CSS</span>
+                            <span class="bg-teal-500/20 text-teal-200 px-3 py-1 rounded-full text-sm font-medium border border-teal-400/30">Alpine.js</span>
+                            <span class="bg-teal-500/20 text-teal-200 px-3 py-1 rounded-full text-sm font-medium border border-teal-400/30">Vite</span>
+                            <span class="bg-teal-500/20 text-teal-200 px-3 py-1 rounded-full text-sm font-medium border border-teal-400/30">SASS</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Tools & Extensions -->
                 <div class="skill-card-3d group">
-                    <div class="skill-card-inner bg-white p-8 rounded-3xl shadow-xl border border-gray-100 hover:shadow-2xl transition-all duration-500">
+                    <div class="skill-card-inner p-8 rounded-3xl shadow-xl transition-all duration-500">
                         <div class="w-20 h-20 bg-gradient-to-br from-pink-500 to-rose-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                             <i class="fas fa-tools text-3xl text-white"></i>
                         </div>
-                        <h4 class="text-2xl font-bold text-gray-900 mb-4">Tools & Extensions</h4>
-                        <p class="text-gray-600 mb-6 leading-relaxed">Package dan tools ecosystem Laravel yang membantu dalam development aplikasi yang robust dan feature-rich.</p>
+                        <h4 class="text-2xl font-bold mb-4">Tools & Extensions</h4>
+                        <p class="mb-6 leading-relaxed">Package dan tools ecosystem Laravel yang membantu dalam development aplikasi yang robust dan feature-rich.</p>
                         <div class="flex flex-wrap gap-2">
-                            <span class="bg-pink-100 text-pink-700 px-3 py-1 rounded-full text-sm font-medium">Spatie Permissions</span>
-                            <span class="bg-pink-100 text-pink-700 px-3 py-1 rounded-full text-sm font-medium">Excel Integration</span>
-                            <span class="bg-pink-100 text-pink-700 px-3 py-1 rounded-full text-sm font-medium">Git & GitHub</span>
-                            <span class="bg-pink-100 text-pink-700 px-3 py-1 rounded-full text-sm font-medium">API Development</span>
+                            <span class="bg-rose-500/20 text-rose-200 px-3 py-1 rounded-full text-sm font-medium border border-rose-400/30">Spatie Permissions</span>
+                            <span class="bg-rose-500/20 text-rose-200 px-3 py-1 rounded-full text-sm font-medium border border-rose-400/30">Excel Integration</span>
+                            <span class="bg-rose-500/20 text-rose-200 px-3 py-1 rounded-full text-sm font-medium border border-rose-400/30">Git & GitHub</span>
+                            <span class="bg-rose-500/20 text-rose-200 px-3 py-1 rounded-full text-sm font-medium border border-rose-400/30">API Development</span>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- ASN Values Integration -->
-            <div class="bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl p-8 md:p-12 text-white">
+            <!-- Professional Values Integration -->
+            <div class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-3xl p-8 md:p-12 text-white">
                 <div class="text-center mb-12">
-                    <h3 class="text-3xl md:text-4xl font-bold mb-4">Nilai-Nilai ASN dalam Development</h3>
-                    <p class="text-blue-100 text-lg max-w-3xl mx-auto">Mengintegrasikan nilai-nilai Aparatur Sipil Negara dalam setiap proses pengembangan teknologi</p>
+                    <h3 class="text-3xl md:text-4xl font-bold mb-4">Nilai-Nilai Profesional dalam Development</h3>
+                    <p class="text-slate-300 text-lg max-w-3xl mx-auto">Mengintegrasikan prinsip-prinsip profesional dan best practices dalam setiap proses pengembangan teknologi</p>
                 </div>
                 
                 <div class="grid md:grid-cols-3 gap-8">
                     <div class="text-center group">
                         <div class="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                            <i class="fas fa-heart text-2xl text-white"></i>
+                            <i class="fas fa-code text-2xl text-white"></i>
                         </div>
-                        <h4 class="text-xl font-bold mb-2">Integritas</h4>
-                        <p class="text-blue-100">Konsisten menerapkan coding standards dan best practices dalam setiap proyek</p>
+                        <h4 class="text-xl font-bold mb-2">Clean Code</h4>
+                        <p class="text-slate-300">Konsisten menerapkan coding standards dan best practices untuk maintainable code</p>
                     </div>
                     
                     <div class="text-center group">
                         <div class="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
                             <i class="fas fa-users text-2xl text-white"></i>
                         </div>
-                        <h4 class="text-xl font-bold mb-2">Pelayanan Publik</h4>
-                        <p class="text-blue-100">Mengutamakan user experience dan accessibility untuk semua lapisan masyarakat</p>
+                        <h4 class="text-xl font-bold mb-2">User-Centric</h4>
+                        <p class="text-slate-300">Mengutamakan user experience dan accessibility dalam setiap pengembangan aplikasi</p>
                     </div>
                     
                     <div class="text-center group">
                         <div class="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                            <i class="fas fa-lightbulb text-2xl text-white"></i>
+                            <i class="fas fa-rocket text-2xl text-white"></i>
                         </div>
-                        <h4 class="text-xl font-bold mb-2">Inovasi</h4>
-                        <p class="text-blue-100">Terus mengeksplorasi teknologi terbaru untuk solusi digital yang efisien</p>
+                        <h4 class="text-xl font-bold mb-2">Continuous Learning</h4>
+                        <p class="text-slate-300">Terus mengeksplorasi teknologi terbaru dan mengikuti perkembangan industri</p>
                     </div>
                 </div>
             </div>
@@ -2463,128 +519,424 @@
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="projects">
-        <div class="section-header">
-            <div class="section-badge">Portfolio</div>
-            <h2 class="section-title">Proyek Laravel Unggulan</h2>
-            <p class="section-subtitle">Aplikasi web yang dikembangkan menggunakan ekosistem Laravel untuk mendukung transformasi digital sektor publik</p>
+    <section id="projects" class="py-24 relative overflow-hidden bg-gradient-to-br from-slate-50 to-white">
+        <!-- Background decorations -->
+        <div class="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-teal-100/30 to-cyan-100/20 rounded-full opacity-60 -translate-x-32 -translate-y-32"></div>
+        <div class="absolute bottom-0 right-0 w-80 h-80 bg-gradient-to-tl from-emerald-100/30 to-teal-100/20 rounded-full opacity-60 translate-x-32 translate-y-32"></div>
+        
+        <div class="container mx-auto px-6 relative z-10">
+            <!-- Enhanced Section Header -->
+            <div class="text-center mb-20">
+                <div class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-teal-500/10 to-emerald-500/10 border border-teal-200/50 rounded-full text-teal-700 font-semibold text-sm mb-8 backdrop-blur-sm">
+                    <div class="w-2 h-2 bg-teal-500 rounded-full mr-3 animate-pulse"></div>
+                    <i class="fas fa-briefcase mr-2"></i>
+                    Portfolio Unggulan
+                </div>
+                <h2 class="text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 mb-12 leading-relaxed">
+                    <span class="inline-block mr-4">Proyek</span>
+                    <span class="inline-block mr-4 relative">
+                        <span class="bg-gradient-to-r from-teal-600 via-emerald-600 to-cyan-600 bg-clip-text text-transparent transform hover:scale-105 transition-transform duration-300 relative z-10" style="padding: 2px 0; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Digital</span>
+                    </span>
+                    <span class="inline-block">Terdepan</span>
+                </h2>
+                <p class="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+                    Koleksi aplikasi web modern yang dikembangkan dengan teknologi terkini untuk mendukung transformasi digital di berbagai sektor
+                </p>
+                
+                <!-- Enhanced Filter Pills -->
+                <div class="flex flex-wrap justify-center gap-3 mt-8">
+                    <button class="filter-btn px-4 py-2 bg-teal-100 text-teal-700 rounded-full text-sm font-medium hover:bg-teal-200 transition-colors duration-300 active" data-filter="all">
+                        <i class="fas fa-th-large mr-1"></i>
+                        Semua Proyek
+                    </button>
+                    <button class="filter-btn px-4 py-2 bg-gray-100 text-gray-600 rounded-full text-sm font-medium hover:bg-gray-200 transition-colors duration-300" data-filter="laravel">
+                        <i class="fab fa-laravel mr-1"></i>
+                        Laravel
+                    </button>
+                    <button class="filter-btn px-4 py-2 bg-gray-100 text-gray-600 rounded-full text-sm font-medium hover:bg-gray-200 transition-colors duration-300" data-filter="government">
+                        <i class="fas fa-landmark mr-1"></i>
+                        Government
+                    </button>
+                    <button class="filter-btn px-4 py-2 bg-gray-100 text-gray-600 rounded-full text-sm font-medium hover:bg-gray-200 transition-colors duration-300" data-filter="healthcare">
+                        <i class="fas fa-heartbeat mr-1"></i>
+                        Healthcare
+                    </button>
+                    <button class="filter-btn px-4 py-2 bg-gray-100 text-gray-600 rounded-full text-sm font-medium hover:bg-gray-200 transition-colors duration-300" data-filter="opensource">
+                        <i class="fas fa-code-branch mr-1"></i>
+                        Open Source
+                    </button>
+                    <button class="filter-btn px-4 py-2 bg-gray-100 text-gray-600 rounded-full text-sm font-medium hover:bg-gray-200 transition-colors duration-300" data-filter="fintech">
+                        <i class="fas fa-coins mr-1"></i>
+                        FinTech
+                    </button>
+                    <button class="filter-btn px-4 py-2 bg-gray-100 text-gray-600 rounded-full text-sm font-medium hover:bg-gray-200 transition-colors duration-300" data-filter="wordpress">
+                        <i class="fab fa-wordpress mr-1"></i>
+                        WordPress
+                    </button>
+                </div>
+            </div>
+
+            <!-- Projects Grid with Enhanced Cards -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8" id="projects-grid">
+            <!-- 1. Lara Splade Quran (Featured Project) -->
+            <div class="project-card group relative bg-white rounded-2xl border border-gray-200/60 shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden transform hover:-translate-y-2 flex flex-col" data-category="laravel opensource">
+                <!-- Featured Badge -->
+                <div class="absolute top-3 left-3 z-10">
+                    <span class="inline-flex items-center px-2.5 py-1 bg-gradient-to-r from-yellow-500 to-orange-500 text-white text-xs font-bold rounded-full shadow-lg">
+                        <i class="fas fa-star mr-1"></i>
+                        Featured
+                    </span>
+                </div>
+                
+                <!-- Live Demo Badge -->
+                <div class="absolute top-3 right-3 z-10">
+                    <span class="inline-flex items-center px-2.5 py-1 bg-green-500 text-white text-xs font-bold rounded-full animate-pulse shadow-lg">
+                        <span class="w-1.5 h-1.5 bg-white rounded-full mr-1.5"></span>
+                        Live
+                    </span>
+                </div>
+
+                <!-- Project Header with Gradient Background -->
+                <div class="relative h-36 bg-gradient-to-br from-emerald-500 via-teal-500 to-cyan-500 flex items-center justify-center">
+                    <div class="absolute inset-0 bg-black/10"></div>
+                    <div class="relative w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center">
+                        <i class="fas fa-book-quran text-3xl text-white"></i>
+                    </div>
+                    <!-- Floating Decoration -->
+                    <div class="absolute top-6 right-6 w-6 h-6 bg-white/10 rounded-full animate-float"></div>
+                    <div class="absolute bottom-6 left-6 w-4 h-4 bg-white/20 rounded-full animate-float" style="animation-delay: 1s;"></div>
+                </div>
+
+                <!-- Project Content -->
+                <div class="p-6 flex flex-col flex-grow">
+                    <h3 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-teal-600 transition-colors duration-300">
+                        Lara Splade Quran
+                    </h3>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-4 flex-grow">
+                        Aplikasi Al-Qur'an digital modern dengan interface elegant, fitur pencarian ayat, bookmark, dan terjemahan Bahasa Indonesia untuk pengalaman membaca yang optimal.
+                    </p>
+                    
+                    <!-- Tech Stack -->
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="tech-tag bg-orange-100 text-orange-700 text-xs font-medium rounded-full px-2.5 py-1">Laravel Splade</span>
+                        <span class="tech-tag bg-green-100 text-green-700 text-xs font-medium rounded-full px-2.5 py-1">Vue.js</span>
+                        <span class="tech-tag bg-blue-100 text-blue-700 text-xs font-medium rounded-full px-2.5 py-1">MySQL</span>
+                        <span class="tech-tag bg-teal-100 text-teal-700 text-xs font-medium rounded-full px-2.5 py-1">Tailwind CSS</span>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="flex gap-2 mt-auto">
+                        <a href="https://github.com/azharazziz/lara-splade-quran" target="_blank" 
+                           class="flex-1 flex items-center justify-center px-3 py-2.5 bg-gray-900 hover:bg-gray-800 text-white text-xs font-medium rounded-lg transition-colors duration-300">
+                            <i class="fab fa-github mr-1.5 text-sm"></i>
+                            Repository
+                        </a>
+                        <a href="https://quran.azharazziz.my.id/" target="_blank" 
+                           class="flex-1 flex items-center justify-center px-3 py-2.5 bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 text-white text-xs font-medium rounded-lg transition-all duration-300">
+                            <i class="fas fa-external-link-alt mr-1.5 text-sm"></i>
+                            Live Demo
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. Website Resmi Balai Labkesmas Magelang (Government Project) -->
+            <div class="project-card group relative bg-white rounded-2xl border border-gray-200/60 shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden transform hover:-translate-y-2 flex flex-col" data-category="wordpress government healthcare">
+                <!-- Government Badge -->
+                <div class="absolute top-3 left-3 z-10">
+                    <span class="inline-flex items-center px-2.5 py-1 bg-gradient-to-r from-red-500 to-red-600 text-white text-xs font-bold rounded-full shadow-lg">
+                        <i class="fas fa-flag mr-1"></i>
+                        Government
+                    </span>
+                </div>
+                
+                <!-- ISO Certification Badge -->
+                <div class="absolute top-3 right-3 z-10">
+                    <span class="inline-flex items-center px-2.5 py-1 bg-blue-600 text-white text-xs font-bold rounded-full shadow-lg">
+                        ISO 17025
+                    </span>
+                </div>
+
+                <!-- Project Header -->
+                <div class="relative h-36 bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-600 flex items-center justify-center">
+                    <div class="absolute inset-0 bg-black/10"></div>
+                    <div class="relative w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center">
+                        <i class="fas fa-globe text-3xl text-white"></i>
+                    </div>
+                    <div class="absolute top-6 right-6 w-6 h-6 bg-white/10 rounded-full animate-float"></div>
+                    <div class="absolute bottom-6 left-6 w-4 h-4 bg-white/20 rounded-full animate-float" style="animation-delay: 1.5s;"></div>
+                </div>
+
+                <div class="p-6 flex flex-col flex-grow">
+                    <h3 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors duration-300">
+                        Website Balai Labkesmas Magelang
+                    </h3>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-4 flex-grow">
+                        Website resmi pemerintah dengan sistem informasi terpadu (Si Dul), layanan online, dan sistem surveilans kesehatan berbasis laboratorium yang mematuhi standar ISO 17025.
+                    </p>
+                    
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="tech-tag bg-blue-100 text-blue-700 text-xs font-medium rounded-full px-2.5 py-1">WordPress</span>
+                        <span class="tech-tag bg-purple-100 text-purple-700 text-xs font-medium rounded-full px-2.5 py-1">PHP</span>
+                        <span class="tech-tag bg-green-100 text-green-700 text-xs font-medium rounded-full px-2.5 py-1">MySQL</span>
+                        <span class="tech-tag bg-indigo-100 text-indigo-700 text-xs font-medium rounded-full px-2.5 py-1">Custom Theme</span>
+                    </div>
+
+                    <div class="flex gap-2 mt-auto">
+                        <a href="https://labkesmasmagelang.go.id" target="_blank" 
+                           class="flex-1 flex items-center justify-center px-3 py-2.5 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white text-xs font-medium rounded-lg transition-all duration-300">
+                            <i class="fas fa-external-link-alt mr-1.5 text-sm"></i>
+                            Visit Website
+                        </a>
+                        <a href="#contact" 
+                           class="flex items-center justify-center px-3 py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs font-medium rounded-lg transition-colors duration-300">
+                            <i class="fas fa-info-circle mr-1.5 text-sm"></i>
+                            Info
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. Laravel Livewire Starterkit -->
+            <div class="project-card group relative bg-white rounded-2xl border border-gray-200/60 shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden transform hover:-translate-y-2 flex flex-col" data-category="laravel opensource">
+                <!-- Open Source Badge -->
+                <div class="absolute top-3 left-3 z-10">
+                    <span class="inline-flex items-center px-2.5 py-1 bg-gradient-to-r from-green-500 to-emerald-500 text-white text-xs font-bold rounded-full shadow-lg">
+                        <i class="fas fa-code-branch mr-1"></i>
+                        Open Source
+                    </span>
+                </div>
+
+                <div class="relative h-36 bg-gradient-to-br from-orange-500 via-red-500 to-pink-500 flex items-center justify-center">
+                    <div class="absolute inset-0 bg-black/10"></div>
+                    <div class="relative w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center">
+                        <i class="fas fa-rocket text-3xl text-white"></i>
+                    </div>
+                    <div class="absolute top-6 right-6 w-6 h-6 bg-white/10 rounded-full animate-float"></div>
+                    <div class="absolute bottom-6 left-6 w-4 h-4 bg-white/20 rounded-full animate-float" style="animation-delay: 2s;"></div>
+                </div>
+
+                <div class="p-6 flex flex-col flex-grow">
+                    <h3 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-orange-600 transition-colors duration-300">
+                        Laravel Livewire Starterkit
+                    </h3>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-4 flex-grow">
+                        Template starter Laravel modern dengan sistem autentikasi fleksibel (username/email), antarmuka responsif, dan integrasi Livewire untuk pengembangan yang efisien dan cepat.
+                    </p>
+                    
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="tech-tag bg-red-100 text-red-700 text-xs font-medium rounded-full px-2.5 py-1">Laravel 11</span>
+                        <span class="tech-tag bg-yellow-100 text-yellow-700 text-xs font-medium rounded-full px-2.5 py-1">Livewire 3</span>
+                        <span class="tech-tag bg-blue-100 text-blue-700 text-xs font-medium rounded-full px-2.5 py-1">MySQL</span>
+                        <span class="tech-tag bg-purple-100 text-purple-700 text-xs font-medium rounded-full px-2.5 py-1">Bootstrap</span>
+                    </div>
+
+                    <div class="flex gap-2 mt-auto">
+                        <a href="https://github.com/azharazziz/Laravel-Livewire-Starterkit-With-Username-or-Email-login" target="_blank" 
+                           class="flex-1 flex items-center justify-center px-3 py-2.5 bg-gray-900 hover:bg-gray-800 text-white text-xs font-medium rounded-lg transition-colors duration-300">
+                            <i class="fab fa-github mr-1.5 text-sm"></i>
+                            Repository
+                        </a>
+                        <a href="https://github.com/azharazziz/Laravel-Livewire-Starterkit-With-Username-or-Email-login/archive/refs/heads/main.zip" target="_blank"
+                           class="flex items-center justify-center px-3 py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs font-medium rounded-lg transition-colors duration-300">
+                            <i class="fas fa-download mr-1.5 text-sm"></i>
+                            Download
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. Biorepository System (Private) -->
+            <div class="project-card group relative bg-white rounded-2xl border border-gray-200/60 shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden transform hover:-translate-y-2 flex flex-col" data-category="laravel healthcare">
+                <!-- Private Badge -->
+                <div class="absolute top-3 left-3 z-10">
+                    <span class="inline-flex items-center px-2.5 py-1 bg-gradient-to-r from-gray-600 to-gray-700 text-white text-xs font-bold rounded-full shadow-lg">
+                        <i class="fas fa-lock mr-1"></i>
+                        Private
+                    </span>
+                </div>
+                
+                <!-- Healthcare Badge -->
+                <div class="absolute top-3 right-3 z-10">
+                    <span class="inline-flex items-center px-2.5 py-1 bg-emerald-600 text-white text-xs font-bold rounded-full shadow-lg">
+                        Healthcare
+                    </span>
+                </div>
+
+                <div class="relative h-36 bg-gradient-to-br from-emerald-600 via-teal-600 to-cyan-600 flex items-center justify-center">
+                    <div class="absolute inset-0 bg-black/10"></div>
+                    <div class="relative w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center">
+                        <i class="fas fa-dna text-3xl text-white"></i>
+                    </div>
+                    <div class="absolute top-6 right-6 w-6 h-6 bg-white/10 rounded-full animate-float"></div>
+                    <div class="absolute bottom-6 left-6 w-4 h-4 bg-white/20 rounded-full animate-float" style="animation-delay: 2.5s;"></div>
+                </div>
+
+                <div class="p-6 flex flex-col flex-grow">
+                    <h3 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-emerald-600 transition-colors duration-300">
+                        Biorepository System
+                    </h3>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-4 flex-grow">
+                        Sistem manajemen biorepository komprehensif untuk tracking sampel biologis, metadata management, dan standar internasional biobanking.
+                    </p>
+                    
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="tech-tag bg-red-100 text-red-700 text-xs font-medium rounded-full px-2.5 py-1">Laravel 11</span>
+                        <span class="tech-tag bg-yellow-100 text-yellow-700 text-xs font-medium rounded-full px-2.5 py-1">Livewire 3</span>
+                        <span class="tech-tag bg-teal-100 text-teal-700 text-xs font-medium rounded-full px-2.5 py-1">Tailwind CSS</span>
+                        <span class="tech-tag bg-emerald-100 text-emerald-700 text-xs font-medium rounded-full px-2.5 py-1">Biobanking</span>
+                    </div>
+
+                    <div class="flex gap-2 mt-auto">
+                        <button class="flex-1 flex items-center justify-center px-3 py-2.5 bg-gray-300 text-gray-500 text-xs font-medium rounded-lg cursor-not-allowed">
+                            <i class="fas fa-lock mr-1.5 text-sm"></i>
+                            Private Repository
+                        </button>
+                        <a href="#contact" 
+                           class="flex items-center justify-center px-3 py-2.5 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white text-xs font-medium rounded-lg transition-all duration-300">
+                            <i class="fas fa-envelope mr-1.5 text-sm"></i>
+                            Request Access
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. Portal Labkesmas -->
+            <div class="project-card group relative bg-white rounded-2xl border border-gray-200/60 shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden transform hover:-translate-y-2 flex flex-col" data-category="laravel government healthcare">
+                <!-- Live Badge -->
+                <div class="absolute top-3 left-3 z-10">
+                    <span class="inline-flex items-center px-2.5 py-1 bg-green-500 text-white text-xs font-bold rounded-full animate-pulse shadow-lg">
+                        <span class="w-1.5 h-1.5 bg-white rounded-full mr-1.5"></span>
+                        Live
+                    </span>
+                </div>
+                
+                <!-- Laboratory Badge -->
+                <div class="absolute top-3 right-3 z-10">
+                    <span class="inline-flex items-center px-2.5 py-1 bg-blue-600 text-white text-xs font-bold rounded-full shadow-lg">
+                        Laboratory
+                    </span>
+                </div>
+
+                <div class="relative h-36 bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-600 flex items-center justify-center">
+                    <div class="absolute inset-0 bg-black/10"></div>
+                    <div class="relative w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center">
+                        <i class="fas fa-flask text-3xl text-white"></i>
+                    </div>
+                    <div class="absolute top-6 right-6 w-6 h-6 bg-white/10 rounded-full animate-float"></div>
+                    <div class="absolute bottom-6 left-6 w-4 h-4 bg-white/20 rounded-full animate-float" style="animation-delay: 3s;"></div>
+                </div>
+
+                <div class="p-6 flex flex-col flex-grow">
+                    <h3 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors duration-300">
+                        Portal Labkesmas Magelang
+                    </h3>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-4 flex-grow">
+                        Portal terintegrasi untuk layanan Balai Labkesmas Magelang dengan fitur registrasi konsultasi klinik, pemeriksaan laboratorium, pelacakan hasil, dan pendaftaran program wisata ilmiah.
+                    </p>
+                    
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="tech-tag bg-red-100 text-red-700 text-xs font-medium rounded-full px-2.5 py-1">Laravel 11</span>
+                        <span class="tech-tag bg-yellow-100 text-yellow-700 text-xs font-medium rounded-full px-2.5 py-1">Livewire 3</span>
+                        <span class="tech-tag bg-purple-100 text-purple-700 text-xs font-medium rounded-full px-2.5 py-1">FluxUI</span>
+                        <span class="tech-tag bg-green-100 text-green-700 text-xs font-medium rounded-full px-2.5 py-1">MySQL</span>
+                    </div>
+
+                    <div class="flex gap-2 mt-auto">
+                        <a href="https://portal.labkesmasmagelang.go.id" target="_blank" 
+                           class="flex-1 flex items-center justify-center px-3 py-2.5 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white text-xs font-medium rounded-lg transition-all duration-300">
+                            <i class="fas fa-external-link-alt mr-1.5 text-sm"></i>
+                            Visit Portal
+                        </a>
+                        <a href="#contact" 
+                           class="flex items-center justify-center px-3 py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs font-medium rounded-lg transition-colors duration-300">
+                            <i class="fas fa-info-circle mr-1.5 text-sm"></i>
+                            Info
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6. Dynamic QRIS Generator -->
+            <div class="project-card group relative bg-white rounded-2xl border border-gray-200/60 shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden transform hover:-translate-y-2 flex flex-col" data-category="fintech opensource">
+                <!-- Innovation Badge -->
+                <div class="absolute top-3 left-3 z-10">
+                    <span class="inline-flex items-center px-2.5 py-1 bg-gradient-to-r from-purple-500 to-pink-500 text-white text-xs font-bold rounded-full shadow-lg">
+                        <i class="fas fa-lightbulb mr-1"></i>
+                        Innovation
+                    </span>
+                </div>
+                
+                <!-- Payment Badge -->
+                <div class="absolute top-3 right-3 z-10">
+                    <span class="inline-flex items-center px-2.5 py-1 bg-yellow-600 text-white text-xs font-bold rounded-full shadow-lg">
+                        Payment
+                    </span>
+                </div>
+
+                <div class="relative h-36 bg-gradient-to-br from-purple-600 via-pink-600 to-red-500 flex items-center justify-center">
+                    <div class="absolute inset-0 bg-black/10"></div>
+                    <div class="relative w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center">
+                        <i class="fas fa-qrcode text-3xl text-white"></i>
+                    </div>
+                    <div class="absolute top-6 right-6 w-6 h-6 bg-white/10 rounded-full animate-float"></div>
+                    <div class="absolute bottom-6 left-6 w-4 h-4 bg-white/20 rounded-full animate-float" style="animation-delay: 3.5s;"></div>
+                </div>
+
+                <div class="p-6 flex flex-col flex-grow">
+                    <h3 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-purple-600 transition-colors duration-300">
+                        Dynamic QRIS Generator
+                    </h3>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-4 flex-grow">
+                        Solusi inovatif mengkonversi QRIS statis menjadi dinamis menggunakan Google Apps Script untuk transaksi digital yang fleksibel.
+                    </p>
+                    
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="tech-tag bg-blue-100 text-blue-700 text-xs font-medium rounded-full px-2.5 py-1">Google Apps Script</span>
+                        <span class="tech-tag bg-yellow-100 text-yellow-700 text-xs font-medium rounded-full px-2.5 py-1">JavaScript</span>
+                        <span class="tech-tag bg-purple-100 text-purple-700 text-xs font-medium rounded-full px-2.5 py-1">QR Code API</span>
+                        <span class="tech-tag bg-green-100 text-green-700 text-xs font-medium rounded-full px-2.5 py-1">MIT License</span>
+                    </div>
+
+                    <div class="flex gap-2 mt-auto">
+                        <a href="https://github.com/azharazziz/dynamic-qris-google-app-script" target="_blank" 
+                           class="flex-1 flex items-center justify-center px-3 py-2.5 bg-gray-900 hover:bg-gray-800 text-white text-xs font-medium rounded-lg transition-colors duration-300">
+                            <i class="fab fa-github mr-1.5 text-sm"></i>
+                            Repository
+                        </a>
+                        <a href="https://github.com/azharazziz/dynamic-qris-google-app-script/blob/main/README.md" target="_blank"
+                           class="flex items-center justify-center px-3 py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs font-medium rounded-lg transition-colors duration-300">
+                            <i class="fas fa-file-code mr-1.5 text-sm"></i>
+                            Docs
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="projects-grid">
-            <div class="project-card">
-                <div class="project-header">
-                    <div class="project-icon">
-                        <i class="fas fa-book-quran"></i>
-                    </div>
-                </div>
-                <div class="project-content">
-                    <h3>Sistem Donasi Al-Qur'an</h3>
-                    <p>Aplikasi Laravel untuk mengelola donasi dan distribusi Al-Qur'an dengan fitur pendataan donatur, form multi-step menggunakan Livewire, ekspor laporan Excel, dan customize design cetak pembatas buku Al-Qur'an.</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Laravel 10</span>
-                        <span class="tech-tag">Livewire 3</span>
-                        <span class="tech-tag">MySQL</span>
-                        <span class="tech-tag">Maatwebsite/Excel</span>
-                        <span class="tech-tag">TCPDF</span>
-                        <span class="tech-tag">Bootstrap</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="#" class="project-link">
-                            <i class="fab fa-github"></i>
-                            Repository
-                        </a>
-                        <a href="#" class="project-link">
-                            <i class="fas fa-external-link-alt"></i>
-                            Demo
-                        </a>
-                    </div>
-                </div>
-            </div>
 
-            <div class="project-card">
-                <div class="project-header">
-                    <div class="project-icon">
-                        <i class="fas fa-file-alt"></i>
-                    </div>
-                </div>
-                <div class="project-content">
-                    <h3>Sistem Keterbukaan Informasi Publik</h3>
-                    <p>Portal informasi publik berbasis Permenkes 37/2019 menggunakan Laravel dan Livewire. Menyediakan akses informasi publik secara berkala dengan content management system yang user-friendly untuk administrator.</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Laravel 11</span>
-                        <span class="tech-tag">Livewire 3</span>
-                        <span class="tech-tag">Spatie Permissions</span>
-                        <span class="tech-tag">MariaDB</span>
-                        <span class="tech-tag">Tailwind CSS</span>
-                        <span class="tech-tag">Alpine.js</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="#" class="project-link">
-                            <i class="fab fa-github"></i>
-                            Repository
-                        </a>
-                        <a href="#" class="project-link">
-                            <i class="fas fa-external-link-alt"></i>
-                            Demo
-                        </a>
-                    </div>
-                </div>
-            </div>
+        <!-- Seamless Call to Action -->
+        <div class="mt-16 mb-0 text-center">
+            <div class="container mx-auto px-6">
+                <div class="max-w-2xl mx-auto">
+                    <!-- Simple Title -->
+                    <h3 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+                        Tertarik untuk berkolaborasi?
+                    </h3>
+                    
+                    <!-- Simple Description -->
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        Mari diskusikan bagaimana saya dapat membantu mewujudkan solusi teknologi terbaik untuk kebutuhan digital Anda.
+                    </p>
 
-            <div class="project-card">
-                <div class="project-header">
-                    <div class="project-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                </div>
-                <div class="project-content">
-                    <h3>Dashboard Monitoring TI</h3>
-                    <p>Sistem monitoring dan evaluasi teknologi informasi internal dengan dashboard interaktif, laporan otomatis dalam format Excel, dan real-time data visualization menggunakan Chart.js terintegrasi dengan Laravel.</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Laravel 10</span>
-                        <span class="tech-tag">Livewire 3</span>
-                        <span class="tech-tag">PHPSpreadsheet</span>
-                        <span class="tech-tag">Chart.js</span>
-                        <span class="tech-tag">Redis</span>
-                        <span class="tech-tag">Queue Jobs</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="#" class="project-link">
-                            <i class="fab fa-github"></i>
-                            Repository
+                    <!-- Simple CTA Buttons -->
+                    <div class="flex flex-col sm:flex-row gap-3 justify-center">
+                        <a href="#contact" class="bg-teal-600 hover:bg-teal-700 text-white px-6 py-2.5 rounded-lg font-medium transition-colors duration-300 inline-flex items-center justify-center">
+                            <i class="fas fa-envelope mr-2"></i>
+                            Hubungi Saya
                         </a>
-                        <a href="#" class="project-link">
-                            <i class="fas fa-external-link-alt"></i>
-                            Demo
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div class="project-header">
-                    <div class="project-icon">
-                        <i class="fas fa-cogs"></i>
-                    </div>
-                </div>
-                <div class="project-content">
-                    <h3>Laravel CRUD Starter Kit</h3>
-                    <p>Template starter untuk aplikasi CRUD Laravel dengan Livewire, dilengkapi dark mode toggle, drag-and-drop sorting, advanced filtering, role-based permissions, dan responsive design untuk rapid development.</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Laravel 11</span>
-                        <span class="tech-tag">Livewire 3</span>
-                        <span class="tech-tag">Spatie Permissions</span>
-                        <span class="tech-tag">Tailwind CSS</span>
-                        <span class="tech-tag">Alpine.js</span>
-                        <span class="tech-tag">SortableJS</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="#" class="project-link">
-                            <i class="fab fa-github"></i>
-                            Repository
-                        </a>
-                        <a href="#" class="project-link">
-                            <i class="fas fa-external-link-alt"></i>
-                            Demo
+                        <a href="https://github.com/azharazziz" target="_blank" class="bg-gray-100 hover:bg-gray-200 text-gray-700 px-6 py-2.5 rounded-lg font-medium transition-colors duration-300 inline-flex items-center justify-center">
+                            <i class="fab fa-github mr-2"></i>
+                            Lihat GitHub
                         </a>
                     </div>
                 </div>
@@ -2593,395 +945,151 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="section-header">
-            <div class="section-badge">Kontak</div>
-            <h2 class="section-title">Mari Berkolaborasi</h2>
-            <p class="section-subtitle">Siap membantu transformasi digital institusi Anda dengan solusi Laravel yang robust dan scalable</p>
-        </div>
-        <div class="contact-content">
-            <div class="contact-info">
-                <h3>Mari Wujudkan Digitalisasi Bersama! 🚀</h3>
-                <p>Sebagai ASN yang berpengalaman dalam pengembangan Laravel, saya siap membantu institusi pemerintah atau swasta dalam transformasi digital. Mari diskusikan bagaimana ekosistem Laravel dapat meningkatkan efisiensi dan kualitas pelayanan organisasi Anda.</p>
+    <section id="contact" class="contact-section relative overflow-hidden">
+        <!-- Background decoration -->
+        <div class="absolute inset-0 bg-gradient-to-br from-teal-600/10 via-teal-500/10 to-teal-600/10"></div>
+        
+        <!-- Floating elements -->
+        <div class="absolute top-20 left-20 w-16 h-16 bg-teal-500/20 rounded-full animate-float"></div>
+        <div class="absolute bottom-32 right-32 w-12 h-12 bg-cyan-400/20 rounded-full animate-float" style="animation-delay: 2s;"></div>
+        <div class="absolute top-1/2 left-1/4 w-8 h-8 bg-teal-300/20 rounded-full animate-float" style="animation-delay: 4s;"></div>
+
+        <!-- Contact Content - No container wrapper needed, CSS handles the layout -->
+        <div class="relative z-10 w-full">
+            <!-- Section Header -->
+            <div class="text-center mb-16">
+                <div class="section-badge">
+                    Kontak
+                </div>
+                <h2 class="text-5xl md:text-6xl font-black text-white mb-6">
+                    Mari 
+                    <span class="bg-gradient-to-r from-teal-300 to-cyan-300 bg-clip-text text-transparent">Berkolaborasi</span>
+                </h2>
+                <p class="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
+                    Berkomitmen membantu transformasi digital dengan solusi Laravel yang inovatif, robust dan scalable
+                </p>
+            </div>
+
+            <!-- Contact Content -->
+            <div class="max-w-4xl mx-auto">
+                <!-- Main Message -->
+                <div class="text-center mb-12">
+                    <div class="bg-white/10 backdrop-blur-lg rounded-3xl p-8 border border-teal-200/20">
+                        <h3 class="text-3xl font-bold text-white mb-4 flex items-center justify-center gap-3">
+                            <span>Mari Wujudkan Solusi Teknologi Terbaik!</span>
+                            <span class="text-4xl">🚀</span>
+                        </h3>
+                        <p class="text-lg text-slate-300 leading-relaxed">
+                            Sebagai developer berpengalaman dengan fokus mendalam pada ekosistem Laravel, saya siap membantu organisasi dalam transformasi digital. Mari diskusikan bagaimana teknologi modern dapat meningkatkan efisiensi dan kualitas operasional secara optimal.
+                        </p>
+                    </div>
+                </div>
                 
-                <div class="contact-items">
-                    <div class="contact-item">
-                        <div class="icon">
-                            <i class="fas fa-envelope"></i>
+                <!-- Contact Cards Grid -->
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+                    <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-teal-200/20 hover:bg-white/15 transition-all duration-300 group">
+                        <div class="w-12 h-12 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                            <i class="fas fa-envelope text-white text-xl"></i>
                         </div>
-                        <div class="contact-item-content">
-                            <strong>Email Resmi</strong>
-                            <span>your.email@example.com</span>
-                        </div>
+                        <h4 class="text-lg font-bold text-white mb-2">Email Resmi</h4>
+                        <p class="text-teal-200">azharazziz13@gmail.com</p>
                     </div>
                     
-                    <div class="contact-item">
-                        <div class="icon">
-                            <i class="fas fa-id-badge"></i>
+                    <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-teal-200/20 hover:bg-white/15 transition-all duration-300 group">
+                        <div class="w-12 h-12 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                            <i class="fas fa-id-badge text-white text-xl"></i>
                         </div>
-                        <div class="contact-item-content">
-                            <strong>Status</strong>
-                            <span>Aparatur Sipil Negara (ASN)</span>
-                        </div>
+                        <h4 class="text-lg font-bold text-white mb-2">Status</h4>
+                        <p class="text-teal-200">Professional Developer (ASN)</p>
                     </div>
                     
-                    <div class="contact-item">
-                        <div class="icon">
-                            <i class="fas fa-map-marker-alt"></i>
+                    <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-teal-200/20 hover:bg-white/15 transition-all duration-300 group">
+                        <div class="w-12 h-12 bg-gradient-to-r from-cyan-500 to-teal-500 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                            <i class="fas fa-map-marker-alt text-white text-xl"></i>
                         </div>
-                        <div class="contact-item-content">
-                            <strong>Lokasi</strong>
-                            <span>Indonesia</span>
-                        </div>
+                        <h4 class="text-lg font-bold text-white mb-2">Lokasi</h4>
+                        <p class="text-teal-200">Indonesia</p>
                     </div>
 
-                    <div class="contact-item">
-                        <div class="icon">
-                            <i class="fab fa-laravel"></i>
+                    <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-teal-200/20 hover:bg-white/15 transition-all duration-300 group">
+                        <div class="w-12 h-12 bg-gradient-to-r from-orange-500 to-red-500 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                            <i class="fab fa-laravel text-white text-xl"></i>
                         </div>
-                        <div class="contact-item-content">
-                            <strong>Spesialisasi</strong>
-                            <span>PHP Laravel Ecosystem</span>
-                        </div>
+                        <h4 class="text-lg font-bold text-white mb-2">Spesialisasi</h4>
+                        <p class="text-teal-200">PHP Laravel Ecosystem</p>
                     </div>
 
-                    <div class="contact-item">
-                        <div class="icon">
-                            <i class="fas fa-briefcase"></i>
+                    <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-teal-200/20 hover:bg-white/15 transition-all duration-300 group">
+                        <div class="w-12 h-12 bg-gradient-to-r from-teal-500 to-emerald-500 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                            <i class="fas fa-briefcase text-white text-xl"></i>
                         </div>
-                        <div class="contact-item-content">
-                            <strong>Layanan</strong>
-                            <span>Konsultasi & Pengembangan Aplikasi</span>
+                        <h4 class="text-lg font-bold text-white mb-2">Layanan</h4>
+                        <p class="text-teal-200">Web Development & Technical Consulting</p>
+                    </div>
+
+                    <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-teal-200/20 hover:bg-white/15 transition-all duration-300 group">
+                        <div class="w-12 h-12 bg-gradient-to-r from-pink-500 to-rose-500 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                            <i class="fas fa-clock text-white text-xl"></i>
+                        </div>
+                        <h4 class="text-lg font-bold text-white mb-2">Waktu Respon</h4>
+                        <p class="text-teal-200">< 24 Jam</p>
+                    </div>
+                </div>
+
+                <!-- Call to Action -->
+                <div class="text-center">
+                    <div class="bg-white/10 backdrop-blur-lg rounded-3xl p-8 border border-teal-200/20">
+                        <h4 class="text-2xl font-bold text-white mb-4 flex items-center justify-center gap-2">
+                            <span>Siap Memulai Proyek Bersama?</span>
+                            <span class="text-3xl">🤝</span>
+                        </h4>
+                        <p class="text-lg text-slate-300 mb-6 max-w-2xl mx-auto leading-relaxed">
+                            Hubungi saya untuk konsultasi gratis mengenai kebutuhan teknologi digital Anda.<br>
+                            Mari wujudkan solusi Laravel yang inovatif, tepat sasaran dan berkualitas tinggi!
+                        </p>
+                        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                            <a href="mailto:azharazziz13@gmail.com" class="bg-gradient-to-r from-teal-600 to-cyan-600 hover:from-teal-700 hover:to-cyan-700 text-white px-8 py-4 rounded-xl font-semibold text-lg shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 inline-flex items-center justify-center">
+                                <i class="fas fa-envelope mr-2"></i>
+                                Kirim Email
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
-            
-            <form class="contact-form">
-                <h4>Konsultasi Proyek Laravel</h4>
-                <input type="text" placeholder="Nama Institusi/Organisasi" required>
-                <input type="email" placeholder="Email Resmi" required>
-                <input type="text" placeholder="Jenis Proyek (Web App/Dashboard/API/dll)" required>
-                <textarea rows="6" placeholder="Deskripsikan kebutuhan proyek Anda...
-
-• Jenis aplikasi yang dibutuhkan
-• Target pengguna 
-• Fitur utama yang diinginkan
-• Timeline dan budget (opsional)
-• Integrasi dengan sistem existing" required></textarea>
-                <button type="submit" class="submit-btn">
-                    <i class="fas fa-paper-plane"></i>
-                    Kirim Proposal
-                </button>
-            </form>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer>
-        <div class="social-links">
-            <a href="https://github.com/azharazziz" target="_blank" title="GitHub">
-                <i class="fab fa-github"></i>
-            </a>
-            <a href="https://linkedin.com/in/azharazziz" target="_blank" title="LinkedIn">
-                <i class="fab fa-linkedin"></i>
-            </a>
-            <a href="mailto:your.email@example.com" title="Email">
-                <i class="fas fa-envelope"></i>
-            </a>
-            <a href="https://laravel.com" target="_blank" title="Laravel Community">
-                <i class="fab fa-laravel"></i>
-            </a>
-        </div>
-        <p>&copy; 2025 Azhar Azziz Afifi - ASN & Laravel Developer</p>
-        <p style="margin-top: 0.75rem; font-size: 1rem; opacity: 0.9;">
-            "Mengabdi negeri melalui teknologi Laravel yang powerful dan elegant"
-        </p>
-        <p style="margin-top: 0.5rem; font-size: 0.9rem; opacity: 0.7;">
-            Dibuat dengan ❤️ menggunakan HTML, CSS, dan JavaScript
-        </p>
-    </footer>
+    <div class="footer-wrapper">
+        <footer>
+            <div class="social-links">
+                <a href="https://github.com/azharazziz" target="_blank" title="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://linkedin.com/in/azharazziz" target="_blank" title="LinkedIn">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="mailto:azharazziz13@gmail.com" title="Email">
+                    <i class="fas fa-envelope"></i>
+                </a>
+                <a href="https://laravel.com" target="_blank" title="Laravel Community">
+                    <i class="fab fa-laravel"></i>
+                </a>
+            </div>
+            <p>&copy; 2025 Azhar Azziz - Laravel Developer & Tech Enthusiast</p>
+            <p style="margin-top: 0.75rem; font-size: 1rem; opacity: 0.9;">
+                "Passionate about crafting elegant solutions with powerful Laravel technology"
+            </p>
+            <p style="margin-top: 0.5rem; font-size: 0.9rem; opacity: 0.7;">
+                Dibuat dengan ❤️ menggunakan HTML, CSS, dan JavaScript
+            </p>
+            <p style="margin-top: 0.5rem; font-size: 0.8rem; opacity: 0.6;">
+                Website design and development assistance by GitHub Copilot
+            </p>
+        </footer>
+    </div>
 
-    <script>
-        // Enhanced mobile menu with modern animations
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const mobileMenu = document.getElementById('mobileMenu');
-        const line1 = document.getElementById('line1');
-        const line2 = document.getElementById('line2');
-        const line3 = document.getElementById('line3');
-        let isMenuOpen = false;
-
-        mobileMenuBtn.addEventListener('click', () => {
-            isMenuOpen = !isMenuOpen;
-            
-            if (isMenuOpen) {
-                mobileMenu.style.maxHeight = mobileMenu.scrollHeight + 'px';
-                line1.style.transform = 'rotate(45deg) translate(5px, 5px)';
-                line2.style.opacity = '0';
-                line3.style.transform = 'rotate(-45deg) translate(7px, -6px)';
-            } else {
-                mobileMenu.style.maxHeight = '0';
-                line1.style.transform = 'none';
-                line2.style.opacity = '1';
-                line3.style.transform = 'none';
-            }
-        });
-
-        // Close mobile menu when clicking on links
-        document.querySelectorAll('#mobileMenu a').forEach(link => {
-            link.addEventListener('click', () => {
-                isMenuOpen = false;
-                mobileMenu.style.maxHeight = '0';
-                line1.style.transform = 'none';
-                line2.style.opacity = '1';
-                line3.style.transform = 'none';
-            });
-        });
-
-        // Modern header scroll effect with glass morphism
-        const header = document.getElementById('header');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                header.style.background = 'rgba(255, 255, 255, 0.95)';
-                header.style.backdropFilter = 'blur(20px)';
-                header.style.borderBottom = '1px solid rgba(0, 0, 0, 0.1)';
-            } else {
-                header.style.background = 'rgba(255, 255, 255, 0.1)';
-                header.style.backdropFilter = 'blur(20px)';
-                header.style.borderBottom = '1px solid rgba(255, 255, 255, 0.2)';
-            }
-        });
-
-        // Enhanced typing effect for hero
-        const typingText = document.getElementById('typingText');
-        const messages = [
-            'Aparatur Sipil Negara',
-            'Laravel Developer',
-            'PHP Specialist',
-            'Digital Innovator'
-        ];
-        let messageIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
-
-        function typeWriter() {
-            const currentMessage = messages[messageIndex];
-            
-            if (isDeleting) {
-                typingText.textContent = currentMessage.substring(0, charIndex - 1);
-                charIndex--;
-            } else {
-                typingText.textContent = currentMessage.substring(0, charIndex + 1);
-                charIndex++;
-            }
-
-            let typeSpeed = isDeleting ? 50 : 100;
-
-            if (!isDeleting && charIndex === currentMessage.length) {
-                typeSpeed = 2000;
-                isDeleting = true;
-            } else if (isDeleting && charIndex === 0) {
-                isDeleting = false;
-                messageIndex = (messageIndex + 1) % messages.length;
-                typeSpeed = 500;
-            }
-
-            setTimeout(typeWriter, typeSpeed);
-        }
-
-        // Start typing effect after loading
-        setTimeout(typeWriter, 2000);
-
-        // Smooth scrolling for navigation
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    const headerHeight = 100;
-                    const elementPosition = target.getBoundingClientRect().top;
-                    const offsetPosition = elementPosition + window.pageYOffset - headerHeight;
-
-                    window.scrollTo({
-                        top: offsetPosition,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-
-        // Advanced Intersection Observer for section reveals
-        const revealObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        });
-
-        // Observe sections for reveal animations
-        document.querySelectorAll('.section-reveal').forEach(el => {
-            revealObserver.observe(el);
-        });
-
-        // Stagger animation observer
-        const staggerObserver = new IntersectionObserver((entries) => {
-            entries.forEach((entry, index) => {
-                if (entry.isIntersecting) {
-                    setTimeout(() => {
-                        entry.target.classList.add('visible');
-                    }, index * 100);
-                }
-            });
-        }, {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        });
-
-        // Observe stagger elements
-        document.querySelectorAll('.stagger-animation').forEach(el => {
-            staggerObserver.observe(el);
-        });
-
-        // Magnetic effect for buttons
-        document.querySelectorAll('.magnetic-btn').forEach(btn => {
-            btn.addEventListener('mousemove', (e) => {
-                const rect = btn.getBoundingClientRect();
-                const x = e.clientX - rect.left - rect.width / 2;
-                const y = e.clientY - rect.top - rect.height / 2;
-                
-                btn.style.transform = `translate(${x * 0.1}px, ${y * 0.1}px) scale(1.05)`;
-            });
-            
-            btn.addEventListener('mouseleave', () => {
-                btn.style.transform = 'translate(0, 0) scale(1)';
-            });
-        });
-
-        // 3D card effect
-        document.querySelectorAll('.skill-card-3d').forEach(card => {
-            card.addEventListener('mousemove', (e) => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-                const rotateX = (y - centerY) / 10;
-                const rotateY = (centerX - x) / 10;
-                
-                card.querySelector('.skill-card-inner').style.transform = 
-                    `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`;
-            });
-            
-            card.addEventListener('mouseleave', () => {
-                card.querySelector('.skill-card-inner').style.transform = 
-                    'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
-            });
-        });
-
-        // Particles animation
-        function createParticle() {
-            const particle = document.createElement('div');
-            particle.className = 'fixed w-1 h-1 bg-blue-400 rounded-full pointer-events-none z-0';
-            particle.style.left = Math.random() * window.innerWidth + 'px';
-            particle.style.top = window.innerHeight + 'px';
-            particle.style.opacity = '0.6';
-            document.body.appendChild(particle);
-            
-            const animation = particle.animate([
-                { transform: 'translateY(0) rotate(0deg)', opacity: 0.6 },
-                { transform: `translateY(-${window.innerHeight + 100}px) rotate(360deg)`, opacity: 0 }
-            ], {
-                duration: Math.random() * 3000 + 2000,
-                easing: 'linear'
-            });
-            
-            animation.onfinish = () => particle.remove();
-        }
-
-        // Create particles periodically
-        setInterval(createParticle, 300);
-
-        // Parallax effect for hero background
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const parallaxElements = document.querySelectorAll('.parallax-bg');
-            
-            parallaxElements.forEach((element, index) => {
-                const speed = scrolled * (0.2 + index * 0.1);
-                element.style.transform = `translateY(${speed}px)`;
-            });
-        });
-
-        // Enhanced hover effects with sound (if enabled)
-        document.querySelectorAll('.hover-lift').forEach(element => {
-            element.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-10px) scale(1.02)';
-                this.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.15)';
-            });
-            
-            element.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0) scale(1)';
-                this.style.boxShadow = '0 10px 20px rgba(0, 0, 0, 0.1)';
-            });
-        });
-
-        // Page transition effect
-        document.addEventListener('DOMContentLoaded', function() {
-            document.body.style.opacity = '0';
-            document.body.style.transition = 'opacity 0.5s ease';
-            
-            setTimeout(() => {
-                document.body.style.opacity = '1';
-            }, 100);
-        });
-
-        // Form submission with enhanced UX
-        document.addEventListener('submit', function(e) {
-            if (e.target.matches('.contact-form')) {
-                e.preventDefault();
-                
-                const submitBtn = e.target.querySelector('button[type="submit"]');
-                const originalText = submitBtn.innerHTML;
-                
-                // Show loading state
-                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Mengirim...';
-                submitBtn.disabled = true;
-                
-                // Simulate form submission
-                setTimeout(() => {
-                    submitBtn.innerHTML = '<i class="fas fa-check mr-2"></i>Terkirim!';
-                    submitBtn.classList.add('bg-green-500');
-                    
-                    setTimeout(() => {
-                        submitBtn.innerHTML = originalText;
-                        submitBtn.disabled = false;
-                        submitBtn.classList.remove('bg-green-500');
-                        e.target.reset();
-                    }, 2000);
-                }, 1500);
-            }
-        });
-
-        // Smooth reveal on scroll
-        const scrollReveal = () => {
-            const elements = document.querySelectorAll('.opacity-0');
-            elements.forEach(element => {
-                const elementTop = element.getBoundingClientRect().top;
-                const elementVisible = 150;
-                
-                if (elementTop < window.innerHeight - elementVisible) {
-                    element.classList.remove('opacity-0');
-                    element.classList.add('animate-fadeInUp');
-                }
-            });
-        };
-
-        window.addEventListener('scroll', scrollReveal);
-        scrollReveal(); // Initial check
-    </script>
+    <!-- External JavaScript file -->
+    <script src="script.js"></script>
 </body>
 </html>
