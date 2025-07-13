@@ -1,280 +1,915 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Azhar Azziz - Portfolio</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <title>Azhar Azziz Afifi - ASN & Laravel Developer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Fallback for Font Awesome if CDN fails -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const testIcon = document.createElement('i');
+            testIcon.className = 'fas fa-heart';
+            testIcon.style.display = 'none';
+            document.body.appendChild(testIcon);
+            
+            // Check if Font Awesome loaded
+            setTimeout(() => {
+                const computed = window.getComputedStyle(testIcon, ':before');
+                if (computed.content === 'none' || computed.content === '') {
+                    console.warn('Font Awesome may not have loaded properly');
+                }
+                document.body.removeChild(testIcon);
+            }, 100);
+        });
+    </script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'bounce-slow': 'bounce 3s infinite',
+                        'wiggle': 'wiggle 1s ease-in-out infinite',
+                        'glow': 'glow 2s ease-in-out infinite alternate',
+                        'fadeInUp': 'fadeInUp 0.8s ease-out forwards',
+                        'slideInLeft': 'slideInLeft 0.8s ease-out forwards',
+                        'slideInRight': 'slideInRight 0.8s ease-out forwards',
+                        'scaleIn': 'scaleIn 0.6s ease-out forwards',
+                        'gradient': 'gradient 3s ease infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        wiggle: {
+                            '0%, 100%': { transform: 'rotate(-3deg)' },
+                            '50%': { transform: 'rotate(3deg)' },
+                        },
+                        glow: {
+                            '0%': { boxShadow: '0 0 20px rgba(59, 130, 246, 0.5)' },
+                            '100%': { boxShadow: '0 0 30px rgba(59, 130, 246, 0.8)' },
+                        },
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(30px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        slideInLeft: {
+                            '0%': { opacity: '0', transform: 'translateX(-50px)' },
+                            '100%': { opacity: '1', transform: 'translateX(0)' },
+                        },
+                        slideInRight: {
+                            '0%': { opacity: '0', transform: 'translateX(50px)' },
+                            '100%': { opacity: '1', transform: 'translateX(0)' },
+                        },
+                        scaleIn: {
+                            '0%': { opacity: '0', transform: 'scale(0.9)' },
+                            '100%': { opacity: '1', transform: 'scale(1)' },
+                        },
+                        gradient: {
+                            '0%': { backgroundPosition: '0% 50%' },
+                            '50%': { backgroundPosition: '100% 50%' },
+                            '100%': { backgroundPosition: '0% 50%' },
+                        },
+                    },
+                    backgroundSize: {
+                        '300%': '300%',
+                    },
+                },
+            },
+        }
+    </script>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+            --text-primary: #1f2937;
+            --text-secondary: #6b7280;
+            --bg-primary: #ffffff;
+            --bg-secondary: #f9fafb;
+            --bg-tertiary: #f3f4f6;
+            --bg-card: #ffffff;
+            --border-color: #e5e7eb;
+            --border-light: #f3f4f6;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
         }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            overflow-x: hidden;
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .text-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .bg-gradient-animated {
+            background: linear-gradient(-45deg, #667eea, #764ba2, #f093fb, #f5576c);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+        }
+        
+        .hover-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.6;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .particle:nth-child(odd) {
+            animation-delay: -2s;
+        }
+        
+        .particle:nth-child(even) {
+            animation-delay: -4s;
+        }
+        
+        .typing-cursor::after {
+            content: '|';
+            opacity: 1;
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+        
+        .nav-link {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.5s;
+        }
+        
+        .nav-link:hover::before {
+            left: 100%;
+        }
+        
+        .skill-card-3d {
+            perspective: 1000px;
+        }
+        
+        .skill-card-inner {
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+        }
+        
+        .skill-card-3d:hover .skill-card-inner {
+            transform: rotateY(10deg) rotateX(10deg);
+        }
+        
+        .magnetic-btn {
+            transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
+        }
+        
+        .magnetic-btn:hover {
+            transform: scale(1.05);
+        }
+        
+
+        
+        .section-reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+        
+        .section-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .stagger-animation {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .stagger-animation.visible {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+        
+        .parallax-bg {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        
+        .morphing-blob {
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            animation: morph 8s ease-in-out infinite;
+        }
+        
+        @keyframes morph {
+            0% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+            50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+            100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
         }
 
         /* Header */
         header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 1rem 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-light);
+            padding: 1.25rem 0;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: var(--shadow-lg);
+            padding: 1rem 0;
         }
 
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 0 2rem;
         }
 
         .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
+            font-size: 1.75rem;
+            font-weight: 800;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.02em;
         }
 
         .nav-links {
             display: flex;
             list-style: none;
-            gap: 2rem;
+            gap: 2.5rem;
         }
 
         .nav-links a {
-            color: white;
+            color: var(--text-secondary);
             text-decoration: none;
-            transition: color 0.3s ease;
+            font-weight: 600;
+            font-size: 0.95rem;
+            position: relative;
+            transition: all 0.3s ease;
+            letter-spacing: -0.01em;
         }
 
         .nav-links a:hover {
-            color: #ffd700;
+            color: var(--text-primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: -8px;
+            left: 0;
+            background: var(--primary-gradient);
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
         }
 
         .hamburger {
             display: none;
             flex-direction: column;
             cursor: pointer;
+            padding: 8px;
+            border-radius: 8px;
+            transition: background 0.3s ease;
+        }
+
+        .hamburger:hover {
+            background: var(--bg-tertiary);
         }
 
         .hamburger span {
-            width: 25px;
+            width: 28px;
             height: 3px;
-            background: white;
+            background: var(--text-primary);
             margin: 3px 0;
+            border-radius: 2px;
             transition: 0.3s;
         }
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: var(--primary-gradient);
             color: white;
-            padding: 120px 0 80px;
+            padding: 160px 0 120px;
             text-align: center;
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
         }
 
         .hero-content {
-            max-width: 800px;
+            max-width: 1000px;
             margin: 0 auto;
             padding: 0 2rem;
+            position: relative;
+            z-index: 1;
         }
 
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
+        .hero .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
             animation: fadeInUp 1s ease;
         }
 
-        .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
+        .hero h1 {
+            font-size: clamp(3rem, 6vw, 5rem);
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
             animation: fadeInUp 1s ease 0.2s both;
         }
 
-        .cta-button {
-            display: inline-block;
-            background: #ffd700;
-            color: #333;
-            padding: 15px 30px;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: bold;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        .hero .tagline {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            opacity: 0.95;
+            letter-spacing: -0.01em;
             animation: fadeInUp 1s ease 0.4s both;
         }
 
+        .hero .description {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            margin-bottom: 3rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.7;
+            font-weight: 400;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 0.8s both;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 18px 36px;
+            text-decoration: none;
+            border-radius: 16px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            letter-spacing: -0.01em;
+        }
+
+        .cta-button.primary {
+            background: white;
+            color: #1e40af;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .cta-button.secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
         .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(255,215,0,0.3);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-button.primary:hover {
+            background: #f8fafc;
+            transform: translateY(-4px) scale(1.02);
+        }
+
+        .cta-button.secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.5);
         }
 
         /* Sections */
         section {
-            padding: 80px 0;
-            max-width: 1200px;
+            padding: 120px 0;
+            max-width: 1400px;
             margin: 0 auto;
             padding-left: 2rem;
             padding-right: 2rem;
         }
 
-        .section-title {
+        .section-header {
             text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            color: #333;
-            position: relative;
+            margin-bottom: 5rem;
         }
 
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
+        .section-badge {
+            display: inline-block;
+            background: var(--bg-tertiary);
+            color: var(--text-secondary);
+            padding: 0.5rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+        }
+
+        .section-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+
+        .section-subtitle {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+            font-weight: 400;
         }
 
         /* About Section */
+        .about {
+            background: var(--bg-secondary);
+        }
+
         .about-content {
             display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 4rem;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 6rem;
             align-items: center;
         }
 
+        .profile-container {
+            position: relative;
+            text-align: center;
+        }
+
         .profile-img {
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
+            width: 400px;
+            height: 400px;
+            border-radius: 2rem;
             object-fit: cover;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            box-shadow: var(--shadow-2xl);
             margin: 0 auto;
             display: block;
+            transition: transform 0.4s ease;
+            border: 8px solid white;
+        }
+
+        .profile-img:hover {
+            transform: scale(1.05) rotate(2deg);
+        }
+
+        .profile-badges {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .profile-badge {
+            background: var(--primary-gradient);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            box-shadow: var(--shadow-md);
         }
 
         .about-text {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             line-height: 1.8;
+            color: var(--text-secondary);
         }
 
-        /* Skills Section */
-        .skills {
-            background: #f8f9fa;
+        .about-text h3 {
+            color: var(--text-primary);
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            line-height: 1.3;
         }
 
-        .skills-grid {
+        .about-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        .about-stats {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 2rem;
+            margin-top: 4rem;
         }
 
-        .skill-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 10px;
+        .stat-item {
             text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
+            padding: 2.5rem;
+            background: var(--bg-card);
+            border-radius: 1.5rem;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
         }
 
-        .skill-card:hover {
-            transform: translateY(-10px);
+        .stat-item:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
         }
 
-        .skill-card i {
+        .stat-number {
             font-size: 3rem;
-            color: #667eea;
-            margin-bottom: 1rem;
+            font-weight: 800;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: block;
+            line-height: 1.2;
         }
 
-        .skill-card h3 {
-            margin-bottom: 1rem;
-            color: #333;
+        .stat-label {
+            color: var(--text-secondary);
+            font-weight: 600;
+            margin-top: 0.75rem;
+            font-size: 1.1rem;
         }
 
-        /* Projects Section */
-        .projects-grid {
+        /* PHP Laravel Focus Section */
+        .php-focus {
+            background: var(--bg-primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .php-focus::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(30, 64, 175, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 90% 80%, rgba(59, 130, 246, 0.05) 0%, transparent 50%);
+        }
+
+        .php-ecosystem {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .ecosystem-card {
+            background: var(--bg-card);
+            padding: 3rem;
+            border-radius: 2rem;
+            text-align: center;
+            box-shadow: var(--shadow-xl);
+            border: 1px solid var(--border-color);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ecosystem-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--primary-gradient);
+        }
+
+        .ecosystem-card:hover {
+            transform: translateY(-12px);
+            box-shadow: var(--shadow-2xl);
+        }
+
+        .ecosystem-icon {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: var(--primary-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            font-size: 2.5rem;
+            color: white;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .ecosystem-card h4 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .ecosystem-card p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .tech-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            justify-content: center;
+        }
+
+        .tech-item {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border: 1px solid var(--border-color);
+        }
+
+        /* ASN Identity Section */
+        .asn-identity {
+            background: var(--bg-secondary);
+        }
+
+        .asn-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
         }
 
-        .project-card {
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
+        .asn-card {
+            background: var(--bg-card);
+            padding: 2.5rem;
+            border-radius: 1.5rem;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
         }
 
-        .project-card:hover {
-            transform: translateY(-10px);
+        .asn-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-xl);
         }
 
-        .project-img {
-            width: 100%;
-            height: 200px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
+        .asn-card .icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 1rem;
+            background: var(--primary-gradient);
             display: flex;
             align-items: center;
             justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.75rem;
             color: white;
-            font-size: 3rem;
+        }
+
+        .asn-card h4 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .asn-card p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Projects Section */
+        .projects {
+            background: var(--bg-primary);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 3rem;
+        }
+
+        .project-card {
+            background: var(--bg-card);
+            border-radius: 2rem;
+            overflow: hidden;
+            box-shadow: var(--shadow-xl);
+            transition: all 0.4s ease;
+            border: 1px solid var(--border-color);
+        }
+
+        .project-card:hover {
+            transform: translateY(-12px);
+            box-shadow: var(--shadow-2xl);
+        }
+
+        .project-header {
+            background: var(--primary-gradient);
+            padding: 3rem 2rem 2rem;
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+
+        .project-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 70% 70%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+        }
+
+        .project-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
         }
 
         .project-content {
-            padding: 1.5rem;
+            padding: 2.5rem;
         }
 
         .project-content h3 {
-            margin-bottom: 1rem;
-            color: #333;
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+            line-height: 1.3;
+        }
+
+        .project-content p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-bottom: 2rem;
+        }
+
+        .tech-tag {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid var(--border-color);
         }
 
         .project-links {
-            margin-top: 1rem;
+            display: flex;
+            gap: 1.5rem;
         }
 
-        .project-links a {
-            display: inline-block;
-            margin-right: 1rem;
-            color: #667eea;
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #1e40af;
             text-decoration: none;
-            font-weight: bold;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: all 0.3s ease;
         }
 
-        .project-links a:hover {
-            color: #764ba2;
+        .project-link:hover {
+            color: #3b82f6;
+            transform: translateX(3px);
         }
 
         /* Contact Section */
         .contact {
-            background: #f8f9fa;
+            background: var(--bg-secondary);
         }
 
         .contact-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 4rem;
+            gap: 6rem;
         }
 
-        .contact-info {
+        .contact-info h3 {
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 2rem;
+            line-height: 1.3;
+        }
+
+        .contact-info p {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            line-height: 1.7;
+            margin-bottom: 3rem;
+        }
+
+        .contact-items {
             display: flex;
             flex-direction: column;
             gap: 2rem;
@@ -283,81 +918,141 @@
         .contact-item {
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 2rem;
+            padding: 2rem;
+            background: var(--bg-card);
+            border-radius: 1.5rem;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
         }
 
-        .contact-item i {
-            font-size: 1.5rem;
-            color: #667eea;
-            width: 30px;
+        .contact-item:hover {
+            transform: translateX(8px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .contact-item .icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 1rem;
+            background: var(--primary-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 1.75rem;
+            color: white;
+        }
+
+        .contact-item-content strong {
+            display: block;
+            color: var(--text-primary);
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-item-content span {
+            color: var(--text-secondary);
+            font-size: 1rem;
         }
 
         .contact-form {
             display: flex;
             flex-direction: column;
-            gap: 1rem;
+            gap: 2rem;
+            background: var(--bg-card);
+            padding: 3rem;
+            border-radius: 2rem;
+            box-shadow: var(--shadow-xl);
+            border: 1px solid var(--border-color);
+        }
+
+        .contact-form h4 {
+            color: var(--text-primary);
+            font-weight: 700;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
         }
 
         .contact-form input,
         .contact-form textarea {
-            padding: 15px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 1rem;
-            transition: border-color 0.3s ease;
+            padding: 1.25rem 1.5rem;
+            border: 2px solid var(--border-color);
+            border-radius: 1rem;
+            font-size: 1.1rem;
+            font-family: inherit;
+            transition: all 0.3s ease;
+            background: var(--bg-primary);
+            font-weight: 500;
         }
 
         .contact-form input:focus,
         .contact-form textarea:focus {
             outline: none;
-            border-color: #667eea;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
         }
 
         .submit-btn {
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: var(--primary-gradient);
             color: white;
-            padding: 15px;
+            padding: 1.25rem 2rem;
             border: none;
-            border-radius: 5px;
-            font-size: 1rem;
+            border-radius: 1rem;
+            font-size: 1.1rem;
+            font-weight: 700;
             cursor: pointer;
-            transition: transform 0.3s ease;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-lg);
         }
 
         .submit-btn:hover {
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-xl);
         }
 
         /* Footer */
         footer {
-            background: #333;
+            background: var(--secondary-gradient);
             color: white;
             text-align: center;
-            padding: 2rem 0;
+            padding: 4rem 0;
         }
 
         .social-links {
             display: flex;
             justify-content: center;
             gap: 2rem;
-            margin-bottom: 1rem;
+            margin-bottom: 3rem;
         }
 
         .social-links a {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.1);
             color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 1rem;
             font-size: 1.5rem;
-            transition: color 0.3s ease;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .social-links a:hover {
-            color: #ffd700;
+            background: var(--primary-gradient);
+            transform: translateY(-5px);
         }
 
         /* Animations */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(40px);
             }
             to {
                 opacity: 1;
@@ -365,167 +1060,1532 @@
             }
         }
 
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 2rem;
+                box-shadow: var(--shadow-xl);
+                border-top: 1px solid var(--border-light);
+            }
+
+            .nav-links.active {
+                display: flex;
             }
 
             .hamburger {
                 display: flex;
             }
 
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero p {
-                font-size: 1.1rem;
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
             }
 
             .about-content {
                 grid-template-columns: 1fr;
                 text-align: center;
+                gap: 4rem;
             }
 
             .contact-content {
                 grid-template-columns: 1fr;
+                gap: 4rem;
             }
 
-            .section-title {
-                font-size: 2rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .skills-grid {
+            .php-ecosystem {
                 grid-template-columns: 1fr;
             }
 
             .projects-grid {
                 grid-template-columns: 1fr;
             }
+
+            .about-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            section {
+                padding: 80px 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            section {
+                padding: 60px 0;
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+
+            nav {
+                padding: 0 1rem;
+            }
+
+            .hero-content {
+                padding: 0 1rem;
+            }
+
+            .about-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .asn-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
-<body>
-    <!-- Header -->
-    <header>
-        <nav>
-            <div class="logo">Azhar Azziz</div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </nav>
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-light);
+            padding: 1.25rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: var(--shadow-lg);
+            padding: 1rem 0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.75rem;
+            font-weight: 800;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.02em;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            position: relative;
+            transition: all 0.3s ease;
+            letter-spacing: -0.01em;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: -8px;
+            left: 0;
+            background: var(--primary-gradient);
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 8px;
+            transition: background 0.3s ease;
+        }
+
+        .hamburger:hover {
+            background: var(--bg-tertiary);
+        }
+
+        .hamburger span {
+            width: 28px;
+            height: 3px;
+            background: var(--text-primary);
+            margin: 3px 0;
+            border-radius: 2px;
+            transition: 0.3s;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: var(--primary-gradient);
+            color: white;
+            padding: 160px 0 120px;
+            text-align: center;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+        }
+
+        .hero-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 6vw, 5rem);
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .hero .tagline {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            opacity: 0.95;
+            letter-spacing: -0.01em;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .hero .description {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            margin-bottom: 3rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.7;
+            font-weight: 400;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 0.8s both;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 18px 36px;
+            text-decoration: none;
+            border-radius: 16px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            letter-spacing: -0.01em;
+        }
+
+        .cta-button.primary {
+            background: white;
+            color: #1e40af;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .cta-button.secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-button.primary:hover {
+            background: #f8fafc;
+            transform: translateY(-4px) scale(1.02);
+        }
+
+        .cta-button.secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Sections */
+        section {
+            padding: 120px 0;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .section-badge {
+            display: inline-block;
+            background: var(--bg-tertiary);
+            color: var(--text-secondary);
+            padding: 0.5rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+        }
+
+        .section-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+
+        .section-subtitle {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+            font-weight: 400;
+        }
+
+        /* About Section */
+        .about {
+            background: var(--bg-secondary);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 6rem;
+            align-items: center;
+        }
+
+        .profile-container {
+            position: relative;
+            text-align: center;
+        }
+
+        .profile-img {
+            width: 400px;
+            height: 400px;
+            border-radius: 2rem;
+            object-fit: cover;
+            box-shadow: var(--shadow-2xl);
+            margin: 0 auto;
+            display: block;
+            transition: transform 0.4s ease;
+            border: 8px solid white;
+        }
+
+        .profile-img:hover {
+            transform: scale(1.05) rotate(2deg);
+        }
+
+        .profile-badges {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .profile-badge {
+            background: var(--primary-gradient);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            box-shadow: var(--shadow-md);
+        }
+
+        .about-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+        }
+
+        .about-text h3 {
+            color: var(--text-primary);
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            line-height: 1.3;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 2.5rem;
+            background: var(--bg-card);
+            border-radius: 1.5rem;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: block;
+            line-height: 1.2;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-weight: 600;
+            margin-top: 0.75rem;
+            font-size: 1.1rem;
+        }
+
+        /* PHP Laravel Focus Section */
+        .php-focus {
+            background: var(--bg-primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .php-focus::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(30, 64, 175, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 90% 80%, rgba(59, 130, 246, 0.05) 0%, transparent 50%);
+        }
+
+        .php-ecosystem {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .ecosystem-card {
+            background: var(--bg-card);
+            padding: 3rem;
+            border-radius: 2rem;
+            text-align: center;
+            box-shadow: var(--shadow-xl);
+            border: 1px solid var(--border-color);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ecosystem-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--primary-gradient);
+        }
+
+        .ecosystem-card:hover {
+            transform: translateY(-12px);
+            box-shadow: var(--shadow-2xl);
+        }
+
+        .ecosystem-icon {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: var(--primary-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            font-size: 2.5rem;
+            color: white;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .ecosystem-card h4 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .ecosystem-card p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .tech-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            justify-content: center;
+        }
+
+        .tech-item {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border: 1px solid var(--border-color);
+        }
+
+        /* ASN Identity Section */
+        .asn-identity {
+            background: var(--bg-secondary);
+        }
+
+        .asn-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .asn-card {
+            background: var(--bg-card);
+            padding: 2.5rem;
+            border-radius: 1.5rem;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .asn-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .asn-card .icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 1rem;
+            background: var(--primary-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.75rem;
+            color: white;
+        }
+
+        .asn-card h4 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .asn-card p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Projects Section */
+        .projects {
+            background: var(--bg-primary);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 3rem;
+        }
+
+        .project-card {
+            background: var(--bg-card);
+            border-radius: 2rem;
+            overflow: hidden;
+            box-shadow: var(--shadow-xl);
+            transition: all 0.4s ease;
+            border: 1px solid var(--border-color);
+        }
+
+        .project-card:hover {
+            transform: translateY(-12px);
+            box-shadow: var(--shadow-2xl);
+        }
+
+        .project-header {
+            background: var(--primary-gradient);
+            padding: 3rem 2rem 2rem;
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+
+        .project-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 70% 70%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+        }
+
+        .project-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .project-content {
+            padding: 2.5rem;
+        }
+
+        .project-content h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+            line-height: 1.3;
+        }
+
+        .project-content p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-bottom: 2rem;
+        }
+
+        .tech-tag {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid var(--border-color);
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #1e40af;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .project-link:hover {
+            color: #3b82f6;
+            transform: translateX(3px);
+        }
+
+        /* Contact Section */
+        .contact {
+            background: var(--bg-secondary);
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+        }
+
+        .contact-info h3 {
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 2rem;
+            line-height: 1.3;
+        }
+
+        .contact-info p {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            line-height: 1.7;
+            margin-bottom: 3rem;
+        }
+
+        .contact-items {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            padding: 2rem;
+            background: var(--bg-card);
+            border-radius: 1.5rem;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateX(8px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .contact-item .icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 1rem;
+            background: var(--primary-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 1.75rem;
+            color: white;
+        }
+
+        .contact-item-content strong {
+            display: block;
+            color: var(--text-primary);
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-item-content span {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            background: var(--bg-card);
+            padding: 3rem;
+            border-radius: 2rem;
+            box-shadow: var(--shadow-xl);
+            border: 1px solid var(--border-color);
+        }
+
+        .contact-form h4 {
+            color: var(--text-primary);
+            font-weight: 700;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            padding: 1.25rem 1.5rem;
+            border: 2px solid var(--border-color);
+            border-radius: 1rem;
+            font-size: 1.1rem;
+            font-family: inherit;
+            transition: all 0.3s ease;
+            background: var(--bg-primary);
+            font-weight: 500;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+        }
+
+        .submit-btn {
+            background: var(--primary-gradient);
+            color: white;
+            padding: 1.25rem 2rem;
+            border: none;
+            border-radius: 1rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--secondary-gradient);
+            color: white;
+            text-align: center;
+            padding: 4rem 0;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .social-links a {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 1rem;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .social-links a:hover {
+            background: var(--primary-gradient);
+            transform: translateY(-5px);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 2rem;
+                box-shadow: var(--shadow-xl);
+                border-top: 1px solid var(--border-light);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 4rem;
+            }
+
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 4rem;
+            }
+
+            .php-ecosystem {
+                grid-template-columns: 1fr;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            section {
+                padding: 80px 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            section {
+                padding: 60px 0;
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+
+            nav {
+                padding: 0 1rem;
+            }
+
+            .hero-content {
+                padding: 0 1rem;
+            }
+
+            .about-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .asn-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+</head>
+<body class="font-inter bg-gray-50 overflow-x-hidden">
+    <header class="fixed w-full top-0 z-50 transition-all duration-300" id="header">
+        <div class="glass-effect">
+            <nav class="container mx-auto px-6 py-4">
+                <div class="flex items-center justify-between">
+                    <!-- Logo with animation -->
+                    <div class="text-2xl font-black text-gradient hover:scale-105 transition-transform duration-300">
+                        <span class="animate-pulse">A</span>zhar
+                        <span class="text-blue-600">.</span>
+                    </div>
+
+                    <!-- Desktop Navigation -->
+                    <ul class="hidden md:flex space-x-8">
+                        <li><a href="#home" class="nav-link px-4 py-2 text-gray-700 hover:text-blue-600 font-medium transition-all duration-300 rounded-lg hover:bg-white/50">Beranda</a></li>
+                        <li><a href="#about" class="nav-link px-4 py-2 text-gray-700 hover:text-blue-600 font-medium transition-all duration-300 rounded-lg hover:bg-white/50">Tentang</a></li>
+                        <li><a href="#skills" class="nav-link px-4 py-2 text-gray-700 hover:text-blue-600 font-medium transition-all duration-300 rounded-lg hover:bg-white/50">Keahlian</a></li>
+                        <li><a href="#projects" class="nav-link px-4 py-2 text-gray-700 hover:text-blue-600 font-medium transition-all duration-300 rounded-lg hover:bg-white/50">Proyek</a></li>
+                        <li><a href="#contact" class="nav-link px-4 py-2 text-gray-700 hover:text-blue-600 font-medium transition-all duration-300 rounded-lg hover:bg-white/50">Kontak</a></li>
+                    </ul>
+
+                    <!-- CTA Button -->
+                    <div class="hidden md:block">
+                        <a href="#contact" class="magnetic-btn bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300">
+                            <i class="fas fa-rocket mr-2"></i>Mulai Proyek
+                        </a>
+                    </div>
+
+                    <!-- Mobile menu button -->
+                    <button class="md:hidden p-2 rounded-lg hover:bg-white/50 transition-colors" id="mobileMenuBtn">
+                        <div class="w-6 h-6 flex flex-col justify-center items-center">
+                            <span class="bg-gray-700 block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm" id="line1"></span>
+                            <span class="bg-gray-700 block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm my-1" id="line2"></span>
+                            <span class="bg-gray-700 block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm" id="line3"></span>
+                        </div>
+                    </button>
+                </div>
+
+                <!-- Mobile Navigation -->
+                <div class="md:hidden overflow-hidden transition-all duration-300 max-h-0" id="mobileMenu">
+                    <div class="py-4 space-y-2">
+                        <a href="#home" class="block px-4 py-3 text-gray-700 hover:bg-white/50 rounded-lg transition-colors">Beranda</a>
+                        <a href="#about" class="block px-4 py-3 text-gray-700 hover:bg-white/50 rounded-lg transition-colors">Tentang</a>
+                        <a href="#skills" class="block px-4 py-3 text-gray-700 hover:bg-white/50 rounded-lg transition-colors">Keahlian</a>
+                        <a href="#projects" class="block px-4 py-3 text-gray-700 hover:bg-white/50 rounded-lg transition-colors">Proyek</a>
+                        <a href="#contact" class="block px-4 py-3 text-gray-700 hover:bg-white/50 rounded-lg transition-colors">Kontak</a>
+                        <a href="#contact" class="block mt-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-full font-semibold text-center">
+                            <i class="fas fa-rocket mr-2"></i>Mulai Proyek
+                        </a>
+                    </div>
+                </div>
+            </nav>
+        </div>
     </header>
 
     <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h1>Hi, I'm Azhar Azziz</h1>
-            <p>Passionate Developer & Problem Solver</p>
-            <p>Creating innovative solutions and bringing ideas to life through code</p>
-            <a href="#about" class="cta-button">Learn More About Me</a>
+    <section id="home" class="relative min-h-screen flex items-center justify-center bg-gradient-animated overflow-hidden">
+        <!-- Animated particles -->
+        <div class="absolute inset-0">
+            <div class="particle w-4 h-4 bg-white/20 top-1/4 left-1/4"></div>
+            <div class="particle w-6 h-6 bg-white/10 top-1/3 right-1/4"></div>
+            <div class="particle w-3 h-3 bg-white/30 bottom-1/4 left-1/3"></div>
+            <div class="particle w-5 h-5 bg-white/15 bottom-1/3 right-1/3"></div>
+            <div class="particle w-2 h-2 bg-white/25 top-1/2 left-1/2"></div>
+        </div>
+
+        <!-- Morphing background shapes -->
+        <div class="absolute top-20 left-10 w-64 h-64 bg-white/5 morphing-blob"></div>
+        <div class="absolute bottom-20 right-10 w-48 h-48 bg-white/10 morphing-blob animation-delay-2000"></div>
+
+        <div class="container mx-auto px-6 text-center relative z-10">
+            <!-- ASN Badge -->
+            <div class="inline-flex items-center gap-3 bg-white/20 backdrop-blur-md border border-white/30 text-white px-6 py-3 rounded-full mb-8 animate-fadeInUp">
+                <div class="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+                <span class="font-semibold text-sm tracking-wider">APARATUR SIPIL NEGARA</span>
+                <i class="fab fa-laravel text-lg animate-bounce-slow"></i>
+            </div>
+
+            <!-- Main Content -->
+            <div class="max-w-4xl mx-auto">
+                <h1 class="text-6xl md:text-8xl font-black text-white mb-6 leading-none">
+                    <span class="block animate-slideInLeft">Azhar</span>
+                    <span class="block text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500 animate-slideInRight">Azziz Afifi</span>
+                </h1>
+
+                <div class="text-2xl md:text-3xl font-bold text-white/90 mb-4 typing-cursor animate-fadeInUp" id="typingText" style="animation-delay: 0.8s;">
+                    <!-- Text will be typed here -->
+                </div>
+
+                <p class="text-xl text-white/80 mb-12 max-w-3xl mx-auto leading-relaxed animate-fadeInUp" style="animation-delay: 1.2s;">
+                    Membangun solusi digital inovatif dengan 
+                    <span class="text-yellow-300 font-semibold">Laravel</span> & 
+                    <span class="text-purple-300 font-semibold">Livewire</span>. 
+                    Sebagai ASN yang berkomitmen pada transformasi digital untuk kemajuan bangsa.
+                </p>
+
+                <!-- CTA Buttons with enhanced animations -->
+                <div class="flex flex-col sm:flex-row gap-6 justify-center items-center animate-fadeInUp" style="animation-delay: 1.6s;">
+                    <a href="#about" class="group relative bg-white text-gray-900 px-8 py-4 rounded-2xl font-bold text-lg shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105 hover:-rotate-1">
+                        <span class="relative z-10 flex items-center">
+                            <i class="fas fa-user-tie mr-3 text-blue-600"></i>
+                            Profil ASN
+                        </span>
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-500 rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+                    </a>
+                    
+                    <a href="#skills" class="group relative glass-effect text-white px-8 py-4 rounded-2xl font-bold text-lg border-2 border-white/30 hover:border-white/60 transition-all duration-300 hover:scale-105 hover:rotate-1">
+                        <span class="flex items-center">
+                            <i class="fab fa-laravel mr-3 text-red-400 animate-wiggle"></i>
+                            Expertise Laravel
+                        </span>
+                    </a>
+                </div>
+
+                <!-- Tech Stack Showcase -->
+                <div class="mt-16 animate-fadeInUp" style="animation-delay: 2s;">
+                    <p class="text-white/60 text-sm font-medium mb-6 tracking-wider uppercase">Tech Stack Utama</p>
+                    <div class="flex flex-wrap justify-center gap-6">
+                        <div class="group flex items-center gap-3 glass-effect px-4 py-2 rounded-full hover:bg-white/20 transition-all duration-300">
+                            <i class="fab fa-laravel text-2xl text-red-400 group-hover:animate-bounce"></i>
+                            <span class="text-white font-medium">Laravel</span>
+                        </div>
+                        <div class="group flex items-center gap-3 glass-effect px-4 py-2 rounded-full hover:bg-white/20 transition-all duration-300">
+                            <i class="fas fa-bolt text-2xl text-yellow-400 group-hover:animate-pulse"></i>
+                            <span class="text-white font-medium">Livewire</span>
+                        </div>
+                        <div class="group flex items-center gap-3 glass-effect px-4 py-2 rounded-full hover:bg-white/20 transition-all duration-300">
+                            <i class="fab fa-js text-2xl text-green-400 group-hover:animate-wiggle"></i>
+                            <span class="text-white font-medium">Alpine.js</span>
+                        </div>
+                        <div class="group flex items-center gap-3 glass-effect px-4 py-2 rounded-full hover:bg-white/20 transition-all duration-300">
+                            <i class="fas fa-wind text-2xl text-blue-400 group-hover:animate-bounce"></i>
+                            <span class="text-white font-medium">Tailwind</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scroll indicator -->
+            <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+                <div class="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center">
+                    <div class="w-1 h-3 bg-white/70 rounded-full mt-2 animate-pulse"></div>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- About Section -->
-    <section id="about">
-        <h2 class="section-title">About Me</h2>
-        <div class="about-content">
-            <div>
-                <img src="https://via.placeholder.com/300x300/667eea/ffffff?text=Your+Photo" alt="Azhar Azziz" class="profile-img">
+    <section id="about" class="py-20 bg-white relative overflow-hidden">
+        <!-- Background decorations -->
+        <div class="absolute top-0 left-0 w-72 h-72 bg-blue-100 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float"></div>
+        <div class="absolute top-0 right-0 w-72 h-72 bg-purple-100 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float" style="animation-delay: 2s;"></div>
+        <div class="absolute bottom-0 left-1/3 w-72 h-72 bg-pink-100 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float" style="animation-delay: 4s;"></div>
+
+        <div class="container mx-auto px-6 relative z-10">
+            <!-- Section Header -->
+            <div class="text-center mb-16 section-reveal">
+                <div class="inline-block bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-2 rounded-full text-sm font-semibold tracking-wider uppercase mb-4">
+                    Tentang Saya
+                </div>
+                <h2 class="text-5xl md:text-6xl font-black text-gray-900 mb-6">
+                    ASN yang 
+                    <span class="text-gradient">Berdedikasi</span>
+                    <br>pada Teknologi
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                    Memadukan dedikasi sebagai Aparatur Sipil Negara dengan keahlian dalam pengembangan aplikasi web modern menggunakan ekosistem Laravel
+                </p>
             </div>
-            <div class="about-text">
-                <p>Welcome to my portfolio! I'm a dedicated developer with a passion for creating innovative solutions and beautiful user experiences. With expertise in modern web technologies, I enjoy tackling complex problems and turning ideas into reality.</p>
-                
-                <p>My journey in technology began with curiosity and has evolved into a career focused on continuous learning and growth. I believe in writing clean, efficient code and staying up-to-date with the latest industry trends and best practices.</p>
-                
-                <p>When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, or sharing knowledge with the developer community. I'm always excited to take on new challenges and collaborate on interesting projects.</p>
+
+            <!-- Main Content -->
+            <div class="grid lg:grid-cols-2 gap-16 items-center mb-20">
+                <!-- Profile Image -->
+                <div class="order-2 lg:order-1 text-center section-reveal">
+                    <div class="relative inline-block">
+                        <div class="w-80 h-80 bg-gradient-to-br from-blue-500 to-purple-600 rounded-3xl transform rotate-6 absolute inset-0"></div>
+                        <img src="https://via.placeholder.com/400x400/1e40af/ffffff?text=Azhar+A" alt="Azhar Azziz Afifi" class="w-80 h-80 rounded-3xl object-cover relative z-10 border-8 border-white shadow-2xl hover:scale-105 transition-transform duration-300">
+                        
+                        <!-- Floating badges -->
+                        <div class="absolute -top-4 -right-4 bg-green-500 text-white px-4 py-2 rounded-full text-sm font-bold animate-bounce">
+                            ASN 🇮🇩
+                        </div>
+                        <div class="absolute -bottom-4 -left-4 bg-red-500 text-white px-4 py-2 rounded-full text-sm font-bold animate-pulse">
+                            Laravel Expert
+                        </div>
+                    </div>
+                </div>
+
+                <!-- About Text -->
+                <div class="order-1 lg:order-2 section-reveal">
+                    <h3 class="text-3xl font-bold text-gray-900 mb-6 flex items-center">
+                        <span class="text-4xl mr-3">🇮🇩</span>
+                        Mengabdi Negeri melalui Teknologi
+                    </h3>
+                    
+                    <div class="space-y-6 text-lg text-gray-700 leading-relaxed">
+                        <p>
+                            Sebagai <span class="font-bold text-blue-600">Aparatur Sipil Negara (ASN)</span>, saya memiliki komitmen tinggi untuk mengabdi kepada negara dan masyarakat. Dengan latar belakang sebagai <span class="font-bold text-purple-600">PHP Laravel Specialist</span>, saya berfokus pada pengembangan aplikasi web yang mendukung transformasi digital di sektor publik.
+                        </p>
+                        
+                        <p>
+                            Keahlian utama saya terpusat pada <span class="font-bold text-red-500">ekosistem Laravel dan Livewire</span>, yang memungkinkan saya menciptakan aplikasi web yang robust, scalable, dan user-friendly. Setiap proyek yang saya kerjakan selalu mengutamakan efisiensi, keamanan, dan kemudahan penggunaan.
+                        </p>
+                        
+                        <p>
+                            Saya percaya bahwa teknologi adalah alat yang powerful untuk meningkatkan kualitas pelayanan publik dan transparansi pemerintahan. Dengan semangat inovasi dan dedikasi sebagai ASN, saya terus mengembangkan solusi digital yang berdampak positif bagi masyarakat Indonesia.
+                        </p>
+                    </div>
+
+                    <!-- CTA Button -->
+                    <div class="mt-8">
+                        <a href="#contact" class="inline-flex items-center bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-2xl font-bold hover:scale-105 transition-transform duration-300 shadow-lg hover:shadow-xl">
+                            <i class="fas fa-handshake mr-3"></i>
+                            Mari Berkolaborasi
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats Section -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div class="text-center stagger-animation bg-white p-8 rounded-2xl shadow-lg hover-lift border border-gray-100">
+                    <div class="text-4xl font-black text-blue-600 mb-2">5+</div>
+                    <div class="text-gray-600 font-semibold">Tahun Mengabdi sebagai ASN</div>
+                </div>
+                <div class="text-center stagger-animation bg-white p-8 rounded-2xl shadow-lg hover-lift border border-gray-100" style="animation-delay: 0.1s;">
+                    <div class="text-4xl font-black text-purple-600 mb-2">3+</div>
+                    <div class="text-gray-600 font-semibold">Tahun Laravel Development</div>
+                </div>
+                <div class="text-center stagger-animation bg-white p-8 rounded-2xl shadow-lg hover-lift border border-gray-100" style="animation-delay: 0.2s;">
+                    <div class="text-4xl font-black text-green-600 mb-2">20+</div>
+                    <div class="text-gray-600 font-semibold">Aplikasi Web Dikembangkan</div>
+                </div>
+                <div class="text-center stagger-animation bg-white p-8 rounded-2xl shadow-lg hover-lift border border-gray-100" style="animation-delay: 0.3s;">
+                    <div class="text-4xl font-black text-red-600 mb-2">100%</div>
+                    <div class="text-gray-600 font-semibold">Fokus Ekosistem Laravel</div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Skills Section -->
-    <section id="skills" class="skills">
-        <h2 class="section-title">Skills & Expertise</h2>
-        <div class="skills-grid">
-            <div class="skill-card">
-                <i class="fab fa-html5"></i>
-                <h3>Frontend Development</h3>
-                <p>HTML5, CSS3, JavaScript, React, Vue.js, Angular</p>
+    <section id="skills" class="py-20 bg-gradient-to-br from-gray-50 to-blue-50 relative overflow-hidden">
+        <!-- Background decoration -->
+        <div class="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full opacity-10 transform translate-x-48 -translate-y-48"></div>
+        <div class="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-tr from-purple-400 to-pink-500 rounded-full opacity-10 transform -translate-x-48 translate-y-48"></div>
+
+        <div class="container mx-auto px-6 relative z-10">
+            <!-- Section Header -->
+            <div class="text-center mb-20 section-reveal">
+                <div class="inline-block bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-2 rounded-full text-sm font-semibold tracking-wider uppercase mb-4">
+                    Core Expertise
+                </div>
+                <h2 class="text-5xl md:text-6xl font-black text-gray-900 mb-6">
+                    PHP Laravel 
+                    <span class="text-gradient">Ecosystem</span>
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                    Menguasai secara mendalam ekosistem Laravel untuk membangun aplikasi web modern yang powerful dan scalable
+                </p>
             </div>
-            <div class="skill-card">
-                <i class="fas fa-server"></i>
-                <h3>Backend Development</h3>
-                <p>Node.js, Python, PHP, MySQL, MongoDB, PostgreSQL</p>
+
+            <!-- Main Skills Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+                <!-- Laravel Framework -->
+                <div class="skill-card-3d group">
+                    <div class="skill-card-inner bg-white p-8 rounded-3xl shadow-xl border border-gray-100 hover:shadow-2xl transition-all duration-500">
+                        <div class="w-20 h-20 bg-gradient-to-br from-red-500 to-red-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                            <i class="fab fa-laravel text-3xl text-white"></i>
+                        </div>
+                        <h4 class="text-2xl font-bold text-gray-900 mb-4">Laravel Framework</h4>
+                        <p class="text-gray-600 mb-6 leading-relaxed">Framework PHP yang elegant dan powerful untuk membangun aplikasi web modern dengan architecture pattern MVC yang clean dan maintainable.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-red-100 text-red-700 px-3 py-1 rounded-full text-sm font-medium">Eloquent ORM</span>
+                            <span class="bg-red-100 text-red-700 px-3 py-1 rounded-full text-sm font-medium">Blade Templates</span>
+                            <span class="bg-red-100 text-red-700 px-3 py-1 rounded-full text-sm font-medium">Artisan CLI</span>
+                            <span class="bg-red-100 text-red-700 px-3 py-1 rounded-full text-sm font-medium">Migrations</span>
+                            <span class="bg-red-100 text-red-700 px-3 py-1 rounded-full text-sm font-medium">Middleware</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Livewire -->
+                <div class="skill-card-3d group">
+                    <div class="skill-card-inner bg-white p-8 rounded-3xl shadow-xl border border-gray-100 hover:shadow-2xl transition-all duration-500">
+                        <div class="w-20 h-20 bg-gradient-to-br from-yellow-500 to-orange-500 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                            <i class="fas fa-bolt text-3xl text-white animate-pulse"></i>
+                        </div>
+                        <h4 class="text-2xl font-bold text-gray-900 mb-4">Laravel Livewire</h4>
+                        <p class="text-gray-600 mb-6 leading-relaxed">Membangun komponen frontend yang interaktif dengan PHP tanpa kompleksitas JavaScript framework, perfect untuk rapid development.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-sm font-medium">Real-time Components</span>
+                            <span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-sm font-medium">Form Handling</span>
+                            <span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-sm font-medium">File Uploads</span>
+                            <span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-sm font-medium">Validation</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PHP Ecosystem -->
+                <div class="skill-card-3d group">
+                    <div class="skill-card-inner bg-white p-8 rounded-3xl shadow-xl border border-gray-100 hover:shadow-2xl transition-all duration-500">
+                        <div class="w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                            <i class="fab fa-php text-3xl text-white"></i>
+                        </div>
+                        <h4 class="text-2xl font-bold text-gray-900 mb-4">PHP Ecosystem</h4>
+                        <p class="text-gray-600 mb-6 leading-relaxed">Menguasai PHP modern dengan best practices, design patterns, dan tools yang mendukung development workflow yang efisien.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-medium">PHP 8+</span>
+                            <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-medium">Composer</span>
+                            <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-medium">PSR Standards</span>
+                            <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-medium">Unit Testing</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Database & Backend -->
+                <div class="skill-card-3d group">
+                    <div class="skill-card-inner bg-white p-8 rounded-3xl shadow-xl border border-gray-100 hover:shadow-2xl transition-all duration-500">
+                        <div class="w-20 h-20 bg-gradient-to-br from-green-500 to-teal-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                            <i class="fas fa-database text-3xl text-white"></i>
+                        </div>
+                        <h4 class="text-2xl font-bold text-gray-900 mb-4">Database & Backend</h4>
+                        <p class="text-gray-600 mb-6 leading-relaxed">Expertise dalam database design, optimization, dan integration dengan berbagai services untuk aplikasi enterprise-grade.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-medium">MySQL</span>
+                            <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-medium">PostgreSQL</span>
+                            <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-medium">Redis</span>
+                            <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-medium">Queue Jobs</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Frontend Tools -->
+                <div class="skill-card-3d group">
+                    <div class="skill-card-inner bg-white p-8 rounded-3xl shadow-xl border border-gray-100 hover:shadow-2xl transition-all duration-500">
+                        <div class="w-20 h-20 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                            <i class="fas fa-palette text-3xl text-white"></i>
+                        </div>
+                        <h4 class="text-2xl font-bold text-gray-900 mb-4">Frontend & Styling</h4>
+                        <p class="text-gray-600 mb-6 leading-relaxed">Modern frontend tools untuk menciptakan user interface yang menarik dan responsive dengan workflow development yang efisien.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full text-sm font-medium">Tailwind CSS</span>
+                            <span class="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full text-sm font-medium">Alpine.js</span>
+                            <span class="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full text-sm font-medium">Vite</span>
+                            <span class="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full text-sm font-medium">SASS</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tools & Extensions -->
+                <div class="skill-card-3d group">
+                    <div class="skill-card-inner bg-white p-8 rounded-3xl shadow-xl border border-gray-100 hover:shadow-2xl transition-all duration-500">
+                        <div class="w-20 h-20 bg-gradient-to-br from-pink-500 to-rose-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                            <i class="fas fa-tools text-3xl text-white"></i>
+                        </div>
+                        <h4 class="text-2xl font-bold text-gray-900 mb-4">Tools & Extensions</h4>
+                        <p class="text-gray-600 mb-6 leading-relaxed">Package dan tools ecosystem Laravel yang membantu dalam development aplikasi yang robust dan feature-rich.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-pink-100 text-pink-700 px-3 py-1 rounded-full text-sm font-medium">Spatie Permissions</span>
+                            <span class="bg-pink-100 text-pink-700 px-3 py-1 rounded-full text-sm font-medium">Excel Integration</span>
+                            <span class="bg-pink-100 text-pink-700 px-3 py-1 rounded-full text-sm font-medium">Git & GitHub</span>
+                            <span class="bg-pink-100 text-pink-700 px-3 py-1 rounded-full text-sm font-medium">API Development</span>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="skill-card">
-                <i class="fab fa-git-alt"></i>
-                <h3>DevOps & Tools</h3>
-                <p>Git, Docker, AWS, CI/CD, Linux, Agile Methodologies</p>
-            </div>
-            <div class="skill-card">
-                <i class="fas fa-mobile-alt"></i>
-                <h3>Mobile Development</h3>
-                <p>React Native, Flutter, iOS, Android, Cross-platform</p>
+
+            <!-- ASN Values Integration -->
+            <div class="bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl p-8 md:p-12 text-white">
+                <div class="text-center mb-12">
+                    <h3 class="text-3xl md:text-4xl font-bold mb-4">Nilai-Nilai ASN dalam Development</h3>
+                    <p class="text-blue-100 text-lg max-w-3xl mx-auto">Mengintegrasikan nilai-nilai Aparatur Sipil Negara dalam setiap proses pengembangan teknologi</p>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="text-center group">
+                        <div class="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                            <i class="fas fa-heart text-2xl text-white"></i>
+                        </div>
+                        <h4 class="text-xl font-bold mb-2">Integritas</h4>
+                        <p class="text-blue-100">Konsisten menerapkan coding standards dan best practices dalam setiap proyek</p>
+                    </div>
+                    
+                    <div class="text-center group">
+                        <div class="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                            <i class="fas fa-users text-2xl text-white"></i>
+                        </div>
+                        <h4 class="text-xl font-bold mb-2">Pelayanan Publik</h4>
+                        <p class="text-blue-100">Mengutamakan user experience dan accessibility untuk semua lapisan masyarakat</p>
+                    </div>
+                    
+                    <div class="text-center group">
+                        <div class="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                            <i class="fas fa-lightbulb text-2xl text-white"></i>
+                        </div>
+                        <h4 class="text-xl font-bold mb-2">Inovasi</h4>
+                        <p class="text-blue-100">Terus mengeksplorasi teknologi terbaru untuk solusi digital yang efisien</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Projects Section -->
-    <section id="projects">
-        <h2 class="section-title">Featured Projects</h2>
+    <section id="projects" class="projects">
+        <div class="section-header">
+            <div class="section-badge">Portfolio</div>
+            <h2 class="section-title">Proyek Laravel Unggulan</h2>
+            <p class="section-subtitle">Aplikasi web yang dikembangkan menggunakan ekosistem Laravel untuk mendukung transformasi digital sektor publik</p>
+        </div>
         <div class="projects-grid">
             <div class="project-card">
-                <div class="project-img">
-                    <i class="fas fa-laptop-code"></i>
+                <div class="project-header">
+                    <div class="project-icon">
+                        <i class="fas fa-book-quran"></i>
+                    </div>
                 </div>
                 <div class="project-content">
-                    <h3>E-Commerce Platform</h3>
-                    <p>A full-stack e-commerce solution built with React and Node.js, featuring user authentication, payment integration, and admin dashboard.</p>
+                    <h3>Sistem Donasi Al-Qur'an</h3>
+                    <p>Aplikasi Laravel untuk mengelola donasi dan distribusi Al-Qur'an dengan fitur pendataan donatur, form multi-step menggunakan Livewire, ekspor laporan Excel, dan customize design cetak pembatas buku Al-Qur'an.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Laravel 10</span>
+                        <span class="tech-tag">Livewire 3</span>
+                        <span class="tech-tag">MySQL</span>
+                        <span class="tech-tag">Maatwebsite/Excel</span>
+                        <span class="tech-tag">TCPDF</span>
+                        <span class="tech-tag">Bootstrap</span>
+                    </div>
                     <div class="project-links">
-                        <a href="#" target="_blank"><i class="fab fa-github"></i> Code</a>
-                        <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                        <a href="#" class="project-link">
+                            <i class="fab fa-github"></i>
+                            Repository
+                        </a>
+                        <a href="#" class="project-link">
+                            <i class="fas fa-external-link-alt"></i>
+                            Demo
+                        </a>
                     </div>
                 </div>
             </div>
+
             <div class="project-card">
-                <div class="project-img">
-                    <i class="fas fa-chart-line"></i>
+                <div class="project-header">
+                    <div class="project-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
                 </div>
                 <div class="project-content">
-                    <h3>Data Visualization Dashboard</h3>
-                    <p>Interactive dashboard for data analysis and visualization using D3.js and Python backend with real-time data processing capabilities.</p>
+                    <h3>Sistem Keterbukaan Informasi Publik</h3>
+                    <p>Portal informasi publik berbasis Permenkes 37/2019 menggunakan Laravel dan Livewire. Menyediakan akses informasi publik secara berkala dengan content management system yang user-friendly untuk administrator.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Laravel 11</span>
+                        <span class="tech-tag">Livewire 3</span>
+                        <span class="tech-tag">Spatie Permissions</span>
+                        <span class="tech-tag">MariaDB</span>
+                        <span class="tech-tag">Tailwind CSS</span>
+                        <span class="tech-tag">Alpine.js</span>
+                    </div>
                     <div class="project-links">
-                        <a href="#" target="_blank"><i class="fab fa-github"></i> Code</a>
-                        <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                        <a href="#" class="project-link">
+                            <i class="fab fa-github"></i>
+                            Repository
+                        </a>
+                        <a href="#" class="project-link">
+                            <i class="fas fa-external-link-alt"></i>
+                            Demo
+                        </a>
                     </div>
                 </div>
             </div>
+
             <div class="project-card">
-                <div class="project-img">
-                    <i class="fas fa-mobile-alt"></i>
+                <div class="project-header">
+                    <div class="project-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
                 </div>
                 <div class="project-content">
-                    <h3>Task Management App</h3>
-                    <p>Cross-platform mobile application built with React Native, featuring offline capabilities and synchronization across devices.</p>
+                    <h3>Dashboard Monitoring TI</h3>
+                    <p>Sistem monitoring dan evaluasi teknologi informasi internal dengan dashboard interaktif, laporan otomatis dalam format Excel, dan real-time data visualization menggunakan Chart.js terintegrasi dengan Laravel.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Laravel 10</span>
+                        <span class="tech-tag">Livewire 3</span>
+                        <span class="tech-tag">PHPSpreadsheet</span>
+                        <span class="tech-tag">Chart.js</span>
+                        <span class="tech-tag">Redis</span>
+                        <span class="tech-tag">Queue Jobs</span>
+                    </div>
                     <div class="project-links">
-                        <a href="#" target="_blank"><i class="fab fa-github"></i> Code</a>
-                        <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                        <a href="#" class="project-link">
+                            <i class="fab fa-github"></i>
+                            Repository
+                        </a>
+                        <a href="#" class="project-link">
+                            <i class="fas fa-external-link-alt"></i>
+                            Demo
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <h3>Laravel CRUD Starter Kit</h3>
+                    <p>Template starter untuk aplikasi CRUD Laravel dengan Livewire, dilengkapi dark mode toggle, drag-and-drop sorting, advanced filtering, role-based permissions, dan responsive design untuk rapid development.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Laravel 11</span>
+                        <span class="tech-tag">Livewire 3</span>
+                        <span class="tech-tag">Spatie Permissions</span>
+                        <span class="tech-tag">Tailwind CSS</span>
+                        <span class="tech-tag">Alpine.js</span>
+                        <span class="tech-tag">SortableJS</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link">
+                            <i class="fab fa-github"></i>
+                            Repository
+                        </a>
+                        <a href="#" class="project-link">
+                            <i class="fas fa-external-link-alt"></i>
+                            Demo
+                        </a>
                     </div>
                 </div>
             </div>
@@ -534,43 +2594,85 @@
 
     <!-- Contact Section -->
     <section id="contact" class="contact">
-        <h2 class="section-title">Get In Touch</h2>
+        <div class="section-header">
+            <div class="section-badge">Kontak</div>
+            <h2 class="section-title">Mari Berkolaborasi</h2>
+            <p class="section-subtitle">Siap membantu transformasi digital institusi Anda dengan solusi Laravel yang robust dan scalable</p>
+        </div>
         <div class="contact-content">
             <div class="contact-info">
-                <h3>Let's Connect!</h3>
-                <p>I'm always interested in new opportunities and exciting projects. Feel free to reach out if you'd like to collaborate or just want to say hello!</p>
+                <h3>Mari Wujudkan Digitalisasi Bersama! 🚀</h3>
+                <p>Sebagai ASN yang berpengalaman dalam pengembangan Laravel, saya siap membantu institusi pemerintah atau swasta dalam transformasi digital. Mari diskusikan bagaimana ekosistem Laravel dapat meningkatkan efisiensi dan kualitas pelayanan organisasi Anda.</p>
                 
-                <div class="contact-item">
-                    <i class="fas fa-envelope"></i>
-                    <div>
-                        <strong>Email</strong><br>
-                        azhar@example.com
+                <div class="contact-items">
+                    <div class="contact-item">
+                        <div class="icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-item-content">
+                            <strong>Email Resmi</strong>
+                            <span>your.email@example.com</span>
+                        </div>
                     </div>
-                </div>
-                
-                <div class="contact-item">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <div>
-                        <strong>Location</strong><br>
-                        Your City, Country
+                    
+                    <div class="contact-item">
+                        <div class="icon">
+                            <i class="fas fa-id-badge"></i>
+                        </div>
+                        <div class="contact-item-content">
+                            <strong>Status</strong>
+                            <span>Aparatur Sipil Negara (ASN)</span>
+                        </div>
                     </div>
-                </div>
-                
-                <div class="contact-item">
-                    <i class="fas fa-phone"></i>
-                    <div>
-                        <strong>Phone</strong><br>
-                        +1 (555) 123-4567
+                    
+                    <div class="contact-item">
+                        <div class="icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-item-content">
+                            <strong>Lokasi</strong>
+                            <span>Indonesia</span>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="icon">
+                            <i class="fab fa-laravel"></i>
+                        </div>
+                        <div class="contact-item-content">
+                            <strong>Spesialisasi</strong>
+                            <span>PHP Laravel Ecosystem</span>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="icon">
+                            <i class="fas fa-briefcase"></i>
+                        </div>
+                        <div class="contact-item-content">
+                            <strong>Layanan</strong>
+                            <span>Konsultasi & Pengembangan Aplikasi</span>
+                        </div>
                     </div>
                 </div>
             </div>
             
             <form class="contact-form">
-                <input type="text" placeholder="Your Name" required>
-                <input type="email" placeholder="Your Email" required>
-                <input type="text" placeholder="Subject" required>
-                <textarea rows="5" placeholder="Your Message" required></textarea>
-                <button type="submit" class="submit-btn">Send Message</button>
+                <h4>Konsultasi Proyek Laravel</h4>
+                <input type="text" placeholder="Nama Institusi/Organisasi" required>
+                <input type="email" placeholder="Email Resmi" required>
+                <input type="text" placeholder="Jenis Proyek (Web App/Dashboard/API/dll)" required>
+                <textarea rows="6" placeholder="Deskripsikan kebutuhan proyek Anda...
+
+• Jenis aplikasi yang dibutuhkan
+• Target pengguna 
+• Fitur utama yang diinginkan
+• Timeline dan budget (opsional)
+• Integrasi dengan sistem existing" required></textarea>
+                <button type="submit" class="submit-btn">
+                    <i class="fas fa-paper-plane"></i>
+                    Kirim Proposal
+                </button>
             </form>
         </div>
     </section>
@@ -578,76 +2680,308 @@
     <!-- Footer -->
     <footer>
         <div class="social-links">
-            <a href="https://github.com/azharazziz" target="_blank"><i class="fab fa-github"></i></a>
-            <a href="https://linkedin.com/in/azharazziz" target="_blank"><i class="fab fa-linkedin"></i></a>
-            <a href="https://twitter.com/azharazziz" target="_blank"><i class="fab fa-twitter"></i></a>
-            <a href="mailto:azhar@example.com"><i class="fas fa-envelope"></i></a>
+            <a href="https://github.com/azharazziz" target="_blank" title="GitHub">
+                <i class="fab fa-github"></i>
+            </a>
+            <a href="https://linkedin.com/in/azharazziz" target="_blank" title="LinkedIn">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="mailto:your.email@example.com" title="Email">
+                <i class="fas fa-envelope"></i>
+            </a>
+            <a href="https://laravel.com" target="_blank" title="Laravel Community">
+                <i class="fab fa-laravel"></i>
+            </a>
         </div>
-        <p>&copy; 2025 Azhar Azziz. All rights reserved.</p>
+        <p>&copy; 2025 Azhar Azziz Afifi - ASN & Laravel Developer</p>
+        <p style="margin-top: 0.75rem; font-size: 1rem; opacity: 0.9;">
+            "Mengabdi negeri melalui teknologi Laravel yang powerful dan elegant"
+        </p>
+        <p style="margin-top: 0.5rem; font-size: 0.9rem; opacity: 0.7;">
+            Dibuat dengan ❤️ menggunakan HTML, CSS, dan JavaScript
+        </p>
     </footer>
 
     <script>
-        // Smooth scrolling for navigation links
+        // Enhanced mobile menu with modern animations
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const line1 = document.getElementById('line1');
+        const line2 = document.getElementById('line2');
+        const line3 = document.getElementById('line3');
+        let isMenuOpen = false;
+
+        mobileMenuBtn.addEventListener('click', () => {
+            isMenuOpen = !isMenuOpen;
+            
+            if (isMenuOpen) {
+                mobileMenu.style.maxHeight = mobileMenu.scrollHeight + 'px';
+                line1.style.transform = 'rotate(45deg) translate(5px, 5px)';
+                line2.style.opacity = '0';
+                line3.style.transform = 'rotate(-45deg) translate(7px, -6px)';
+            } else {
+                mobileMenu.style.maxHeight = '0';
+                line1.style.transform = 'none';
+                line2.style.opacity = '1';
+                line3.style.transform = 'none';
+            }
+        });
+
+        // Close mobile menu when clicking on links
+        document.querySelectorAll('#mobileMenu a').forEach(link => {
+            link.addEventListener('click', () => {
+                isMenuOpen = false;
+                mobileMenu.style.maxHeight = '0';
+                line1.style.transform = 'none';
+                line2.style.opacity = '1';
+                line3.style.transform = 'none';
+            });
+        });
+
+        // Modern header scroll effect with glass morphism
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.backdropFilter = 'blur(20px)';
+                header.style.borderBottom = '1px solid rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.1)';
+                header.style.backdropFilter = 'blur(20px)';
+                header.style.borderBottom = '1px solid rgba(255, 255, 255, 0.2)';
+            }
+        });
+
+        // Enhanced typing effect for hero
+        const typingText = document.getElementById('typingText');
+        const messages = [
+            'Aparatur Sipil Negara',
+            'Laravel Developer',
+            'PHP Specialist',
+            'Digital Innovator'
+        ];
+        let messageIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+
+        function typeWriter() {
+            const currentMessage = messages[messageIndex];
+            
+            if (isDeleting) {
+                typingText.textContent = currentMessage.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typingText.textContent = currentMessage.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            let typeSpeed = isDeleting ? 50 : 100;
+
+            if (!isDeleting && charIndex === currentMessage.length) {
+                typeSpeed = 2000;
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                messageIndex = (messageIndex + 1) % messages.length;
+                typeSpeed = 500;
+            }
+
+            setTimeout(typeWriter, typeSpeed);
+        }
+
+        // Start typing effect after loading
+        setTimeout(typeWriter, 2000);
+
+        // Smooth scrolling for navigation
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
+                    const headerHeight = 100;
+                    const elementPosition = target.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerHeight;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
                     });
                 }
             });
         });
 
-        // Mobile menu toggle
-        const hamburger = document.querySelector('.hamburger');
-        const navLinks = document.querySelector('.nav-links');
-
-        hamburger.addEventListener('click', () => {
-            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        // Advanced Intersection Observer for section reveals
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
         });
 
-        // Form submission handler
-        document.querySelector('.contact-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Thank you for your message! I\'ll get back to you soon.');
-            this.reset();
+        // Observe sections for reveal animations
+        document.querySelectorAll('.section-reveal').forEach(el => {
+            revealObserver.observe(el);
         });
 
-        // Navbar background on scroll
+        // Stagger animation observer
+        const staggerObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, index * 100);
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        // Observe stagger elements
+        document.querySelectorAll('.stagger-animation').forEach(el => {
+            staggerObserver.observe(el);
+        });
+
+        // Magnetic effect for buttons
+        document.querySelectorAll('.magnetic-btn').forEach(btn => {
+            btn.addEventListener('mousemove', (e) => {
+                const rect = btn.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                
+                btn.style.transform = `translate(${x * 0.1}px, ${y * 0.1}px) scale(1.05)`;
+            });
+            
+            btn.addEventListener('mouseleave', () => {
+                btn.style.transform = 'translate(0, 0) scale(1)';
+            });
+        });
+
+        // 3D card effect
+        document.querySelectorAll('.skill-card-3d').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = (y - centerY) / 10;
+                const rotateY = (centerX - x) / 10;
+                
+                card.querySelector('.skill-card-inner').style.transform = 
+                    `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`;
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.querySelector('.skill-card-inner').style.transform = 
+                    'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+            });
+        });
+
+        // Particles animation
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.className = 'fixed w-1 h-1 bg-blue-400 rounded-full pointer-events-none z-0';
+            particle.style.left = Math.random() * window.innerWidth + 'px';
+            particle.style.top = window.innerHeight + 'px';
+            particle.style.opacity = '0.6';
+            document.body.appendChild(particle);
+            
+            const animation = particle.animate([
+                { transform: 'translateY(0) rotate(0deg)', opacity: 0.6 },
+                { transform: `translateY(-${window.innerHeight + 100}px) rotate(360deg)`, opacity: 0 }
+            ], {
+                duration: Math.random() * 3000 + 2000,
+                easing: 'linear'
+            });
+            
+            animation.onfinish = () => particle.remove();
+        }
+
+        // Create particles periodically
+        setInterval(createParticle, 300);
+
+        // Parallax effect for hero background
         window.addEventListener('scroll', () => {
-            const header = document.querySelector('header');
-            if (window.scrollY > 100) {
-                header.style.background = 'rgba(102, 126, 234, 0.95)';
-            } else {
-                header.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+            const scrolled = window.pageYOffset;
+            const parallaxElements = document.querySelectorAll('.parallax-bg');
+            
+            parallaxElements.forEach((element, index) => {
+                const speed = scrolled * (0.2 + index * 0.1);
+                element.style.transform = `translateY(${speed}px)`;
+            });
+        });
+
+        // Enhanced hover effects with sound (if enabled)
+        document.querySelectorAll('.hover-lift').forEach(element => {
+            element.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+                this.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.15)';
+            });
+            
+            element.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+                this.style.boxShadow = '0 10px 20px rgba(0, 0, 0, 0.1)';
+            });
+        });
+
+        // Page transition effect
+        document.addEventListener('DOMContentLoaded', function() {
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.5s ease';
+            
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+
+        // Form submission with enhanced UX
+        document.addEventListener('submit', function(e) {
+            if (e.target.matches('.contact-form')) {
+                e.preventDefault();
+                
+                const submitBtn = e.target.querySelector('button[type="submit"]');
+                const originalText = submitBtn.innerHTML;
+                
+                // Show loading state
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Mengirim...';
+                submitBtn.disabled = true;
+                
+                // Simulate form submission
+                setTimeout(() => {
+                    submitBtn.innerHTML = '<i class="fas fa-check mr-2"></i>Terkirim!';
+                    submitBtn.classList.add('bg-green-500');
+                    
+                    setTimeout(() => {
+                        submitBtn.innerHTML = originalText;
+                        submitBtn.disabled = false;
+                        submitBtn.classList.remove('bg-green-500');
+                        e.target.reset();
+                    }, 2000);
+                }, 1500);
             }
         });
 
-        // Intersection Observer for animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+        // Smooth reveal on scroll
+        const scrollReveal = () => {
+            const elements = document.querySelectorAll('.opacity-0');
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.remove('opacity-0');
+                    element.classList.add('animate-fadeInUp');
                 }
             });
-        }, observerOptions);
+        };
 
-        // Observe elements for animation
-        document.querySelectorAll('.skill-card, .project-card').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(20px)';
-            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(el);
-        });
+        window.addEventListener('scroll', scrollReveal);
+        scrollReveal(); // Initial check
     </script>
 </body>
 </html>
