@@ -95,7 +95,7 @@
             </div>
 
             <!-- Clean Desktop Navigation -->
-            <div class="hidden lg:flex items-center">
+            <div class="hidden lg:flex items-center gap-8">
                 <nav class="flex items-center gap-8">
                     <a href="#home" class="nav-link text-gray-700 hover:text-teal-600 font-medium text-sm transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-teal-600 after:transition-all after:duration-300 hover:after:w-full">Beranda</a>
                     <a href="#about" class="nav-link text-gray-700 hover:text-teal-600 font-medium text-sm transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-teal-600 after:transition-all after:duration-300 hover:after:w-full">Tentang</a>
@@ -103,6 +103,21 @@
                     <a href="#projects" class="nav-link text-gray-700 hover:text-teal-600 font-medium text-sm transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-teal-600 after:transition-all after:duration-300 hover:after:w-full">Proyek</a>
                     <a href="#contact" class="nav-link text-gray-700 hover:text-teal-600 font-medium text-sm transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-teal-600 after:transition-all after:duration-300 hover:after:w-full">Kontak</a>
                 </nav>
+            </div>
+
+            <!-- Layout Toggle Switch - Right Side -->
+            <div class="hidden lg:flex items-center">
+                <div class="layout-toggle-container flex items-center gap-3">
+                    <span class="text-xs font-medium text-gray-600">Contained</span>
+                    <button id="layoutToggle" class="layout-toggle-switch" title="Toggle Full Width Layout" aria-label="Toggle layout mode">
+                        <div class="toggle-track">
+                            <div class="toggle-thumb">
+                                <i class="fas fa-expand-arrows-alt toggle-icon"></i>
+                            </div>
+                        </div>
+                    </button>
+                    <span class="text-xs font-medium text-gray-600">Full Width</span>
+                </div>
             </div>
 
             <!-- Minimalist Mobile Menu Button -->
@@ -158,9 +173,7 @@
                 
                 <!-- Mobile CTA -->
                 <div class="p-6 border-t border-teal-100/50">
-                    <a href="#contact" class="block w-full bg-teal-600 hover:bg-teal-700 text-white px-6 py-3 rounded-lg font-medium text-center transition-all duration-300">
-                        Mulai Proyek
-                    </a>
+                    <!-- Empty space for future content -->
                 </div>
             </div>
         </div>
@@ -1088,6 +1101,11 @@
             </p>
         </footer>
     </div>
+
+    <!-- Scroll to Top Button -->
+    <button id="scrollToTop" class="scroll-to-top" title="Back to top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
 
     <!-- External JavaScript file -->
     <script src="script.js"></script>

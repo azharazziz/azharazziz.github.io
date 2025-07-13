@@ -619,3 +619,243 @@ document.addEventListener('DOMContentLoaded', function() {
         console.error('Filter buttons or project cards not found!');
     }
 });
+
+// Scroll to Top Functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const scrollToTopBtn = document.getElementById('scrollToTop');
+    
+    if (scrollToTopBtn) {
+        // Show/hide button based on scroll position
+        function toggleScrollButton() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const windowHeight = window.innerHeight;
+            
+            if (scrollTop > windowHeight * 0.3) { // Show after scrolling 30% of viewport height
+                scrollToTopBtn.classList.add('show');
+            } else {
+                scrollToTopBtn.classList.remove('show');
+            }
+        }
+        
+        // Smooth scroll to top function
+        function scrollToTop() {
+            const scrollStep = -window.scrollY / (500 / 15); // Adjust speed here (500ms total)
+            
+            function step() {
+                if (window.scrollY !== 0) {
+                    window.scrollBy(0, scrollStep);
+                    requestAnimationFrame(step);
+                } else {
+                    // Add a little bounce effect when reaching top
+                    scrollToTopBtn.style.transform = 'translateY(-10px) scale(1.2)';
+                    setTimeout(() => {
+                        scrollToTopBtn.style.transform = '';
+                    }, 200);
+                }
+            }
+            requestAnimationFrame(step);
+        }
+        
+        // Event listeners
+        window.addEventListener('scroll', toggleScrollButton);
+        scrollToTopBtn.addEventListener('click', scrollToTop);
+        
+        // Keyboard accessibility
+        scrollToTopBtn.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                scrollToTop();
+            }
+        });
+        
+        // Initial check
+        toggleScrollButton();
+        
+        console.log('Scroll to top button initialized successfully!');
+    } else {
+        console.warn('Scroll to top button not found!');
+    }
+});
+
+// Layout Toggle Functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const layoutToggleBtn = document.getElementById('layoutToggle');
+    const mobileLayoutToggleBtn = document.getElementById('mobileLayoutToggle');
+    const body = document.body;
+    
+    // Check for saved layout preference or set default to full-width
+    const savedLayout = localStorage.getItem('layoutPreference');
+    let isFullWidth = savedLayout ? savedLayout === 'full-width' : true; // Default to full-width
+    
+    // Initialize layout based on preference (default is full-width)
+    if (isFullWidth) {
+        body.classList.add('full-width-layout');
+        updateToggleSwitches(true);
+    }
+    
+    // Update toggle switch states and labels
+    function updateToggleSwitches(isActive) {
+        const switches = [layoutToggleBtn, mobileLayoutToggleBtn].filter(btn => btn);
+        
+        switches.forEach(switchEl => {
+            if (isActive) {
+                switchEl.classList.add('active');
+                switchEl.classList.add('transitioning');
+                
+                // Update icon
+                const icon = switchEl.querySelector('.toggle-icon');
+                if (icon) {
+                    icon.className = 'fas fa-compress-arrows-alt toggle-icon';
+                }
+                
+                // Remove transitioning class after animation
+                setTimeout(() => {
+                    switchEl.classList.remove('transitioning');
+                }, 600);
+                
+            } else {
+                switchEl.classList.remove('active');
+                switchEl.classList.add('transitioning');
+                
+                // Update icon
+                const icon = switchEl.querySelector('.toggle-icon');
+                if (icon) {
+                    icon.className = 'fas fa-expand-arrows-alt toggle-icon';
+                }
+                
+                // Remove transitioning class after animation
+                setTimeout(() => {
+                    switchEl.classList.remove('transitioning');
+                }, 600);
+            }
+        });
+        
+        // Update labels
+        updateLabels(isActive);
+    }
+    
+    // Update label states
+    function updateLabels(isFullWidth) {
+        // Desktop labels
+        const desktopContainer = layoutToggleBtn?.closest('.layout-toggle-container');
+        if (desktopContainer) {
+            const labels = desktopContainer.querySelectorAll('span');
+            labels.forEach((label, index) => {
+                label.classList.remove('active');
+                if ((index === 0 && !isFullWidth) || (index === 1 && isFullWidth)) {
+                    label.classList.add('active');
+                }
+            });
+        }
+        
+        // Mobile labels
+        const mobileContainer = mobileLayoutToggleBtn?.closest('.layout-toggle-container');
+        if (mobileContainer) {
+            const labels = mobileContainer.querySelectorAll('span:not(:first-child)');
+            labels.forEach((label, index) => {
+                label.classList.remove('active');
+                if ((index === 0 && !isFullWidth) || (index === 1 && isFullWidth)) {
+                    label.classList.add('active');
+                }
+            });
+        }
+    }
+    
+    // Toggle layout function
+    function toggleLayout(event) {
+        isFullWidth = !isFullWidth;
+        
+        if (isFullWidth) {
+            body.classList.add('full-width-layout');
+            localStorage.setItem('layoutPreference', 'full-width');
+        } else {
+            body.classList.remove('full-width-layout');
+            localStorage.setItem('layoutPreference', 'contained');
+        }
+        
+        updateToggleSwitches(isFullWidth);
+        
+        // Add tactile feedback
+        const activeSwitch = event.target.closest('.layout-toggle-switch');
+        if (activeSwitch) {
+            activeSwitch.style.transform = 'scale(0.98)';
+            setTimeout(() => {
+                activeSwitch.style.transform = '';
+            }, 150);
+        }
+        
+        // Trigger scroll event to refresh any scroll-based animations
+        window.dispatchEvent(new Event('scroll'));
+        
+        // Add haptic feedback for mobile (if supported)
+        if (navigator.vibrate && window.innerWidth <= 768) {
+            navigator.vibrate(50);
+        }
+        
+        console.log(`Layout switched to: ${isFullWidth ? 'Full Width' : 'Contained'}`);
+    }
+    
+    // Event listeners for switches
+    if (layoutToggleBtn) {
+        layoutToggleBtn.addEventListener('click', toggleLayout);
+        
+        // Keyboard accessibility
+        layoutToggleBtn.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                toggleLayout(e);
+            }
+        });
+        
+        // Add ARIA attributes
+        layoutToggleBtn.setAttribute('role', 'switch');
+        layoutToggleBtn.setAttribute('aria-checked', isFullWidth ? 'true' : 'false');
+    }
+    
+    if (mobileLayoutToggleBtn) {
+        mobileLayoutToggleBtn.addEventListener('click', toggleLayout);
+        
+        // Keyboard accessibility
+        mobileLayoutToggleBtn.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                toggleLayout(e);
+            }
+        });
+        
+        // Add ARIA attributes
+        mobileLayoutToggleBtn.setAttribute('role', 'switch');
+        mobileLayoutToggleBtn.setAttribute('aria-checked', isFullWidth ? 'true' : 'false');
+    }
+    
+    // Update tooltips and ARIA attributes
+    function updateAccessibility() {
+        const tooltip = isFullWidth ? 'Switch to Contained Layout' : 'Switch to Full Width Layout';
+        
+        if (layoutToggleBtn) {
+            layoutToggleBtn.title = tooltip;
+            layoutToggleBtn.setAttribute('aria-checked', isFullWidth ? 'true' : 'false');
+        }
+        if (mobileLayoutToggleBtn) {
+            mobileLayoutToggleBtn.title = tooltip;
+            mobileLayoutToggleBtn.setAttribute('aria-checked', isFullWidth ? 'true' : 'false');
+        }
+    }
+    
+    updateAccessibility();
+    
+    // Update accessibility when layout changes
+    const observer = new MutationObserver(() => {
+        updateAccessibility();
+    });
+    
+    observer.observe(body, { attributes: true, attributeFilter: ['class'] });
+    
+    // Add smooth animation for initial state
+    setTimeout(() => {
+        updateLabels(isFullWidth);
+    }, 100);
+    
+    console.log('Layout toggle switches initialized successfully!');
+    console.log(`Current layout: ${isFullWidth ? 'Full Width' : 'Contained'}`);
+});
