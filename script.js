@@ -639,21 +639,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Smooth scroll to top function
         function scrollToTop() {
-            const scrollStep = -window.scrollY / (500 / 15); // Adjust speed here (500ms total)
-            
-            function step() {
-                if (window.scrollY !== 0) {
-                    window.scrollBy(0, scrollStep);
-                    requestAnimationFrame(step);
-                } else {
-                    // Add a little bounce effect when reaching top
-                    scrollToTopBtn.style.transform = 'translateY(-10px) scale(1.2)';
-                    setTimeout(() => {
-                        scrollToTopBtn.style.transform = '';
-                    }, 200);
-                }
-            }
-            requestAnimationFrame(step);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
         
         // Event listeners
