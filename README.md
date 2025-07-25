@@ -100,6 +100,12 @@ azharazziz.github.io/
 - **Tech Stack:** Google Apps Script, JavaScript, QR Code API
 - **Repository:** [GitHub](https://github.com/azharazziz/dynamic-qris-google-app-script)
 
+### 6. **WhatsApp Bulk Sender**
+- Modern bulk WhatsApp messaging application using ZAPIN API
+- **Tech Stack:** Node.js, Express.js, JavaScript, ZAPIN API
+- **Live Demo:** [whatsapp-automate-sender.vercel.app](https://whatsapp-automate-sender.vercel.app/)
+- **Repository:** [GitHub](https://github.com/azharazziz/whatsapp-bulk-sender)
+
 ## 🛠️ Technologies Used
 
 ### Frontend
