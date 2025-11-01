@@ -401,6 +401,108 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+// --- Blog feed preview (fetch RSS/Atom and render previews) ---
+document.addEventListener('DOMContentLoaded', function() {
+    const postsContainer = document.getElementById('blog-posts');
+    if (!postsContainer) return;
+
+    const feedUrl = 'https://blog.azharazziz.my.id/feed';
+    const rss2json = 'https://api.rss2json.com/v1/api.json?rss_url=' + encodeURIComponent(feedUrl);
+    const maxPosts = 5;
+
+    function stripHtml(html) {
+        const tmp = document.createElement('div');
+        tmp.innerHTML = html || '';
+        return tmp.textContent || tmp.innerText || '';
+    }
+
+    function renderPosts(items) {
+        if (!items || !items.length) {
+            postsContainer.innerHTML = `
+                <div class="bg-white p-6 rounded-2xl shadow border border-gray-100 text-center">
+                    <p class="text-gray-600">Belum ada postingan yang dapat ditampilkan. Anda dapat mengunjungi blog secara langsung.</p>
+                    <a href="https://blog.azharazziz.my.id" target="_blank" rel="noopener" class="inline-block mt-4 px-5 py-2 bg-teal-600 text-white rounded-lg">Buka Blog</a>
+                </div>`;
+            return;
+        }
+
+        const cards = items.slice(0, maxPosts).map(item => {
+            const title = item.title || 'Untitled';
+            const link = item.link || item.url || '#';
+            const rawDate = item.pubDate || item.isoDate || item.published || '';
+            const pubDate = rawDate ? new Date(rawDate).toLocaleDateString('id-ID', { year: 'numeric', month: 'short', day: 'numeric' }) : '';
+            const contentHtml = item.content || item.description || item.summary || '';
+            const text = stripHtml(contentHtml).trim();
+            const excerpt = text.slice(0, 160) + (text.length > 160 ? '…' : '');
+
+            return `
+                <article class="bg-white p-5 rounded-2xl shadow hover:shadow-lg transition-all duration-200 border border-gray-100 flex flex-col h-full">
+                    <div class="flex-1">
+                        <a href="${link}" target="_blank" rel="noopener" class="text-lg font-bold text-gray-900 hover:text-teal-600 transition-colors">${title}</a>
+                        <div class="text-sm text-gray-500 mt-1">${pubDate}</div>
+                        <p class="text-gray-600 mt-3">${excerpt}</p>
+                    </div>
+                    <div class="mt-4">
+                        <a href="${link}" target="_blank" rel="noopener" class="inline-block text-sm font-semibold text-teal-600 hover:underline">Baca selengkapnya →</a>
+                    </div>
+                </article>`;
+        }).join('\n');
+
+        postsContainer.innerHTML = `<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">${cards}</div>`;
+    }
+
+    function showLoading() {
+        const skeleton = Array.from({ length: maxPosts }).map(() => `
+            <div class="bg-white p-5 rounded-2xl shadow border border-gray-100 animate-pulse h-40"></div>
+        `).join('\n');
+        postsContainer.innerHTML = `<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">${skeleton}</div>`;
+    }
+
+    function showError() {
+        postsContainer.innerHTML = `
+            <div class="bg-white p-6 rounded-2xl shadow border border-gray-100 text-center">
+                <p class="text-gray-600">Tidak dapat memuat preview postingan saat ini. Silakan kunjungi blog secara langsung.</p>
+                <a href="https://blog.azharazziz.my.id" target="_blank" rel="noopener" class="inline-block mt-4 px-5 py-2 bg-teal-600 text-white rounded-lg">Buka Blog</a>
+            </div>`;
+    }
+
+    // Start loading UI
+    showLoading();
+
+    // Try rss2json proxy first (CORS-friendly). If it fails, try fetching feed directly.
+    fetch(rss2json).then(res => res.json()).then(data => {
+        if (data && (data.status === 'ok' || data.items)) {
+            renderPosts(data.items || data.feed && data.feed.entries || []);
+        } else {
+            throw new Error('Invalid RSS response');
+        }
+    }).catch(() => {
+        // Fallback: try to fetch the feed directly (may fail due to CORS)
+        fetch(feedUrl).then(res => {
+            if (!res.ok) throw new Error('Network response not ok');
+            return res.text();
+        }).then(xmlText => {
+            // Parse XML and extract items
+            const parser = new DOMParser();
+            const xml = parser.parseFromString(xmlText, 'application/xml');
+            const items = Array.from(xml.querySelectorAll('item, entry')).map(node => {
+                return {
+                    title: (node.querySelector('title') && node.querySelector('title').textContent) || '',
+                    link: (node.querySelector('link') && (node.querySelector('link').getAttribute('href') || node.querySelector('link').textContent)) || '',
+                    pubDate: (node.querySelector('pubDate') && node.querySelector('pubDate').textContent) || (node.querySelector('updated') && node.querySelector('updated').textContent) || '',
+                    description: (node.querySelector('description') && node.querySelector('description').textContent) || (node.querySelector('content\:encoded') && node.querySelector('content\:encoded').textContent) || (node.querySelector('summary') && node.querySelector('summary').textContent) || ''
+                };
+            });
+
+            renderPosts(items);
+        }).catch(err => {
+            // Final fallback: show simple CTA
+            console.warn('Failed to load blog feed:', err);
+            showError();
+        });
+    });
+});
+
 // Enhanced scroll indicator interaction
 document.addEventListener('DOMContentLoaded', function() {
     const mouseContainer = document.querySelector('.mouse-container');

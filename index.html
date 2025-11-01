@@ -101,6 +101,7 @@
                     <a href="#about" class="nav-link text-gray-700 hover:text-teal-600 font-medium text-sm transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-teal-600 after:transition-all after:duration-300 hover:after:w-full">Tentang</a>
                     <a href="#skills" class="nav-link text-gray-700 hover:text-teal-600 font-medium text-sm transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-teal-600 after:transition-all after:duration-300 hover:after:w-full">Keahlian</a>
                     <a href="#projects" class="nav-link text-gray-700 hover:text-teal-600 font-medium text-sm transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-teal-600 after:transition-all after:duration-300 hover:after:w-full">Proyek</a>
+                    <a href="#blog" class="nav-link text-gray-700 hover:text-teal-600 font-medium text-sm transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-teal-600 after:transition-all after:duration-300 hover:after:w-full">Blog</a>
                     <a href="#contact" class="nav-link text-gray-700 hover:text-teal-600 font-medium text-sm transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-teal-600 after:transition-all after:duration-300 hover:after:w-full">Kontak</a>
                 </nav>
             </div>
@@ -164,6 +165,10 @@
                     <a href="#projects" class="nav-link flex items-center gap-3 text-lg px-4 py-3 text-gray-700 hover:text-teal-600 hover:bg-teal-50 font-medium rounded-lg transition-all duration-300">
                         <i class="fas fa-folder w-4 text-teal-500"></i>
                         <span>Proyek</span>
+                    </a>
+                    <a href="#blog" class="nav-link flex items-center gap-3 text-lg px-4 py-3 text-gray-700 hover:text-teal-600 hover:bg-teal-50 font-medium rounded-lg transition-all duration-300">
+                        <i class="fas fa-rss w-4 text-teal-500"></i>
+                        <span>Blog</span>
                     </a>
                     <a href="#contact" class="nav-link flex items-center gap-3 text-lg px-4 py-3 text-gray-700 hover:text-teal-600 hover:bg-teal-50 font-medium rounded-lg transition-all duration-300">
                         <i class="fas fa-envelope w-4 text-teal-500"></i>
@@ -1145,6 +1150,41 @@
                         </a>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog" class="blog-section py-20 relative overflow-hidden bg-gradient-to-br from-white to-slate-50">
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center mb-12">
+                <div class="section-badge">
+                    Blog
+                </div>
+                <h2 class="text-4xl md:text-5xl font-black text-gray-900 mb-4">
+                    Artikel & Wawasan
+                </h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                    Tulisan terbaru, tutorial, dan catatan teknis seputar Laravel, pengembangan web, serta pengalaman profesional saya.
+                </p>
+            </div>
+
+            <div class="max-w-3xl mx-auto">
+                <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-100 flex flex-col sm:flex-row items-center gap-4">
+                    <div class="flex-1">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Kunjungi Blog Saya</h3>
+                        <p class="text-gray-600">Baca artikel terbaru di <strong>blog.azharazziz.my.id</strong> untuk insight, tutorial, dan catatan pengembangan.</p>
+                    </div>
+                    <div>
+                        <a href="https://blog.azharazziz.my.id" target="_blank" rel="noopener" class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-teal-600 to-cyan-500 text-white rounded-xl font-semibold shadow hover:scale-105 transition-transform duration-300">
+                            Kunjungi Blog
+                            <i class="fas fa-external-link-alt ml-3"></i>
+                        </a>
+                    </div>
+                </div>
+            
+                <!-- Blog posts preview (auto-populated via script) -->
+                <div id="blog-posts" class="mt-8 grid gap-4"></div>
             </div>
         </div>
     </section>
