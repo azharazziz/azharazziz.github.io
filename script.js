@@ -408,7 +408,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const feedUrl = 'https://blog.azharazziz.my.id/feed';
     const rss2json = 'https://api.rss2json.com/v1/api.json?rss_url=' + encodeURIComponent(feedUrl);
-    const maxPosts = 5;
+    const maxPosts = 6;
 
     function stripHtml(html) {
         const tmp = document.createElement('div');
