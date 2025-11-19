@@ -773,7 +773,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Check for saved layout preference or set default to full-width
     const savedLayout = localStorage.getItem('layoutPreference');
-    let isFullWidth = savedLayout ? savedLayout === 'full-width' : true; // Default to full-width
+    let isFullWidth = savedLayout ? savedLayout === 'full-width' : false; // Default to full-width
     
     // Initialize layout based on preference (default is full-width)
     if (isFullWidth) {
