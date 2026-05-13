@@ -1,0 +1,96 @@
+import { useState } from "react";
+import { Plus } from "lucide-react";
+
+const faqs = [
+  {
+    q: "What kind of projects do you take on?",
+    a: "Mostly Laravel-based web apps — SaaS dashboards, internal tools, government and healthcare portals, and modern marketing sites. I also build with React + Supabase when the project calls for it.",
+  },
+  {
+    q: "Do you work solo or with a team?",
+    a: "Both. I happily plug into existing engineering teams as a Laravel specialist, and I also lead end-to-end builds for solo founders and small agencies — design system to deployment.",
+  },
+  {
+    q: "What's your typical engagement model?",
+    a: "Fixed-scope projects for clearly defined deliverables, or hourly/retainer for ongoing collaboration. We start with a short discovery call to find the shape that fits.",
+  },
+  {
+    q: "How do you handle deadlines?",
+    a: "I scope honestly and ship in small increments. You get a working preview link from week one, weekly updates, and zero surprises near launch.",
+  },
+  {
+    q: "Can you maintain or rescue an existing Laravel codebase?",
+    a: "Yes — codebase audits, performance work, security patching, and version upgrades (Laravel 8 → 11) are a big part of what I do.",
+  },
+  {
+    q: "Are you available right now?",
+    a: "I'm currently accepting new projects. Drop a line via the contact section and I'll get back within 24 hours.",
+  },
+];
+
+export function FAQ() {
+  const [open, setOpen] = useState<number | null>(0);
+
+  return (
+    <section id="faq" className="relative py-32">
+      <div className="mx-auto max-w-4xl px-6">
+        <div className="text-center">
+          <span className="font-mono text-xs uppercase tracking-widest text-primary">
+            06 — FAQ
+          </span>
+          <h2 className="mt-4 font-display text-4xl font-bold leading-tight sm:text-5xl">
+            <span className="text-muted-foreground">{"// "}</span>
+            frequently asked
+          </h2>
+          <p className="mt-4 font-prose text-muted-foreground">
+            The things people ask before we start working together.
+          </p>
+        </div>
+
+        <div className="mt-12 space-y-3">
+          {faqs.map((f, i) => {
+            const isOpen = open === i;
+            return (
+              <div
+                key={f.q}
+                className={`overflow-hidden rounded-2xl border bg-card transition-all ${
+                  isOpen ? "border-primary card-shadow" : "border-border"
+                }`}
+              >
+                <button
+                  onClick={() => setOpen(isOpen ? null : i)}
+                  className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left"
+                >
+                  <span className="flex items-baseline gap-3">
+                    <span className="font-mono text-xs text-primary">
+                      Q{String(i + 1).padStart(2, "0")}
+                    </span>
+                    <span className="font-display text-base font-semibold sm:text-lg">
+                      {f.q}
+                    </span>
+                  </span>
+                  <Plus
+                    className={`h-5 w-5 shrink-0 text-muted-foreground transition-transform ${
+                      isOpen ? "rotate-45 text-primary" : ""
+                    }`}
+                  />
+                </button>
+                <div
+                  className={`grid transition-all duration-300 ${
+                    isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+                  }`}
+                >
+                  <div className="overflow-hidden">
+                    <p className="border-t border-dashed border-border px-6 py-5 pl-[60px] font-prose text-sm text-muted-foreground">
+                      {f.a}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
