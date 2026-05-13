@@ -16,23 +16,32 @@ export function Hero() {
 
       <div className="relative mx-auto grid w-full max-w-7xl gap-12 px-6 lg:grid-cols-[1.2fr_1fr] lg:items-center">
         <div className="animate-fade-up">
-          <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card/60 px-4 py-1.5 text-xs font-medium text-muted-foreground backdrop-blur">
+          <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card/60 px-4 py-1.5 font-mono text-xs font-medium text-muted-foreground backdrop-blur">
             <span className="relative flex h-2 w-2">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-primary" />
             </span>
-            Available for new projects
+            <span className="text-primary">$</span> status: open_for_work
           </span>
 
-          <h1 className="mt-6 font-display text-5xl font-bold leading-[1.05] sm:text-6xl lg:text-7xl">
+          <div className="mt-6 font-mono text-sm text-muted-foreground">
+            <span className="text-primary">{"~/azhar"}</span>{" "}
+            <span className="text-primary-glow">$</span> whoami
+          </div>
+
+          <h1 className="mt-3 font-display text-5xl font-bold leading-[1.05] sm:text-6xl lg:text-7xl">
             Building elegant <span className="gradient-text">Laravel</span> experiences,
-            crafted with care.
+            <br className="hidden sm:block" />
+            <span className="inline-flex items-baseline gap-2">
+              one commit at a time
+              <span className="inline-block h-[0.8em] w-[0.5em] translate-y-[2px] bg-primary animate-pulse" />
+            </span>
           </h1>
 
-          <p className="mt-6 max-w-xl text-lg text-muted-foreground">
-            I'm Azhar Azziz — a Laravel PHP developer designing fast, maintainable web
-            applications. From government portals to modern SaaS, I ship products that feel
-            considered, end to end.
+          <p className="mt-6 max-w-xl font-prose text-lg text-muted-foreground">
+            I'm <span className="text-foreground">Azhar Azziz</span> — a Laravel PHP
+            developer designing fast, maintainable web applications. From government
+            portals to modern SaaS, I ship products that feel considered, end to end.
           </p>
 
           <div className="mt-8 flex flex-wrap gap-4">
