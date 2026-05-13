@@ -3,8 +3,11 @@ import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
 import { About } from "@/components/About";
 import { Skills } from "@/components/Skills";
+import { Experience } from "@/components/Experience";
 import { Projects } from "@/components/Projects";
 import { Blog } from "@/components/Blog";
+import { Now } from "@/components/Now";
+import { FAQ } from "@/components/FAQ";
 import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
 
@@ -35,8 +38,11 @@ function Index() {
       <Hero />
       <About />
       <Skills />
+      <Experience />
       <Projects />
       <Blog />
+      <Now />
+      <FAQ />
       <Contact />
       <Footer />
     </main>
