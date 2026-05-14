@@ -26,8 +26,8 @@ export function Contact() {
               <ContactCard
                 icon={Mail}
                 label="Email"
-                value="hello@azharazziz.my.id"
-                href="mailto:hello@azharazziz.my.id"
+                value="azharazziz13@gmail.com"
+                href="mailto:azharazziz13@gmail.com"
               />
               <ContactCard
                 icon={MapPin}
@@ -44,12 +44,12 @@ export function Contact() {
                 icon={Linkedin}
                 label="LinkedIn"
                 value="Azhar Azziz"
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/in/azhar-azziz-afifi/"
               />
             </div>
 
             <a
-              href="mailto:hello@azharazziz.my.id"
+              href="mailto:azharazziz13@gmail.com"
               className="mt-10 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-primary to-primary-glow px-8 py-4 font-medium text-primary-foreground transition-transform hover:scale-105 glow-shadow"
             >
               <Mail className="h-4 w-4" /> Start a conversation

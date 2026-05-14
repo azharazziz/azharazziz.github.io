@@ -14,11 +14,11 @@ import { Footer } from "@/components/Footer";
 import { faqs } from "@/lib/faq-data";
 
 const TITLE =
-  "Azhar Azziz — Laravel PHP Developer | Web Apps, SaaS & Government Portals";
+  "Azhar Azziz — Full-stack Laravel Developer | Web Apps & Government Portals";
 const DESCRIPTION =
-  "Personal portfolio of Azhar Azziz — Laravel PHP developer building elegant, modern web applications across government, healthcare, FinTech and open-source ecosystems.";
+  "Personal portfolio of Azhar Azziz — full-stack Laravel developer passionate about building amazing web experiences across government, healthcare, and open-source ecosystems.";
 const KEYWORDS =
-  "Azhar Azziz, Laravel developer, PHP developer, Laravel Indonesia, Livewire, Splade, web developer Indonesia, full-stack developer, freelance Laravel, SaaS developer";
+  "Azhar Azziz, Laravel developer, PHP developer, Laravel Indonesia, Livewire, full-stack developer, web developer Indonesia, Magelang developer";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -46,13 +46,13 @@ export const Route = createFileRoute("/")({
           mainEntity: {
             "@type": "Person",
             name: "Azhar Azziz",
-            jobTitle: "Laravel PHP Developer",
+            jobTitle: "Full-stack Laravel Developer",
             description: DESCRIPTION,
             url: "/",
             sameAs: [
               "https://github.com/azharazziz",
-              "https://blog.azharazziz.my.id",
-              "https://azharazziz.github.io",
+              "https://www.linkedin.com/in/azhar-azziz-afifi/",
+              "https://azharazziz.my.id",
             ],
             knowsAbout: [
               "Laravel",
