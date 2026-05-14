@@ -75,11 +75,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { title: "Azhar Azziz — Laravel PHP Developer" },
       { name: "description", content: "Personal portfolio of Azhar Azziz, Laravel PHP developer." },
       { name: "author", content: "Azhar Azziz" },
+      { name: "robots", content: "index, follow, max-image-preview:large" },
+      { name: "theme-color", content: "#0d9488" },
+      { property: "og:site_name", content: "Azhar Azziz" },
+      { property: "og:locale", content: "id_ID" },
+      { property: "og:type", content: "website" },
       { property: "og:title", content: "Azhar Azziz — Laravel PHP Developer" },
       { property: "og:description", content: "Personal portfolio of Azhar Azziz, Laravel PHP developer." },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:site", content: "@azharazziz" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
@@ -88,6 +92,23 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap",
+      },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          name: "Azhar Azziz",
+          url: "/",
+          inLanguage: "id-ID",
+          author: {
+            "@type": "Person",
+            name: "Azhar Azziz",
+            jobTitle: "Laravel PHP Developer",
+          },
+        }),
       },
     ],
   }),
