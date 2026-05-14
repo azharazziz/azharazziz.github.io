@@ -7,24 +7,77 @@ import { Experience } from "@/components/Experience";
 import { Projects } from "@/components/Projects";
 import { Blog } from "@/components/Blog";
 import { Now } from "@/components/Now";
+import { Music } from "@/components/Music";
 import { FAQ } from "@/components/FAQ";
 import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
+import { faqs } from "@/lib/faq-data";
+
+const TITLE =
+  "Azhar Azziz — Laravel PHP Developer | Web Apps, SaaS & Government Portals";
+const DESCRIPTION =
+  "Personal portfolio of Azhar Azziz — Laravel PHP developer building elegant, modern web applications across government, healthcare, FinTech and open-source ecosystems.";
+const KEYWORDS =
+  "Azhar Azziz, Laravel developer, PHP developer, Laravel Indonesia, Livewire, Splade, web developer Indonesia, full-stack developer, freelance Laravel, SaaS developer";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Azhar Azziz — Laravel PHP Developer" },
+      { title: TITLE },
+      { name: "description", content: DESCRIPTION },
+      { name: "keywords", content: KEYWORDS },
+      { name: "author", content: "Azhar Azziz" },
+      { property: "og:title", content: TITLE },
+      { property: "og:description", content: DESCRIPTION },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "/" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: TITLE },
+      { name: "twitter:description", content: DESCRIPTION },
+      { name: "twitter:creator", content: "@azharazziz" },
+    ],
+    links: [{ rel: "canonical", href: "/" }],
+    scripts: [
       {
-        name: "description",
-        content:
-          "Personal portfolio of Azhar Azziz — Laravel PHP developer building elegant, modern web applications across government, healthcare, FinTech and open-source.",
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "ProfilePage",
+          mainEntity: {
+            "@type": "Person",
+            name: "Azhar Azziz",
+            jobTitle: "Laravel PHP Developer",
+            description: DESCRIPTION,
+            url: "/",
+            sameAs: [
+              "https://github.com/azharazziz",
+              "https://blog.azharazziz.my.id",
+              "https://azharazziz.github.io",
+            ],
+            knowsAbout: [
+              "Laravel",
+              "PHP",
+              "Livewire",
+              "Splade",
+              "MySQL",
+              "Tailwind CSS",
+              "React",
+              "TypeScript",
+            ],
+          },
+        }),
       },
-      { property: "og:title", content: "Azhar Azziz — Laravel PHP Developer" },
       {
-        property: "og:description",
-        content:
-          "Portfolio showcasing Laravel, Livewire, Splade and modern web projects.",
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: faqs.map((f) => ({
+            "@type": "Question",
+            name: f.q,
+            acceptedAnswer: { "@type": "Answer", text: f.a },
+          })),
+        }),
       },
     ],
   }),
@@ -42,6 +95,7 @@ function Index() {
       <Projects />
       <Blog />
       <Now />
+      <Music />
       <FAQ />
       <Contact />
       <Footer />
