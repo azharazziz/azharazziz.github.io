@@ -1,7 +1,8 @@
+import { useEffect, useState } from "react";
 import { Disc3, ExternalLink, Play } from "lucide-react";
 
-// Edit this list with your own picks. Cover URLs can be any image — YT Music
-// album art, Last.fm, or your own uploads. Sizes around 300x300 work best.
+// If you want the component to pull the actual playlist items, set VITE_YOUTUBE_API_KEY.
+// Otherwise it falls back to the handcrafted album list.
 type Album = {
   title: string;
   artist: string;
@@ -11,61 +12,186 @@ type Album = {
   accent: string; // vinyl label color (CSS color)
 };
 
-const PLAYLIST_URL =
-  "https://music.youtube.com/playlist?list=PLFgquLnL59alCl_2TQvOiD5Vgm1hCaGSI";
 
-const albums: Album[] = [
+const PLAYLIST_URL = "https://music.youtube.com/playlist?list=PLCX_SdC_LdIDhQ0FIVr9RXcJwtQQPx-Bn";
+const PLAYLIST_ID = "PLCX_SdC_LdIDhQ0FIVr9RXcJwtQQPx-Bn";
+const YOUTUBE_API_KEY = import.meta.env.VITE_YOUTUBE_API_KEY;
+const YOUTUBE_ACCENTS = [
+  "#e8a87c",
+  "#c44569",
+  "#0d9488",
+  "#f8c8d8",
+  "#14b8a6",
+  "#7dd3fc",
+  "#a855f7",
+  "#f97316",
+  "#22c55e",
+  "#38bdf8",
+];
+
+const defaultAlbums: Album[] = [
   {
-    title: "Currents",
-    artist: "Tame Impala",
-    year: "2015",
-    cover: "https://upload.wikimedia.org/wikipedia/en/9/9b/Tame_Impala_-_Currents.png",
-    link: "https://music.youtube.com/search?q=Tame+Impala+Currents",
-    accent: "#e8a87c",
+    title: "Origin",
+    artist: "Evanescence",
+    year: "2000",
+    cover:
+      "https://upload.wikimedia.org/wikipedia/en/5/5f/Evanescence-Origin.jpg",
+    link:
+      "https://music.youtube.com/search?q=Evanescence+Origin",
+    accent: "#6b7280",
   },
   {
-    title: "In Rainbows",
-    artist: "Radiohead",
-    year: "2007",
-    cover: "https://upload.wikimedia.org/wikipedia/en/a/a8/In_Rainbows_Official_Cover.png",
-    link: "https://music.youtube.com/search?q=Radiohead+In+Rainbows",
-    accent: "#c44569",
+    title: "The Phantom Agony",
+    artist: "Epica",
+    year: "2003",
+    cover:
+      "https://upload.wikimedia.org/wikipedia/en/5/59/Epica-The_Phantom_Agony.jpg",
+    link:
+      "https://music.youtube.com/search?q=Epica+The+Phantom+Agony",
+    accent: "#7c3aed",
   },
   {
-    title: "Random Access Memories",
-    artist: "Daft Punk",
-    year: "2013",
-    cover: "https://upload.wikimedia.org/wikipedia/en/a/a7/Random_Access_Memories.jpg",
-    link: "https://music.youtube.com/search?q=Daft+Punk+Random+Access+Memories",
-    accent: "#0d9488",
+    title: "Meteora",
+    artist: "Linkin Park",
+    year: "2003",
+    cover:
+      "https://upload.wikimedia.org/wikipedia/en/b/b1/Linkin_Park_Meteora_Album_Cover.jpg",
+    link:
+      "https://music.youtube.com/search?q=Linkin+Park+Meteora",
+    accent: "#0f172a",
   },
   {
-    title: "Blonde",
-    artist: "Frank Ocean",
-    year: "2016",
-    cover: "https://upload.wikimedia.org/wikipedia/en/a/a0/Blonde_-_Frank_Ocean.jpeg",
-    link: "https://music.youtube.com/search?q=Frank+Ocean+Blonde",
-    accent: "#f8c8d8",
+    title: "Hybrid Theory",
+    artist: "Linkin Park",
+    year: "2000",
+    cover:
+      "https://upload.wikimedia.org/wikipedia/en/2/20/Linkin_Park_Hybrid_Theory_Album_Cover.jpg",
+    link:
+      "https://music.youtube.com/search?q=Linkin+Park+Hybrid+Theory",
+    accent: "#dc2626",
   },
   {
-    title: "Hours, Days, Months, Years",
-    artist: "Pamungkas",
-    year: "2019",
-    cover: "https://upload.wikimedia.org/wikipedia/id/3/30/Hours%2C_Days%2C_Months%2C_Years_album_cover.jpg",
-    link: "https://music.youtube.com/search?q=Pamungkas+Hours+Days+Months+Years",
-    accent: "#14b8a6",
+    title: "Segitiga",
+    artist: "Boomerang",
+    year: "2000",
+    cover:
+      "https://upload.wikimedia.org/wikipedia/id/6/6f/Boomerang-segitiga.jpg",
+    link:
+      "https://music.youtube.com/search?q=Boomerang+Segitiga",
+    accent: "#ea580c",
   },
   {
-    title: "Nurture",
-    artist: "Porter Robinson",
-    year: "2021",
-    cover: "https://upload.wikimedia.org/wikipedia/en/0/0e/Porter_Robinson_-_Nurture.png",
-    link: "https://music.youtube.com/search?q=Porter+Robinson+Nurture",
-    accent: "#7dd3fc",
+    title: "Otomatis",
+    artist: "Jamrud",
+    year: "2000",
+    cover:
+      "https://upload.wikimedia.org/wikipedia/id/5/5d/Jamrud-Otomatis.jpg",
+    link:
+      "https://music.youtube.com/search?q=Jamrud+Otomatis",
+    accent: "#16a34a",
+  },
+  {
+    title: "Power One",
+    artist: "Power Metal",
+    year: "1991",
+    cover:
+      "https://upload.wikimedia.org/wikipedia/id/0/08/Power_One_-_Power_Metal.jpg",
+    link:
+      "https://music.youtube.com/search?q=Power+Metal+Power+One",
+    accent: "#2563eb",
+  },
+  {
+    title: "Black Album",
+    artist: "Metallica",
+    year: "1991",
+    cover:
+      "https://upload.wikimedia.org/wikipedia/en/2/2c/Metallica_-_Metallica_cover.jpg",
+    link:
+      "https://music.youtube.com/search?q=Metallica+Black+Album",
+    accent: "#111827",
+  },
+  {
+    title: "Fallen",
+    artist: "Evanescence",
+    year: "2003",
+    cover:
+      "https://upload.wikimedia.org/wikipedia/en/5/5d/Evanescence-Fallenalbumcover.jpg",
+    link:
+      "https://music.youtube.com/search?q=Evanescence+Fallen",
+    accent: "#1e3a8a",
+  },
+  {
+    title: "Oceanborn",
+    artist: "Nightwish",
+    year: "1998",
+    cover:
+      "https://upload.wikimedia.org/wikipedia/en/9/95/Nightwish-oceanborn.jpg",
+    link:
+      "https://music.youtube.com/search?q=Nightwish+Oceanborn",
+    accent: "#0f766e",
   },
 ];
 
 export function Music() {
+  const [albums, setAlbums] = useState<Album[]>(defaultAlbums);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!YOUTUBE_API_KEY) {
+      return;
+    }
+
+    async function loadPlaylistItems() {
+      setIsLoading(true);
+      setError(null);
+
+      try {
+        const url = new URL("https://www.googleapis.com/youtube/v3/playlistItems");
+        url.searchParams.set("part", "snippet");
+        url.searchParams.set("playlistId", PLAYLIST_ID);
+        url.searchParams.set("maxResults", "12");
+        url.searchParams.set("key", YOUTUBE_API_KEY);
+
+        const response = await fetch(url.toString());
+        if (!response.ok) {
+          throw new Error(`YouTube API returned ${response.status}`);
+        }
+
+        const data = await response.json();
+        const items = (data.items ?? []).map((item: any, index: number) => {
+          const snippet = item.snippet ?? {};
+          const thumb = snippet.thumbnails?.high?.url || snippet.thumbnails?.medium?.url || snippet.thumbnails?.default?.url || "";
+          const year = snippet.publishedAt ? new Date(snippet.publishedAt).getFullYear().toString() : "";
+          const videoId = snippet.resourceId?.videoId || snippet.videoId || "";
+
+          return {
+            title: snippet.title || "Unknown track",
+            artist: snippet.videoOwnerChannelTitle || snippet.channelTitle || "Unknown artist",
+            year,
+            cover: thumb,
+            link: videoId ? `https://music.youtube.com/watch?v=${videoId}` : PLAYLIST_URL,
+            accent: YOUTUBE_ACCENTS[index % YOUTUBE_ACCENTS.length],
+          } as Album;
+        });
+
+        if (items.length > 0) {
+          setAlbums(items);
+        }
+      } catch (err) {
+        setError(
+          err instanceof Error
+            ? err.message
+            : "Unable to load playlist data."
+        );
+      } finally {
+        setIsLoading(false);
+      }
+    }
+
+    loadPlaylistItems();
+  }, []);
+
   return (
     <section id="music" className="relative surface-dark py-32 overflow-hidden">
       <div className="absolute inset-0 grid-bg opacity-10" />
@@ -98,6 +224,20 @@ export function Music() {
               </a>
               .
             </p>
+            {YOUTUBE_API_KEY ? (
+              <p className="mt-3 text-xs text-white/40">
+                {isLoading
+                  ? "Loading playlist items from YouTube Data API..."
+                  : "Using YouTube playlist data to populate the shelf."}
+              </p>
+            ) : (
+              <p className="mt-3 text-xs text-white/40">
+                No YouTube API key configured, falling back to static album picks.
+              </p>
+            )}
+            {error ? (
+              <p className="mt-3 text-xs text-amber-300">Playlist fetch error: {error}</p>
+            ) : null}
           </div>
 
           <div className="flex items-center gap-3 rounded-full border border-white/10 bg-black/40 px-4 py-2 font-mono text-xs text-white/60 backdrop-blur">
@@ -107,7 +247,7 @@ export function Music() {
         </div>
 
         {/* vinyl crate */}
-        <div className="mt-14 grid grid-cols-1 gap-x-8 gap-y-16 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-14 grid grid-cols-1 gap-x-8 gap-y-16 sm:grid-cols-2 lg:grid-cols-4">
           {albums.map((album, i) => (
             <VinylCard key={album.title} album={album} index={i} />
           ))}
@@ -192,7 +332,8 @@ function VinylCard({ album, index }: { album: Album; index: number }) {
             src={album.cover}
             alt={`${album.title} by ${album.artist} — album cover`}
             loading="lazy"
-            className="h-full w-full object-cover"
+            className="h-full w-full object-cover object-center"
+            style={{ transform: "scale(1.40)" }}
           />
           {/* sleeve inner shadow + worn edge */}
           <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-black/30" />
