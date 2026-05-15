@@ -1,6 +1,8 @@
 import { ArrowRight, Github, Mail, Database, Code2, Server } from "lucide-react";
+import { useT } from "@/lib/i18n";
 
 export function Hero() {
+  const t = useT();
   return (
     <section
       id="home"
@@ -21,27 +23,25 @@ export function Hero() {
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-primary" />
             </span>
-            <span className="text-primary">$</span> status: open_for_work
+            <span className="text-primary">$</span> {t("hero.status")}
           </span>
 
           <div className="mt-6 font-mono text-sm text-muted-foreground">
             <span className="text-primary">{"~/azhar"}</span>{" "}
-            <span className="text-primary-glow">$</span> whoami
+            <span className="text-primary-glow">$</span> {t("hero.whoami")}
           </div>
 
           <h1 className="mt-3 font-display text-5xl font-bold leading-[1.05] sm:text-6xl lg:text-7xl">
-            Building elegant <span className="gradient-text">Laravel</span> experiences,
+            {t("hero.headline_a")} <span className="gradient-text">Laravel</span> {t("hero.headline_b")}
             <br className="hidden sm:block" />
             <span className="inline-flex items-baseline gap-2">
-              one commit at a time
+              {t("hero.headline_c")}
               <span className="inline-block h-[0.8em] w-[0.5em] translate-y-[2px] bg-primary animate-pulse" />
             </span>
           </h1>
 
           <p className="mt-6 max-w-xl font-prose text-lg text-muted-foreground">
-            I'm <span className="text-foreground">Azhar Azziz</span> — a Laravel PHP
-            developer designing fast, maintainable web applications. From government
-            portals to modern SaaS, I ship products that feel considered, end to end.
+            {t("hero.intro")}
           </p>
 
           <div className="mt-8 flex flex-wrap gap-4">
@@ -49,31 +49,31 @@ export function Hero() {
               href="#projects"
               className="group inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-3 text-sm font-medium text-background transition-transform hover:scale-105"
             >
-              View my work
+              {t("hero.viewWork")}
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </a>
             <a
               href="#contact"
               className="inline-flex items-center gap-2 rounded-full border border-border bg-card/60 px-6 py-3 text-sm font-medium backdrop-blur transition-colors hover:border-primary hover:text-primary"
             >
-              <Mail className="h-4 w-4" /> Get in touch
+              <Mail className="h-4 w-4" /> {t("hero.getInTouch")}
             </a>
           </div>
 
           <div className="mt-12 flex items-center gap-6 text-sm text-muted-foreground">
             <div>
               <div className="font-display text-2xl font-bold text-foreground">5+</div>
-              years experience
+              {t("hero.statYears")}
             </div>
             <div className="h-10 w-px bg-border" />
             <div>
               <div className="font-display text-2xl font-bold text-foreground">20+</div>
-              projects shipped
+              {t("hero.statProjects")}
             </div>
             <div className="h-10 w-px bg-border" />
             <div>
               <div className="font-display text-2xl font-bold text-foreground">∞</div>
-              cups of coffee
+              {t("hero.statCoffee")}
             </div>
           </div>
         </div>
