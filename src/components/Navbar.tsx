@@ -1,19 +1,22 @@
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
+import { useT } from "@/lib/i18n";
+import { LanguageSwitcher } from "./LanguageSwitcher";
 
-const links = [
-  { href: "#home", label: "home" },
-  { href: "#about", label: "about" },
-  { href: "#skills", label: "skills" },
-  { href: "#experience", label: "experience" },
-  { href: "#projects", label: "projects" },
-  { href: "#blog", label: "blog" },
-  { href: "#music", label: "music" },
-  { href: "#faq", label: "faq" },
-  { href: "#contact", label: "contact" },
+const linkKeys = [
+  { href: "#home", key: "nav.home" },
+  { href: "#about", key: "nav.about" },
+  { href: "#skills", key: "nav.skills" },
+  { href: "#experience", key: "nav.experience" },
+  { href: "#projects", key: "nav.projects" },
+  { href: "#blog", key: "nav.blog" },
+  { href: "#music", key: "nav.music" },
+  { href: "#faq", key: "nav.faq" },
+  { href: "#contact", key: "nav.contact" },
 ];
 
 export function Navbar() {
+  const t = useT();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -40,46 +43,51 @@ export function Navbar() {
           <span>azhar<span className="text-primary">.</span></span>
         </a>
 
-        <ul className="hidden items-center gap-8 md:flex">
-          {links.map((l) => (
+        <ul className="hidden items-center gap-7 md:flex">
+          {linkKeys.map((l) => (
             <li key={l.href}>
               <a
                 href={l.href}
                 className="relative text-sm text-muted-foreground transition-colors hover:text-foreground after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:w-0 after:bg-primary after:transition-all hover:after:w-full"
               >
-                {l.label}
+                {t(l.key)}
               </a>
             </li>
           ))}
         </ul>
 
-        <a
-          href="#contact"
-          className="hidden rounded-full bg-foreground px-5 py-2 text-sm font-medium text-background transition-transform hover:scale-105 md:inline-block"
-        >
-          Let's talk
-        </a>
+        <div className="hidden items-center gap-3 md:flex">
+          <LanguageSwitcher />
+          <a
+            href="#contact"
+            className="rounded-full bg-foreground px-5 py-2 text-sm font-medium text-background transition-transform hover:scale-105"
+          >
+            {t("nav.cta")}
+          </a>
+        </div>
 
-        <button
-          className="md:hidden"
-          onClick={() => setOpen((v) => !v)}
-          aria-label="Toggle menu"
-        >
-          {open ? <X /> : <Menu />}
-        </button>
+        <div className="flex items-center gap-2 md:hidden">
+          <LanguageSwitcher />
+          <button
+            onClick={() => setOpen((v) => !v)}
+            aria-label={t("nav.toggleMenu")}
+          >
+            {open ? <X /> : <Menu />}
+          </button>
+        </div>
       </nav>
 
       {open && (
         <div className="border-t border-border bg-background/95 backdrop-blur-xl md:hidden">
           <ul className="flex flex-col gap-1 px-6 py-4">
-            {links.map((l) => (
+            {linkKeys.map((l) => (
               <li key={l.href}>
                 <a
                   href={l.href}
                   onClick={() => setOpen(false)}
                   className="block rounded-lg px-3 py-2 text-sm hover:bg-muted"
                 >
-                  {l.label}
+                  {t(l.key)}
                 </a>
               </li>
             ))}
