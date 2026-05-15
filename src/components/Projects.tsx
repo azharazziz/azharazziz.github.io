@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { ExternalLink, Github, Star } from "lucide-react";
+import { useT } from "@/lib/i18n";
 
 type Project = {
   title: string;
@@ -165,6 +166,7 @@ const projects: Project[] = [
 const categories = ["All", "Laravel", "React", "Government", "Open Source", "FinTech", "Node.js", "Healthcare"];
 
 export function Projects() {
+  const t = useT();
   const [filter, setFilter] = useState("All");
   const filtered =
     filter === "All" ? projects : projects.filter((p) => p.category === filter);
@@ -175,10 +177,10 @@ export function Projects() {
         <div className="flex flex-col items-start justify-between gap-6 lg:flex-row lg:items-end">
           <div className="max-w-2xl">
             <span className="font-mono text-xs uppercase tracking-widest text-primary">
-              03 — Selected Work
+              {t("projects.eyebrow")}
             </span>
             <h2 className="mt-4 font-display text-4xl font-bold leading-tight sm:text-5xl">
-              Projects I've shipped recently.
+              {t("projects.title")}
             </h2>
           </div>
 
@@ -193,7 +195,7 @@ export function Projects() {
                     : "border border-border bg-card text-muted-foreground hover:text-foreground"
                 }`}
               >
-                {c}
+                {c === "All" ? t("projects.all") : c}
               </button>
             ))}
           </div>
@@ -209,7 +211,7 @@ export function Projects() {
             >
               {p.featured && (
                 <span className="absolute right-5 top-5 inline-flex items-center gap-1 rounded-full bg-gradient-to-r from-primary to-primary-glow px-3 py-1 text-xs font-medium text-primary-foreground">
-                  <Star className="h-3 w-3" /> Featured
+                  <Star className="h-3 w-3" /> {t("projects.featured")}
                 </span>
               )}
 
@@ -241,7 +243,7 @@ export function Projects() {
                     rel="noreferrer"
                     className="inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:underline"
                   >
-                    <ExternalLink className="h-4 w-4" /> Live demo
+                    <ExternalLink className="h-4 w-4" /> {t("projects.live")}
                   </a>
                 )}
                 {p.repo && (
@@ -251,7 +253,7 @@ export function Projects() {
                     rel="noreferrer"
                     className="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-foreground"
                   >
-                    <Github className="h-4 w-4" /> Source
+                    <Github className="h-4 w-4" /> {t("projects.source")}
                   </a>
                 )}
               </div>
