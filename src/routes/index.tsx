@@ -11,7 +11,7 @@ import { Music } from "@/components/Music";
 import { FAQ } from "@/components/FAQ";
 import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
-import { faqs } from "@/lib/faq-data";
+import { en } from "@/locales/en";
 
 const TITLE =
   "Azhar Azziz — Full-stack Laravel Developer | Web Apps & Government Portals";
@@ -72,7 +72,7 @@ export const Route = createFileRoute("/")({
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "FAQPage",
-          mainEntity: faqs.map((f) => ({
+          mainEntity: en.faq.questions.map((f) => ({
             "@type": "Question",
             name: f.q,
             acceptedAnswer: { "@type": "Answer", text: f.a },

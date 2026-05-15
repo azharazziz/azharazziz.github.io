@@ -27,6 +27,29 @@ export const en = {
     statProjects: "projects shipped",
     statCoffee: "cups of coffee",
   },
+  skills: {
+    eyebrow: "02 — Skills",
+    title: "The stack I reach for, every day.",
+    description: "A focused toolkit, sharpened on real projects across government, healthcare, FinTech and open-source work.",
+    groups: [
+      {
+        title: "Laravel Ecosystem",
+        items: ["Laravel 11", "Livewire 3", "Splade", "Eloquent ORM", "Queues & Jobs", "Sanctum"],
+      },
+      {
+        title: "Database & Backend",
+        items: ["MySQL", "SQLite", "PostgreSQL", "REST APIs", "Query Optimization", "Caching"],
+      },
+      {
+        title: "Frontend",
+        items: ["Tailwind CSS", "Alpine.js", "Vue.js", "React", "Vite", "TypeScript"],
+      },
+      {
+        title: "Tools & Workflow",
+        items: ["Git & GitHub", "Composer", "NPM/Bun", "Docker", "CI/CD", "VS Code"],
+      },
+    ],
+  },
   about: {
     eyebrow: "01 — About",
     title_a: "A developer who treats code like",
@@ -39,6 +62,63 @@ export const en = {
       modern: { title: "Modern stack", body: "Livewire, Splade, Alpine, Tailwind, Vite — keeping the dev loop tight and joyful." },
     },
   },
+  experience: {
+    eyebrow: "03 — Experience",
+    title: "$ git log --career",
+    description: "A condensed commit history of the people, products, and lessons that shaped how I build today.",
+    timeline: [
+      {
+        hash: "f2a8c45",
+        date: "2023 — now",
+        role: "Junior Computer Specialist",
+        org: "Balai Laboratorium Kesehatan Masyarakat Magelang · Magelang Tengah, Jawa Tengah",
+        body: "Developed and maintained critical applications for public health laboratory management. Building web applications with Laravel and Tailwind CSS, managing digital infrastructure, and supporting digital transformation initiatives in healthcare sector.",
+        tags: ["Laravel", "Tailwind CSS", "MySQL", "Web Development"],
+      },
+      {
+        hash: "d5e7b32",
+        date: "2022 — 2023",
+        role: "Junior Computer Specialist",
+        org: "Agency for Health Policies Development · Magelang, Indonesia",
+        body: "Built web applications and digital solutions for health policy initiatives. Worked on backend development, database design, and system integration for various government health programs.",
+        tags: ["Laravel", "MySQL", "PHP", "Database Design"],
+      },
+      {
+        hash: "c3f6a19",
+        date: "2022 — 2022",
+        role: "Information Systems Analyst",
+        org: "Government Institution · Magelang Tengah, Jawa Tengah, Indonesia",
+        body: "Analyzed and documented system requirements, designed information system solutions, and provided technical support for government operations. Focused on process optimization and system integration.",
+        tags: ["Laravel", "System Analysis", "PHP", "Database"],
+      },
+      {
+        hash: "b1d4e28",
+        date: "2020 — 2021",
+        role: "Information Systems Analyst",
+        org: "National Institute of Health Research and Development (NIHRD), Indonesia · Magelang Tengah, Jawa Tengah",
+        body: "Analyzed business requirements and designed technical solutions for health research systems. Developed applications and provided recommendations for system improvements in research infrastructure.",
+        tags: ["Laravel", "Software Development", "PHP", "Information Systems"],
+      },
+      {
+        hash: "a9c3f17",
+        date: "2019 — 2020",
+        role: "IT Support Specialist",
+        org: "PT. BPR KEMBANG PARAMA · Magelang, Indonesia",
+        body: "Managed and maintained company IT infrastructure, supported banking software operations, and coordinated with branch offices. Responsibilities included user access management for core banking systems, software deployment, and equipment maintenance.",
+        tags: ["IT Support", "Software Deployment", "Banking Systems", "Infrastructure"],
+      },
+    ],
+  },
+  blog: {
+    eyebrow: "04 — Writing",
+    title: "$ cat ~/blog/*.md",
+    description: "Latest posts streamed from blog.azharazziz.my.id via RSS.",
+    subscribe: "subscribe.rss",
+    loading: "fetching feed...",
+    error: "✗ Error loading blog feed.",
+    postPrefix: "post_",
+    postSuffix: ".md",
+  },
   projects: {
     eyebrow: "03 — Selected Work",
     title: "Projects I've shipped recently.",
@@ -46,6 +126,45 @@ export const en = {
     live: "Live demo",
     source: "Source",
     all: "All",
+  },
+  now: {
+    eyebrow: "05 — /now",
+    title: "$ top -u azhar",
+    description: "What's running in my head this week. Inspired by the /now movement.",
+    terminalUser: "azhar@portfolio: ~/now",
+    terminalShell: "zsh",
+    tableHeaders: {
+      pid: "PID",
+      process: "PROCESS",
+      detail: "DETAIL",
+      cpu: "CPU",
+    },
+    processes: [
+      {
+        pid: "1024",
+        name: "building",
+        detail: "A Laravel 11 + Livewire 3 SaaS starter with team billing",
+        cpu: "82%",
+      },
+      {
+        pid: "2048",
+        name: "reading",
+        detail: "\"A Philosophy of Software Design\" — John Ousterhout",
+        cpu: "14%",
+      },
+      {
+        pid: "3072",
+        name: "listening",
+        detail: "Syntax.fm · Laravel News Podcast · lofi beats",
+        cpu: "08%",
+      },
+      {
+        pid: "4096",
+        name: "fueling",
+        detail: "Black coffee, no sugar. Always.",
+        cpu: "99%",
+      },
+    ],
   },
   music: {
     eyebrow: "06 — /music",
@@ -70,6 +189,59 @@ export const en = {
   faq: {
     eyebrow: "07 — FAQ",
     title: "Things people ask.",
+    questions: [
+      {
+        q: "What kind of projects do you take on?",
+        a: "Mostly Laravel-based web apps — SaaS dashboards, internal tools, government and healthcare portals, and modern marketing sites. I also build with React + Supabase when the project calls for it.",
+      },
+      {
+        q: "Do you work solo or with a team?",
+        a: "Both. I happily plug into existing engineering teams as a Laravel specialist, and I also lead end-to-end builds for solo founders and small agencies — design system to deployment.",
+      },
+      {
+        q: "What's your typical engagement model?",
+        a: "Fixed-scope projects for clearly defined deliverables, or hourly/retainer for ongoing collaboration. We start with a short discovery call to find the shape that fits.",
+      },
+      {
+        q: "How do you handle deadlines?",
+        a: "I scope honestly and ship in small increments. You get a working preview link from week one, weekly updates, and zero surprises near launch.",
+      },
+      {
+        q: "Can you maintain or rescue an existing Laravel codebase?",
+        a: "Yes — codebase audits, performance work, security patching, and version upgrades (Laravel 8 → 11) are a big part of what I do.",
+      },
+      {
+        q: "Are you available right now?",
+        a: "I'm currently accepting new projects. Drop a line via the contact section and I'll get back within 24 hours.",
+      },
+    ],
+  },
+  contact: {
+    eyebrow: "04 — Contact",
+    title: "Got a project in mind?",
+    subtitle: "Let's build together.",
+    description: "I'm currently open for freelance work and collaborations. Send me a message — I usually reply within a day.",
+    items: [
+      {
+        label: "Email",
+        value: "azharazziz13@gmail.com",
+        href: "mailto:azharazziz13@gmail.com",
+      },
+      {
+        label: "Based in",
+        value: "Magelang, Indonesia",
+      },
+      {
+        label: "GitHub",
+        value: "@azharazziz",
+        href: "https://github.com/azharazziz",
+      },
+      {
+        label: "LinkedIn",
+        value: "Azhar Azziz",
+        href: "https://www.linkedin.com/in/azhar-azziz-afifi/",
+      },
+    ],
   },
   footer: {
     rights: "Crafted with Laravel love.",

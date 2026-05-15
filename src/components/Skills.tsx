@@ -1,3 +1,5 @@
+import { useT } from "@/lib/i18n";
+
 const groups = [
   {
     title: "Laravel Ecosystem",
@@ -18,6 +20,7 @@ const groups = [
 ];
 
 export function Skills() {
+  const t = useT();
   return (
     <section id="skills" className="relative surface-dark py-32">
       <div className="absolute inset-0 grid-bg opacity-20" />
@@ -26,19 +29,18 @@ export function Skills() {
       <div className="relative mx-auto max-w-7xl px-6">
         <div className="max-w-2xl">
           <span className="font-mono text-xs uppercase tracking-widest text-primary-glow">
-            02 — Skills
+            {t("skills.eyebrow")}
           </span>
           <h2 className="mt-4 font-display text-4xl font-bold leading-tight sm:text-5xl">
-            The stack I reach for, every day.
+            {t("skills.title")}
           </h2>
           <p className="mt-4 text-white/70">
-            A focused toolkit, sharpened on real projects across government, healthcare,
-            FinTech and open-source work.
+            {t("skills.description")}
           </p>
         </div>
 
         <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {groups.map((g, i) => (
+          {t("skills.groups").map((g, i) => (
             <div
               key={g.title}
               className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur transition-all hover:-translate-y-1 hover:border-primary-glow hover:bg-white/10"

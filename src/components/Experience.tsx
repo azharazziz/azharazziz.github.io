@@ -1,4 +1,5 @@
 import { GitCommit } from "lucide-react";
+import { useT } from "@/lib/i18n";
 
 const timeline = [
   {
@@ -44,20 +45,20 @@ const timeline = [
 ];
 
 export function Experience() {
+  const t = useT();
   return (
     <section id="experience" className="relative py-32">
       <div className="mx-auto max-w-5xl px-6">
         <div className="max-w-2xl">
           <span className="font-mono text-xs uppercase tracking-widest text-primary">
-            03 — Experience
+            {t("experience.eyebrow")}
           </span>
           <h2 className="mt-4 font-display text-4xl font-bold leading-tight sm:text-5xl">
             <span className="text-muted-foreground">$</span> git log{" "}
             <span className="gradient-text">--career</span>
           </h2>
           <p className="mt-4 font-prose text-muted-foreground">
-            A condensed commit history of the people, products, and lessons that shaped
-            how I build today.
+            {t("experience.description")}
           </p>
         </div>
 
@@ -65,7 +66,7 @@ export function Experience() {
           <div className="absolute left-[7px] top-2 bottom-2 w-px bg-gradient-to-b from-primary via-border to-transparent sm:left-[15px]" />
 
           <ol className="space-y-10">
-            {timeline.map((item, i) => (
+            {t("experience.timeline").map((item, i) => (
               <li key={item.hash} className="relative">
                 <div className="absolute -left-6 top-1.5 grid h-4 w-4 place-items-center rounded-full border-2 border-primary bg-background sm:-left-10 sm:h-8 sm:w-8">
                   <GitCommit className="hidden h-4 w-4 text-primary sm:block" />

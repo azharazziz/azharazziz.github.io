@@ -1,6 +1,8 @@
 import { Github, Linkedin, Mail, MapPin } from "lucide-react";
+import { useT } from "@/lib/i18n";
 
 export function Contact() {
+  const t = useT();
   return (
     <section id="contact" className="relative py-32">
       <div className="mx-auto max-w-5xl px-6">
@@ -10,42 +12,31 @@ export function Contact() {
 
           <div className="relative">
             <span className="font-mono text-xs uppercase tracking-widest text-primary-glow">
-              04 — Contact
+              {t("contact.eyebrow")}
             </span>
             <h2 className="mt-4 font-display text-4xl font-bold leading-tight text-white sm:text-5xl">
-              Have a project in mind?
+              {t("contact.title")}
               <br />
-              <span className="gradient-text">Let's build it together.</span>
+              <span className="gradient-text">{t("contact.subtitle")}</span>
             </h2>
             <p className="mt-6 max-w-xl text-white/70">
-              I'm currently open to freelance work and collaborations. Drop me a line —
-              I usually reply within a day.
+              {t("contact.description")}
             </p>
 
             <div className="mt-10 grid gap-4 sm:grid-cols-2">
-              <ContactCard
-                icon={Mail}
-                label="Email"
-                value="azharazziz13@gmail.com"
-                href="mailto:azharazziz13@gmail.com"
-              />
-              <ContactCard
-                icon={MapPin}
-                label="Based in"
-                value="Magelang, Indonesia"
-              />
-              <ContactCard
-                icon={Github}
-                label="GitHub"
-                value="@azharazziz"
-                href="https://github.com/azharazziz"
-              />
-              <ContactCard
-                icon={Linkedin}
-                label="LinkedIn"
-                value="Azhar Azziz"
-                href="https://www.linkedin.com/in/azhar-azziz-afifi/"
-              />
+              {t("contact.items").map((item, index) => {
+                const icons = [Mail, MapPin, Github, Linkedin];
+                const Icon = icons[index];
+                return (
+                  <ContactCard
+                    key={item.label}
+                    icon={Icon}
+                    label={item.label}
+                    value={item.value}
+                    href={item.href}
+                  />
+                );
+              })}
             </div>
 
             <a

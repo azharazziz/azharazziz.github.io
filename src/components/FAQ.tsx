@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Plus } from "lucide-react";
-import { faqs } from "@/lib/faq-data";
 import { useT } from "@/lib/i18n";
 
 export function FAQ() {
@@ -21,7 +20,7 @@ export function FAQ() {
         </div>
 
         <div className="mt-12 space-y-3">
-          {faqs.map((f, i) => {
+          {t("faq.questions").map((f, i) => {
             const isOpen = open === i;
             return (
               <div

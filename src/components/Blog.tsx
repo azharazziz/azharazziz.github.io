@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { ArrowUpRight, Rss, Calendar, Loader2 } from "lucide-react";
 import { getBlogPosts, type BlogPost } from "@/lib/blog.functions";
+import { useT } from "@/lib/i18n";
 
 function formatDate(d: string) {
   const date = new Date(d);
@@ -14,6 +15,7 @@ function formatDate(d: string) {
 }
 
 export function Blog() {
+  const t = useT();
   const fetchPosts = useServerFn(getBlogPosts);
   const { data, isLoading, error } = useQuery({
     queryKey: ["blog-posts"],
@@ -28,15 +30,14 @@ export function Blog() {
         <div className="flex flex-col items-start justify-between gap-6 lg:flex-row lg:items-end">
           <div className="max-w-2xl">
             <span className="font-mono text-xs uppercase tracking-widest text-primary">
-              04 — Writing
+              {t("blog.eyebrow")}
             </span>
             <h2 className="mt-4 font-display text-4xl font-bold leading-tight sm:text-5xl">
               <span className="text-muted-foreground">$</span> cat{" "}
               <span className="gradient-text">~/blog/*.md</span>
             </h2>
             <p className="mt-4 font-mono text-sm text-muted-foreground">
-              Latest posts streamed from{" "}
-              <span className="text-primary">blog.azharazziz.my.id</span> via RSS.
+              {t("blog.description")}
             </p>
           </div>
 
@@ -47,7 +48,7 @@ export function Blog() {
             className="group inline-flex items-center gap-2 rounded-lg border border-border bg-card px-4 py-2 font-mono text-xs transition-all hover:border-primary hover:text-primary"
           >
             <Rss className="h-4 w-4" />
-            subscribe.rss
+            {t("blog.subscribe")}
             <ArrowUpRight className="h-3 w-3 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </a>
         </div>
@@ -56,13 +57,13 @@ export function Blog() {
           {isLoading && (
             <div className="flex items-center justify-center py-20 font-mono text-sm text-muted-foreground">
               <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-              fetching feed...
+              {t("blog.loading")}
             </div>
           )}
 
           {error && (
             <div className="rounded-xl border border-destructive/30 bg-destructive/10 p-6 font-mono text-sm text-destructive">
-              ✗ Error loading blog feed.
+              {t("blog.error")}
             </div>
           )}
 
@@ -80,6 +81,7 @@ export function Blog() {
 }
 
 function PostCard({ post, index }: { post: BlogPost; index: number }) {
+  const t = useT();
   return (
     <a
       href={post.link}
@@ -94,7 +96,7 @@ function PostCard({ post, index }: { post: BlogPost; index: number }) {
           <span className="h-2 w-2 rounded-full bg-yellow-400/60" />
           <span className="h-2 w-2 rounded-full bg-green-400/60" />
           <span className="ml-2 font-mono text-[10px] text-muted-foreground">
-            post_{String(index + 1).padStart(2, "0")}.md
+            {t("blog.postPrefix")}{String(index + 1).padStart(2, "0")}{t("blog.postSuffix")}
           </span>
         </div>
         <ArrowUpRight className="h-4 w-4 text-muted-foreground transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-primary" />

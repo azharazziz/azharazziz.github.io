@@ -1,4 +1,5 @@
 import { BookOpen, Code2, Headphones, Coffee } from "lucide-react";
+import { useT } from "@/lib/i18n";
 
 const processes = [
   {
@@ -36,29 +37,26 @@ const processes = [
 ];
 
 export function Now() {
+  const t = useT();
+  const localizedProcesses = t("now.processes").map((p, i) => ({
+    ...p,
+    icon: processes[i].icon,
+    color: processes[i].color,
+  }));
   return (
     <section id="now" className="relative surface-dark py-32">
       <div className="absolute inset-0 grid-bg opacity-15" />
       <div className="relative mx-auto max-w-5xl px-6">
         <div className="max-w-2xl">
           <span className="font-mono text-xs uppercase tracking-widest text-primary-glow">
-            05 — /now
+            {t("now.eyebrow")}
           </span>
           <h2 className="mt-4 font-display text-4xl font-bold leading-tight text-white sm:text-5xl">
             <span className="text-white/40">$</span> top -u{" "}
             <span className="gradient-text">azhar</span>
           </h2>
           <p className="mt-4 font-prose text-white/70">
-            What's running in my head this week. Inspired by{" "}
-            <a
-              href="https://nownownow.com/about"
-              target="_blank"
-              rel="noreferrer"
-              className="text-primary-glow underline-offset-4 hover:underline"
-            >
-              the /now movement
-            </a>
-            .
+            {t("now.description")}
           </p>
         </div>
 
@@ -71,21 +69,21 @@ export function Now() {
               <span className="h-3 w-3 rounded-full bg-green-400/80" />
             </div>
             <span className="font-mono text-[11px] text-white/40">
-              azhar@portfolio: ~/now
+              {t("now.terminalUser")}
             </span>
-            <span className="font-mono text-[11px] text-white/40">zsh</span>
+            <span className="font-mono text-[11px] text-white/40">{t("now.terminalShell")}</span>
           </div>
 
           {/* table header */}
           <div className="hidden grid-cols-[60px_140px_1fr_70px] gap-4 border-b border-white/10 bg-white/5 px-6 py-2 font-mono text-[11px] uppercase tracking-wider text-white/40 sm:grid">
-            <span>PID</span>
-            <span>PROCESS</span>
-            <span>DETAIL</span>
-            <span className="text-right">CPU</span>
+            <span>{t("now.tableHeaders.pid")}</span>
+            <span>{t("now.tableHeaders.process")}</span>
+            <span>{t("now.tableHeaders.detail")}</span>
+            <span className="text-right">{t("now.tableHeaders.cpu")}</span>
           </div>
 
           <div className="divide-y divide-white/5">
-            {processes.map((p) => (
+            {localizedProcesses.map((p) => (
               <div
                 key={p.pid}
                 className="grid grid-cols-[1fr_70px] gap-4 px-6 py-4 font-mono text-sm transition-colors hover:bg-white/5 sm:grid-cols-[60px_140px_1fr_70px]"

@@ -1,6 +1,4 @@
-import type { Dict } from "./en";
-
-export const id: Dict = {
+export const id = {
   nav: {
     home: "beranda",
     about: "tentang",
@@ -29,6 +27,29 @@ export const id: Dict = {
     statProjects: "proyek dikirim",
     statCoffee: "cangkir kopi",
   },
+  skills: {
+    eyebrow: "02 — Keahlian",
+    title: "Stack yang saya gunakan, setiap hari.",
+    description: "Toolkit terfokus, diasah pada proyek nyata di pemerintah, kesehatan, FinTech dan pekerjaan open-source.",
+    groups: [
+      {
+        title: "Ekosistem Laravel",
+        items: ["Laravel 11", "Livewire 3", "Splade", "Eloquent ORM", "Queues & Jobs", "Sanctum"],
+      },
+      {
+        title: "Database & Backend",
+        items: ["MySQL", "SQLite", "PostgreSQL", "REST APIs", "Optimasi Query", "Caching"],
+      },
+      {
+        title: "Frontend",
+        items: ["Tailwind CSS", "Alpine.js", "Vue.js", "React", "Vite", "TypeScript"],
+      },
+      {
+        title: "Alat & Workflow",
+        items: ["Git & GitHub", "Composer", "NPM/Bun", "Docker", "CI/CD", "VS Code"],
+      },
+    ],
+  },
   about: {
     eyebrow: "01 — Tentang",
     title_a: "Developer yang memperlakukan kode sebagai",
@@ -41,6 +62,63 @@ export const id: Dict = {
       modern: { title: "Stack modern", body: "Livewire, Splade, Alpine, Tailwind, Vite — menjaga loop developer tetap gesit dan menyenangkan." },
     },
   },
+  experience: {
+    eyebrow: "03 — Pengalaman",
+    title: "$ git log --career",
+    description: "Riwayat commit singkat dari orang, produk, dan pelajaran yang membentuk cara saya membangun saat ini.",
+    timeline: [
+      {
+        hash: "f2a8c45",
+        date: "2023 — sekarang",
+        role: "Pranata Komputer Ahli Pertama",
+        org: "Balai Laboratorium Kesehatan Masyarakat Magelang · Magelang, ID",
+        body: "Mengembangkan dan memelihara aplikasi kritis untuk manajemen laboratorium kesehatan masyarakat. Membangun aplikasi web dengan Laravel dan Tailwind CSS, mengelola infrastruktur digital, dan mendukung inisiatif transformasi digital di sektor kesehatan.",
+        tags: ["Laravel", "Tailwind CSS", "MySQL", "Pengembangan Web"],
+      },
+      {
+        hash: "d5e7b32",
+        date: "2022 — 2023",
+        role: "Pranata Komputer Ahli Pertama",
+        org: "Badan Kebijakan Pembangunan Kebijakan · Magelang, ID",
+        body: "Membangun aplikasi web dan solusi digital untuk inisiatif kebijakan kesehatan. Bekerja pada pengembangan backend, desain database, dan integrasi sistem untuk berbagai program kesehatan pemerintah.",
+        tags: ["Laravel", "MySQL", "PHP", "Desain Database"],
+      },
+      {
+        hash: "c3f6a19",
+        date: "2022 — 2022",
+        role: "Analis Sistem Informasi",
+        org: "Badan Kebijakan Pembangunan Kebijakan · Magelang, ID",
+        body: "Menganalisis dan mendokumentasikan kebutuhan sistem, merancang solusi sistem informasi, dan memberikan dukungan teknis untuk operasi pemerintah. Fokus pada optimasi proses dan integrasi sistem.",
+        tags: ["Laravel", "Analisis Sistem", "PHP", "Database"],
+      },
+      {
+        hash: "b1d4e28",
+        date: "2020 — 2021",
+        role: "Analis Sistem Informasi",
+        org: "Badan Litbang Kesehatana · Magelang, ID",
+        body: "Menganalisis kebutuhan bisnis dan merancang solusi teknis untuk sistem penelitian kesehatan. Mengembangkan aplikasi dan memberikan rekomendasi untuk perbaikan sistem dalam infrastruktur penelitian.",
+        tags: ["Laravel", "Pengembangan Perangkat Lunak", "PHP", "Sistem Informasi"],
+      },
+      {
+        hash: "a9c3f17",
+        date: "2019 — 2020",
+        role: "Dukungan IT",
+        org: "PT. BPR KEMBANG PARAMA · Magelang, ID",
+        body: "Mengelola dan memelihara infrastruktur IT perusahaan, mendukung operasi perangkat lunak perbankan, dan berkoordinasi dengan kantor cabang. Tanggung jawab termasuk manajemen akses pengguna untuk sistem perbankan inti, deployment perangkat lunak, dan pemeliharaan peralatan.",
+        tags: ["Dukungan IT", "Deployment Perangkat Lunak", "Sistem Perbankan", "Infrastruktur"],
+      },
+    ],
+  },
+  blog: {
+    eyebrow: "04 — Tulisan",
+    title: "$ cat ~/blog/*.md",
+    description: "Postingan terbaru disiarkan dari blog.azharazziz.my.id via RSS.",
+    subscribe: "subscribe.rss",
+    loading: "mengambil feed...",
+    error: "✗ Error memuat feed blog.",
+    postPrefix: "post_",
+    postSuffix: ".md",
+  },
   projects: {
     eyebrow: "03 — Karya Pilihan",
     title: "Proyek yang baru-baru ini saya kerjakan.",
@@ -48,6 +126,45 @@ export const id: Dict = {
     live: "Demo langsung",
     source: "Kode sumber",
     all: "Semua",
+  },
+  now: {
+    eyebrow: "05 — /sekarang",
+    title: "$ top -u azhar",
+    description: "Apa yang berjalan di pikiran saya minggu ini. Terinspirasi oleh gerakan /now.",
+    terminalUser: "azhar@portfolio: ~/sekarang",
+    terminalShell: "zsh",
+    tableHeaders: {
+      pid: "PID",
+      process: "PROSES",
+      detail: "DETAIL",
+      cpu: "CPU",
+    },
+    processes: [
+      {
+        pid: "1024",
+        name: "membangun",
+        detail: "Starter SaaS Laravel 11 + Livewire 3 dengan billing tim",
+        cpu: "82%",
+      },
+      {
+        pid: "2048",
+        name: "membaca",
+        detail: "\"A Philosophy of Software Design\" — John Ousterhout",
+        cpu: "14%",
+      },
+      {
+        pid: "3072",
+        name: "mendengarkan",
+        detail: "Syntax.fm · Laravel News Podcast · lofi beats",
+        cpu: "08%",
+      },
+      {
+        pid: "4096",
+        name: "bahan_bakar",
+        detail: "Kopi hitam, tanpa gula. Selalu.",
+        cpu: "99%",
+      },
+    ],
   },
   music: {
     eyebrow: "06 — /musik",
@@ -72,6 +189,60 @@ export const id: Dict = {
   faq: {
     eyebrow: "07 — Tanya Jawab",
     title: "Pertanyaan yang sering muncul.",
+    questions: [
+      {
+        q: "Jenis proyek apa yang Anda ambil?",
+        a: "Sebagian besar aplikasi web berbasis Laravel — dashboard SaaS, alat internal, portal pemerintah dan kesehatan, serta situs pemasaran modern. Saya juga membangun dengan React + Supabase ketika proyek memerlukannya.",
+      },
+      {
+        q: "Apakah Anda bekerja sendiri atau dengan tim?",
+        a: "Keduanya. Saya dengan senang hati bergabung dengan tim teknik yang ada sebagai spesialis Laravel, dan saya juga memimpin pembangunan end-to-end untuk pendiri solo dan agensi kecil — dari sistem desain hingga deployment.",
+      },
+      {
+        q: "Apa model keterlibatan Anda yang khas?",
+        a: "Proyek dengan cakupan tetap untuk deliverables yang jelas, atau per jam/retainer untuk kolaborasi berkelanjutan. Kami mulai dengan panggilan penemuan singkat untuk menemukan bentuk yang cocok.",
+      },
+      {
+        q: "Bagaimana Anda menangani tenggat waktu?",
+        a: "Saya melakukan scoping dengan jujur dan mengirim dalam peningkatan kecil. Anda mendapatkan link pratinjau yang berfungsi dari minggu pertama, pembaruan mingguan, dan nol kejutan mendekati peluncuran.",
+      },
+      {
+        q: "Bisakah Anda memelihara atau menyelamatkan codebase Laravel yang ada?",
+        a: "Ya — audit codebase, pekerjaan performa, patching keamanan, dan upgrade versi (Laravel 8 → 11) adalah bagian besar dari apa yang saya lakukan.",
+      },
+      {
+        q: "Apakah Anda tersedia sekarang?",
+        a: "Saya sedang menerima proyek baru. Kirim pesan melalui bagian kontak dan saya akan membalas dalam 24 jam.",
+      },
+    ],
+  },
+  contact: {
+    eyebrow: "08 — Kontak",
+    title: "Mari kita bangun",
+    subtitle: "sesuatu bersama",
+    description: "Saya selalu terbuka untuk mendiskusikan peluang baru, proyek menarik, atau sekadar mengobrol tentang teknologi dan pengembangan.",
+    items: [
+      {
+        label: "Email",
+        value: "azharazziz13@gmail.com",
+        href: "mailto:azharazziz13@gmail.com",
+      },
+      {
+        label: "Lokasi",
+        value: "Magelang, Indonesia",
+        href: "#",
+      },
+      {
+        label: "GitHub",
+        value: "@azharazziz13",
+        href: "https://github.com/azharazziz13",
+      },
+      {
+        label: "LinkedIn",
+        value: "Azhar Azziz",
+        href: "https://linkedin.com/in/azharazziz",
+      },
+    ],
   },
   footer: {
     rights: "Dibuat dengan cinta Laravel.",
@@ -83,3 +254,5 @@ export const id: Dict = {
     goHome: "Ke beranda",
   },
 };
+
+export type Dict = typeof id;
