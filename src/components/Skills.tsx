@@ -40,7 +40,7 @@ export function Skills() {
         </div>
 
         <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {t("skills.groups").map((g, i) => (
+          {(t("skills.groups") as Array<{ title: string; items: string[] }>).map((g, i: number) => (
             <div
               key={g.title}
               className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur transition-all hover:-translate-y-1 hover:border-primary-glow hover:bg-white/10"
@@ -52,7 +52,7 @@ export function Skills() {
                 {g.title}
               </h3>
               <ul className="relative mt-4 space-y-2">
-                {g.items.map((item) => (
+                {g.items.map((item: string) => (
                   <li
                     key={item}
                     className="flex items-center gap-2 text-sm text-white/75"

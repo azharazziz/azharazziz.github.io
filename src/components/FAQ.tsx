@@ -20,7 +20,7 @@ export function FAQ() {
         </div>
 
         <div className="mt-12 space-y-3">
-          {t("faq.questions").map((f, i) => {
+          {(t("faq.questions") as Array<{ q: string; a: string }>).map((f, i: number) => {
             const isOpen = open === i;
             return (
               <div

@@ -38,7 +38,7 @@ const processes = [
 
 export function Now() {
   const t = useT();
-  const localizedProcesses = t("now.processes").map((p, i) => ({
+  const localizedProcesses = (t("now.processes") as Array<{ pid: string; name: string; detail: string; cpu: string }>).map((p, i: number) => ({
     ...p,
     icon: processes[i].icon,
     color: processes[i].color,
@@ -83,7 +83,7 @@ export function Now() {
           </div>
 
           <div className="divide-y divide-white/5">
-            {localizedProcesses.map((p) => (
+            {localizedProcesses.map((p: typeof localizedProcesses[number]) => (
               <div
                 key={p.pid}
                 className="grid grid-cols-[1fr_70px] gap-4 px-6 py-4 font-mono text-sm transition-colors hover:bg-white/5 sm:grid-cols-[60px_140px_1fr_70px]"
@@ -106,7 +106,7 @@ export function Now() {
               month: "long",
               day: "numeric",
             })}
-            <span className="ml-1 inline-block h-3 w-2 translate-y-[2px] bg-primary-glow animate-pulse" />
+            <span className="ml-1 inline-block h-3 w-2 translate-y-0.5 bg-primary-glow animate-pulse" />
           </div>
         </div>
       </div>

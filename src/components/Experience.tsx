@@ -63,10 +63,10 @@ export function Experience() {
         </div>
 
         <div className="relative mt-14 pl-6 sm:pl-10">
-          <div className="absolute left-[7px] top-2 bottom-2 w-px bg-gradient-to-b from-primary via-border to-transparent sm:left-[15px]" />
+          <div className="absolute left-1.75 top-2 bottom-2 w-px bg-linear-to-b from-primary via-border to-transparent sm:left-3.75" />
 
           <ol className="space-y-10">
-            {t("experience.timeline").map((item, i) => (
+            {(t("experience.timeline") as Array<{ hash: string; date: string; role: string; org: string; body: string; tags: string[] }>).map((item, i: number) => (
               <li key={item.hash} className="relative">
                 <div className="absolute -left-6 top-1.5 grid h-4 w-4 place-items-center rounded-full border-2 border-primary bg-background sm:-left-10 sm:h-8 sm:w-8">
                   <GitCommit className="hidden h-4 w-4 text-primary sm:block" />
@@ -86,12 +86,12 @@ export function Experience() {
                     {item.body}
                   </p>
                   <div className="mt-4 flex flex-wrap gap-1.5">
-                    {item.tags.map((t) => (
+                    {item.tags.map((tag: string) => (
                       <span
-                        key={t}
+                        key={tag}
                         className="rounded-md bg-secondary px-2 py-0.5 font-mono text-[11px] text-secondary-foreground"
                       >
-                        {t}
+                        {tag}
                       </span>
                     ))}
                   </div>

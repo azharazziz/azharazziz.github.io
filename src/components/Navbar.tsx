@@ -37,7 +37,7 @@ export function Navbar() {
     >
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         <a href="#home" className="flex items-center gap-2 font-display text-lg font-bold">
-          <span className="grid h-9 w-9 place-items-center rounded-lg bg-gradient-to-br from-primary to-primary-glow text-primary-foreground">
+          <span className="grid h-9 w-9 place-items-center rounded-lg bg-linear-to-br from-primary to-primary-glow text-primary-foreground">
             AA
           </span>
           <span>azhar<span className="text-primary">.</span></span>

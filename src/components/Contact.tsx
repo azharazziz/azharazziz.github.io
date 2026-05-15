@@ -24,7 +24,7 @@ export function Contact() {
             </p>
 
             <div className="mt-10 grid gap-4 sm:grid-cols-2">
-              {t("contact.items").map((item, index) => {
+              {(t("contact.items") as Array<{ label: string; value: string; href?: string }>).map((item, index: number) => {
                 const icons = [Mail, MapPin, Github, Linkedin];
                 const Icon = icons[index];
                 return (

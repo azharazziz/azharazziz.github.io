@@ -32,7 +32,7 @@ export function About() {
                 key={v.key}
                 className="group flex gap-5 rounded-2xl border border-border bg-card p-6 transition-all hover:border-primary hover:card-shadow"
               >
-                <div className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-gradient-to-br from-primary to-primary-glow text-primary-foreground transition-transform group-hover:scale-110">
+                <div className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-linear-to-br from-primary to-primary-glow text-primary-foreground transition-transform group-hover:scale-110">
                   <v.icon className="h-5 w-5" />
                 </div>
                 <div>
