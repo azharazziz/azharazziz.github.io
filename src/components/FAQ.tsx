@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { Plus } from "lucide-react";
 import { faqs } from "@/lib/faq-data";
+import { useT } from "@/lib/i18n";
 
 export function FAQ() {
+  const t = useT();
   const [open, setOpen] = useState<number | null>(0);
 
   return (
@@ -10,15 +12,12 @@ export function FAQ() {
       <div className="mx-auto max-w-4xl px-6">
         <div className="text-center">
           <span className="font-mono text-xs uppercase tracking-widest text-primary">
-            07 — FAQ
+            {t("faq.eyebrow")}
           </span>
           <h2 className="mt-4 font-display text-4xl font-bold leading-tight sm:text-5xl">
             <span className="text-muted-foreground">{"// "}</span>
-            frequently asked
+            {t("faq.title")}
           </h2>
-          <p className="mt-4 font-prose text-muted-foreground">
-            The things people ask before we start working together.
-          </p>
         </div>
 
         <div className="mt-12 space-y-3">
